@@ -12,6 +12,8 @@
     //Paginas Estaticas
     $router->get('/', [PageController::class, 'index']);
     $router->get('/nosotros', [PageController::class, 'nosotros']);
+    $router->get('/servicios', [PageController::class, 'servicios']);
+    $router->get('/medicos', [PageController::class, 'medicos']);
     $router->get('/contacto', [PageController::class, 'contacto']);
     $router->post('/contacto', [PageController::class, 'contacto']);
 
