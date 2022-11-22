@@ -1,0 +1,22 @@
+{
+    "name": "rena/proyecto_hospital",
+    "description": "Proyecto de Integrador",
+    "type": "project",
+    "authors": [
+        {
+            "name": "DevRenato",
+            "email": "u18215194@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7",
+        "phpmailer/phpmailer": "^6.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\" : ".models",
+            "Router\\" : "./",
+            "Controller\\" : "./controllers"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "proyecto_hospital",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DevRenato <u18215194@gmail.com>",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+  }
+}
