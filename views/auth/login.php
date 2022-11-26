@@ -1,5 +1,5 @@
 <div id="fondologin">
-  <form action="" class="formulario" method="">
+  <form action="/login" class="formulario" method="POST">
     <h1>Iniciar Sesión</h1>
 
     <div class="contenedor">
