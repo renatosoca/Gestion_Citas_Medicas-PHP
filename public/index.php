@@ -2,6 +2,7 @@
     require_once __DIR__. '/../includes/app.php';
 
     use Router\Router;
+    use Controller\AdminController;
     use Controller\PageController;
     use Controller\LoginController;
     use Controller\PacienteController;
@@ -18,7 +19,12 @@
     $router->post('/contacto', [PageController::class, 'contacto']);
 
     //Paginas Admin
-    $router->get('/admin', [PacienteController::class, 'dashbord']);
+    $router->get('/admin/panel', [AdminController::class, 'panel']);
+    $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
+    $router->get('/admin/medicos', [AdminController::class, 'medicos']);
+    $router->get('/admin/citas', [AdminController::class, 'citas']);
+    $router->get('/admin/historial', [AdminController::class, 'historial']);
+
 
     //Paginas Paciente
     $router->get('/pacientes', [PacienteController::class, 'index']);
