@@ -1,11 +1,11 @@
 <?php
     namespace Controller;
 
-    use Router\Router;
+    /* use Router\Router; */
 
     class LoginController {
 
-        public static function login( Router $router ) {
+        /* public static function login( Router $router ) {
             
             $router->render('auth/login', [
 
@@ -17,6 +17,8 @@
             $router->render('auth/registro', [
 
             ]);
-        }
+        } */
+
+        
         
     }

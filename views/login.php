@@ -1,3 +1,9 @@
+<?php
+
+require_once "../controllers/Registrar.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -127,7 +133,7 @@
         </header>
 <body >
     <div id="fondologin">
-    <form action="" class="formulario" method="">
+    <form action="../controllers/Registrar.php" class="formulario" method="post">
 
         <h1>Iniciar Sesión</h1>
 

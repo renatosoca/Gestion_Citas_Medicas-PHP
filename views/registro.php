@@ -1,8 +1,18 @@
+<?php
+
+require_once "../controllers/Registrar.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <!--====== Required meta tags ======-->
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="description" content="" />
         <meta
@@ -127,22 +137,57 @@
         </header>
 <body >
     <div id="fondoregist">
-    <form action="" class="formulario" method="">
+    <form action="#" class="formulario" method="post">
 
         <h1>Registrate</h1>
     
             <div  class="contenedor">
            
                 <div class="usuario">
-                    <input type="text" name="usuario" id="" placeholder="Nombre" required> 
+                    <input type="text" name="Nombre" id="" placeholder="Nombre" required> 
     
                 </div>
 
                 <div class="apellido">
-                    <input type="text" name="apellido" id="" placeholder="Apellido" required> 
+                    <input type="text" name="apellido_Pat" id="" placeholder="Apellido Paterno" required> 
     
                 </div>
+
+                <div class="apellido">
+                    <input type="text" name="apellido_Mat" id="" placeholder="Apellido Materno" required> 
     
+                </div >
+
+                 <div class="apellido">
+                  <select class="form-select" aria-label="Default select example" name="Genero">
+                    <option selected>Seleccionar Genero</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                  </select>
+                </div>
+
+                <div class="apellido">
+                  <select class="form-select" aria-label="Default select example" name="TipoDoc">
+                    <option selected>Tipo de Documento</option>
+                    <option value="DNI">DNI</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                  </select>
+                </div>
+
+                <div class="apellido">
+                    <input type="text" name="num_doc" id="" placeholder="Numero de Documento" required> 
+    
+                </div >
+
+                <div class="apellido">
+                <input class="form-control" type="date" name="Fech_Naci">
+                </div>
+
+                <div class="apellido">
+                    <input type="text" name="num_tel" id="" placeholder="Numero Telefonico" required> 
+    
+                </div >
+
                 <div class="correo">
                     <input type="email" name="correo" id="" placeholder="Correo Electrónico" required>
                 </div>
