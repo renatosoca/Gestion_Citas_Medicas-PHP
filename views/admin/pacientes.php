@@ -601,15 +601,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     
-    <script>
-        $(document).ready(function() {
-    $('#dataTable1').DataTable( {
-        language: {
-            url:"./vendor/datatables/es-ES.json"
-        }
-    } );
-} );
-    </script>
+    
     
   </body>
 </html>

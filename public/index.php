@@ -2,11 +2,11 @@
     require_once __DIR__. '/../includes/app.php';
 
     use Router\Router;
-    use Controller\AdminController;
     use Controller\PageController;
     use Controller\LoginController;
     use Controller\PacienteController;
     use Controller\DoctorController;
+    use Controller\AdminController;
 
     $router = new Router();
 
@@ -19,11 +19,10 @@
     $router->post('/contacto', [PageController::class, 'contacto']);
 
     //Paginas Admin
-    $router->get('/admin/panel', [AdminController::class, 'panel']);
+    $router->get('/admin/index', [AdminController::class, 'index']);
     $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
     $router->get('/admin/medicos', [AdminController::class, 'medicos']);
     $router->get('/admin/citas', [AdminController::class, 'citas']);
-    $router->get('/admin/historial', [AdminController::class, 'historial']);
 
 
     //Paginas Paciente
