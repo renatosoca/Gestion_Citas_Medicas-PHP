@@ -2,7 +2,7 @@
 
     namespace Model;
 
-    class Paciente {
+    class Paciente extends ActiveRecord{
         protected static $tabla = 'paciente';
         protected static $columnasDB  = ['id', 'nombres', 'apell'];
 

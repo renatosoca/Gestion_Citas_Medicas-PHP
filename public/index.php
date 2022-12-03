@@ -26,15 +26,16 @@
 
 
     //Paginas Paciente
-    $router->get('/pacientes', [PacienteController::class, 'index']);
+    $router->get('/paciente', [PacienteController::class, 'index']);
 
     //Paginas Doctores
-    $router->get('/doctores', [DoctorController::class, 'index']);
+    $router->get('/doctor', [DoctorController::class, 'index']);
 
     //Login
     $router->get('/login', [LoginController::class, 'login']);
     $router->post('/login', [LoginController::class, 'login']);
     $router->get('/registro', [LoginController::class, 'registro']);
     $router->post('/registro', [LoginController::class, 'registro']);
+    $router->get('/logout', [LoginController::class, 'logout']);
 
     $router->comprobarRutas();

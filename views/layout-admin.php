@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../build/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/build/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -33,7 +32,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/Logo_hospital_San_José_del_Callao.svg.png" width="50px" alt="">
+                    <img src="/build/images/Logo_hospital_San_José_del_Callao.svg.png" width="50px" alt="">
 
                 </div>
                 <div class="sidebar-brand-text mx-3">HOSPITAL SAN JOSÉ</div>
@@ -85,7 +84,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <a href="/logout" class="rounded-circle border-0" id="sidebarToggle">Salir</a>
             </div>
         </ul>
         <!-- End of Sidebar -->
@@ -135,22 +134,9 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/build/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

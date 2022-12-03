@@ -3,4 +3,6 @@
 
     class PacienteController {
         
+        public static function index() {
+        }
     }
