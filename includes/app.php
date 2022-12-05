@@ -9,4 +9,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Model\ActiveRecord;
 
+<<<<<<< Updated upstream
 /* ActiveRecord::setDB($db); */
+=======
+ActiveRecord::setDB($db);
+>>>>>>> Stashed changes
