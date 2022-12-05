@@ -39,7 +39,6 @@ class ActiveRecord {
 
         $resultado = self::$db->query($query);
 
-        //Enviar a otra pagina
         if ($resultado) {
             header('Location: /admin?resultado=1');
         }
@@ -52,7 +51,7 @@ class ActiveRecord {
         $valores = [];
         foreach ($atributos as $key => $value) {
             $valores[] = "{$key} = '{$value}' ";
-        }
+        } 
 
         $query = "UPDATE " . static::$tabla . " SET ";
         $query .= join(', ', $valores);
@@ -72,8 +71,8 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         if ($resultado) {
-            $this->deleteImage();
-            header('Location: /admin?resultado=3');
+            /* $this->deleteImage(); */
+            header('Location: /especialidades/index');
         }
     }
 
@@ -123,22 +122,19 @@ class ActiveRecord {
     }
 
     //OBTENER EL ARRAY DE LOS ERRORES
-    public static function getErrores()
-    {
+    public static function getErrores() {
         return static::$errores;
     }
 
     //VALIDAR QUE LOS INPUTS NO ESTEN VACIOS
-    public function validar()
-    {
+    public function validar() {
         static::$errores = [];
 
         return static::$errores;
     }
 
     //LISTAR TODOS LOS OBJETOS
-    public static function all()
-    {
+    public static function all() {
         $query = "SELECT * FROM " . static::$tabla . " ";
         $resultado = self::consultSQL($query);
 

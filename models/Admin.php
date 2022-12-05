@@ -1,6 +1,6 @@
 <?php
     namespace Model;
-
+    
     class Admin extends ActiveRecord{
         protected static $tabla = 'usuario';
         protected static $columnasDB  = ['id', 'email', 'pass', 'tipo_usuario', 'estado'];

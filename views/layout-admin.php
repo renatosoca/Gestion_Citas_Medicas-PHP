@@ -78,6 +78,12 @@
                     <span>Citas</span></a>
             </li>
 
+            <!-- Nav Item - Especialidades -->
+            <li class="nav-item">
+                <a class="nav-link" href="/especialidades/index">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Especialidades</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

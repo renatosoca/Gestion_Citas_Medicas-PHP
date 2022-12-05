@@ -6,6 +6,7 @@
     use Controller\LoginController;
     use Controller\PacienteController;
     use Controller\DoctorController;
+    use Controller\EspecialidadController;
     use Controller\AdminController;
 
     $router = new Router();
@@ -23,6 +24,10 @@
     $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
     $router->get('/admin/medicos', [AdminController::class, 'medicos']);
     $router->get('/admin/citas', [AdminController::class, 'citas']);
+
+    //Paginas de ADMIN, parte especialidades
+    $router->get('/especialidades/index', [EspecialidadController::class, 'index']);
+    $router->post('/especialidades/eliminar', [EspecialidadController::class, 'eliminar']);
 
 
     //Paginas Paciente
