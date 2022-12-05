@@ -55,7 +55,6 @@
                     if (!$resultado) {
                         $mensaje = Admin::getErrores();
                     } else {
-                        //VERIFICAR EL PASS
                         $mensaje = $resultado;
                     }
                 }
