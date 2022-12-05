@@ -1,11 +1,11 @@
 <?php
     namespace Controller;
 
-   /*  use Router\Router; */
+    use Router\Router;
 
     class PageController {
 
-        /* public static function index( Router $router ) {
+        public static function index( Router $router ) {
 
             $router->render('page/index', [
 
@@ -38,5 +38,5 @@
             $router->render('page/contacto', [
 
             ]);
-        } */
+        }
     }

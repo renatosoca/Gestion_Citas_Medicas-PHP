@@ -2,6 +2,7 @@
     namespace Controller;
 
     use Router\Router;
+    use Model\Paciente;
 
     class AdminController {
 
@@ -13,9 +14,16 @@
         }
 
         public static function pacientes( Router $router ) {
+
+            //Mostramos a los pacientes registrados
+
+            $auth=new Paciente("");
+
+            $pacientes=$auth->MostrarPacientesAdmin();
+
             
             $router->renderAdmin('admin/pacientes', [
-
+                'pacientes' => $pacientes
             ]);
         }
 
