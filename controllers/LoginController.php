@@ -1,44 +1,19 @@
 <?php
     namespace Controller;
 
-<<<<<<< Updated upstream
-    /* use Router\Router; */
-=======
     use Router\Router;
     use Model\Admin;
-    use Model\Paciente;
->>>>>>> Stashed changes
 
     class LoginController {
 
-        /* public static function login( Router $router ) {
-            
-            $router->render('auth/login', [
-
-            ]);
-        }
-
-        public static function registro( Router $router ) {
-
+        public static function login( Router $router ) {
             $mensaje = [];
             
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $auth = new Paciente($_POST['paciente']);
+                $auth = new Admin($_POST['usuario']);
                 $mensaje = $auth->validar();
-
-                if ( empty($mensaje) ) { 
-                    //REGISTRAR AL USUARIO
-                    $resultado= $auth->Registrar();
-
-                    if (!$resultado) {
-                        $mensaje = Admin::getErrores();
-                    } else {
-                        //VERIFICAR EL PASS
-                        $mensaje = $resultado;
-                    }
-                }
                 
-                /* if ( empty($mensaje) ) {
+                if ( empty($mensaje) ) {
                     //VERIFICAR SI EL USUARIO EXISTE EN LA DATABASE
                     $resultado = $auth->existeUsuario();
 
@@ -56,14 +31,26 @@
                             $mensaje = Admin::getErrores();
                         }
                     }
-                } */
+                }
             }
             
-            $router->render('auth/registro', [
+            $router->render('auth/login', [
                 'mensaje' => $mensaje
             ]);
-        } */
+        }
 
-        
+        public static function registro( Router $router ) {
+            
+            $router->render('auth/registro', [
+
+            ]);
+        }
+
+        public static function logout() {
+            session_start();
+            $_SESSION = [];
+
+            header('Location: /');
+        }
         
     }

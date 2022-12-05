@@ -1,8 +1,8 @@
 <?php
     namespace Model;
 
-    class Doctores {
-        protected static $tabla = 'doctor';
+    class Medico extends ActiveRecord{
+        protected static $tabla = 'medico';
         protected static $columnasDB  = ['id', 'nombres', 'apell'];
 
         public $id;

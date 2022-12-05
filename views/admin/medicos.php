@@ -49,15 +49,20 @@
     <div class="container-fluid">
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Pacientes</h1>
+        <h1 class="h3 mb-0 text-gray-800">Médicos</h1>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarPaciente">
-          <i class="fas fa-user-plus"> </i> Agregar Paciente
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarMedico">
+          <i class="fas fa-user-plus"> </i> Agregar Médicos
+        </button>
+
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#especialidad">
+          <i class="fas fa-clinic-medical"></i> Especialidades
         </button>
 
       </div>
 
-      <!-- TABLA DE PACIENTES -->
+
+      <!-- TABLA DE MÉDICOS -->
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="table-responsive">
@@ -65,20 +70,20 @@
               <thead>
                 <tr>
                   <th>DNI</th>
-                  <th>PACIENTE</th>
+                  <th>MÉDICO</th>
                   <th>SEXO</th>
-                  <th>EDAD</th>
-                  <th>HISTORIAL</th>
+                  <th>ESPECIALIDAD</th>
+                  <th>HORARIO</th>
                   <th>ACCIONES</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>DNI</th>
-                  <th>PACIENTE</th>
+                  <th>MÉDICO</th>
                   <th>SEXO</th>
-                  <th>EDAD</th>
-                  <th>HISTORIAL</th>
+                  <th>ESPECIALIDAD</th>
+                  <th>HORARIO</th>
                   <th>ACCIONES</th>
                 </tr>
               </tfoot>
@@ -87,15 +92,18 @@
                   <td>76675656</td>
                   <td>Pedro Sanchez</td>
                   <td>M</td>
-                  <td>44</td>
+                  <td>Cardiología</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
+                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                      <i class="fas fa-calendar-alt"></i> horario
                     </button>
                   </td>
                   <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
-                      <i class="fas fa-user-edit"> </i>editar
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                      <i class="fas fa-user-edit"> </i> editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
@@ -103,15 +111,18 @@
                   <td>77565666</td>
                   <td>Donna Snider</td>
                   <td>F</td>
-                  <td>22</td>
+                  <td>Pediatria</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
+                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                      <i class="fas fa-calendar-alt"></i> horario
                     </button>
                   </td>
                   <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
-                      <i class="fas fa-user-edit"> </i>editar
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                      <i class="fas fa-user-edit"> </i> editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
@@ -119,15 +130,18 @@
                   <td>99999999</td>
                   <td>Shad Decker</td>
                   <td>M</td>
-                  <td>20</td>
+                  <td>Psicología</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
+                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                      <i class="fas fa-calendar-alt"></i> horario
                     </button>
                   </td>
                   <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
-                      <i class="fas fa-user-edit"> </i>editar
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                      <i class="fas fa-user-edit"> </i> editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
@@ -135,15 +149,18 @@
                   <td>88888888</td>
                   <td>Paul Sanchez</td>
                   <td>M</td>
-                  <td>15</td>
+                  <td>Traumatología</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
+                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                      <i class="fas fa-calendar-alt"></i> horario
                     </button>
                   </td>
                   <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
-                      <i class="fas fa-user-edit"> </i>editar
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                      <i class="fas fa-user-edit"> </i> editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
@@ -151,15 +168,18 @@
                   <td>55555555</td>
                   <td>Jonas Alexander</td>
                   <td>M</td>
-                  <td>44</td>
+                  <td>Cirugía</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
+                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                      <i class="fas fa-calendar-alt"></i> horario
                     </button>
                   </td>
                   <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
-                      <i class="fas fa-user-edit"> </i>editar
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                      <i class="fas fa-user-edit"> </i> editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>

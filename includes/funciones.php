@@ -15,7 +15,7 @@ function s($html) {
 }
 
 function validarTipoContenido($tipo) {
-    $tipos = ['paciente', 'doctor', 'admin'];
+    $tipos = ['especialidades', 'medicos', 'usuarios'];
     return in_array($tipo, $tipos);
 }
 

@@ -49,10 +49,10 @@
     <div class="container-fluid">
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Pacientes</h1>
+        <h1 class="h3 mb-0 text-gray-800">Citas</h1>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarPaciente">
-          <i class="fas fa-user-plus"> </i> Agregar Paciente
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarCita">
+          <i class="fas fa-user-plus"> </i> Agregar Cita
         </button>
 
       </div>
@@ -64,102 +64,97 @@
             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>DNI</th>
+                  <th>CÓDIGO</th>
+                  <th>MÉDICO</th>
                   <th>PACIENTE</th>
-                  <th>SEXO</th>
-                  <th>EDAD</th>
-                  <th>HISTORIAL</th>
+                  <th>ESPECIALIDAD</th>
+                  <th>FECHA</th>
                   <th>ACCIONES</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>DNI</th>
+                  <th>CÓDIGO</th>
+                  <th>MÉDICO</th>
                   <th>PACIENTE</th>
-                  <th>SEXO</th>
-                  <th>EDAD</th>
-                  <th>HISTORIAL</th>
+                  <th>ESPECIALIDAD</th>
+                  <th>FECHA</th>
                   <th>ACCIONES</th>
                 </tr>
               </tfoot>
               <tbody>
                 <tr>
-                  <td>76675656</td>
+                  <td>000001</td>
                   <td>Pedro Sanchez</td>
-                  <td>M</td>
-                  <td>44</td>
+                  <td>Mario Bros</td>
+                  <td>Cardiología</td>
+                  <td>11/12/22</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarCita">
                       <i class="fas fa-user-edit"> </i>editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>77565666</td>
-                  <td>Donna Snider</td>
-                  <td>F</td>
-                  <td>22</td>
+                  <td>000002</td>
+                  <td>Pedro Sanchez</td>
+                  <td>Mario Bros</td>
+                  <td>Cardiología</td>
+                  <td>11/12/22</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarCita">
                       <i class="fas fa-user-edit"> </i>editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>99999999</td>
-                  <td>Shad Decker</td>
-                  <td>M</td>
-                  <td>20</td>
+                  <td>000003</td>
+                  <td>Pedro Sanchez</td>
+                  <td>Mario Bros</td>
+                  <td>Cardiología</td>
+                  <td>11/12/22</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarCita">
                       <i class="fas fa-user-edit"> </i>editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>88888888</td>
-                  <td>Paul Sanchez</td>
-                  <td>M</td>
-                  <td>15</td>
+                  <td>000004</td>
+                  <td>Pedro Sanchez</td>
+                  <td>Mario Bros</td>
+                  <td>Cardiología</td>
+                  <td>11/12/22</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarCita">
                       <i class="fas fa-user-edit"> </i>editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>
                 <tr>
-                  <td>55555555</td>
-                  <td>Jonas Alexander</td>
-                  <td>M</td>
-                  <td>44</td>
+                  <td>000005</td>
+                  <td>Pedro Sanchez</td>
+                  <td>Mario Bros</td>
+                  <td>Cardiología</td>
+                  <td>11/12/22</td>
                   <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHistorial">
-                      <i class="fas fa-book-medical"></i> historial
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarPaciente">
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarCita">
                       <i class="fas fa-user-edit"> </i>editar
+                    </button>
+                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
+                      <i class="fas fa-trash-alt"></i> eliminar
                     </button>
                   </td>
                 </tr>

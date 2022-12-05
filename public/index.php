@@ -6,6 +6,8 @@
     use Controller\LoginController;
     use Controller\PacienteController;
     use Controller\DoctorController;
+    use Controller\EspecialidadController;
+    use Controller\AdminController;
 
     $router = new Router();
 
@@ -18,18 +20,27 @@
     $router->post('/contacto', [PageController::class, 'contacto']);
 
     //Paginas Admin
-    $router->get('/admin', [PacienteController::class, 'dashbord']);
+    $router->get('/admin/index', [AdminController::class, 'index']);
+    $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
+    $router->get('/admin/medicos', [AdminController::class, 'medicos']);
+    $router->get('/admin/citas', [AdminController::class, 'citas']);
+
+    //Paginas de ADMIN, parte especialidades
+    $router->get('/especialidades/index', [EspecialidadController::class, 'index']);
+    $router->post('/especialidades/eliminar', [EspecialidadController::class, 'eliminar']);
+
 
     //Paginas Paciente
-    $router->get('/pacientes', [PacienteController::class, 'index']);
+    $router->get('/paciente', [PacienteController::class, 'index']);
 
     //Paginas Doctores
-    $router->get('/doctores', [DoctorController::class, 'index']);
+    $router->get('/doctor', [DoctorController::class, 'index']);
 
     //Login
     $router->get('/login', [LoginController::class, 'login']);
     $router->post('/login', [LoginController::class, 'login']);
     $router->get('/registro', [LoginController::class, 'registro']);
     $router->post('/registro', [LoginController::class, 'registro']);
+    $router->get('/logout', [LoginController::class, 'logout']);
 
     $router->comprobarRutas();
