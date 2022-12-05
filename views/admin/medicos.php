@@ -103,9 +103,14 @@
                       <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
                         <i class="fas fa-user-edit"> </i> editar
                       </button>
-                      <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                        <i class="fas fa-trash-alt"></i> eliminar
-                      </button>
+                      <form method="POST" action="/medicos/eliminar">
+                        <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+                        <input type="hidden" name="tipo" value="medicos">
+
+                        <button type="submit">
+                          <i class="fas fa-trash-alt"> </i>eliminar
+                        </button>
+                      </form>
                     </td>
                   </tr>
                   <?php } ?>

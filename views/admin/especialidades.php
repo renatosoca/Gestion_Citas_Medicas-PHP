@@ -83,7 +83,7 @@
                         <input type="hidden" name="tipo" value="especialidades">
 
                         <button type="submit">
-                          <i class="fas fa-trash-alt"></i>eliminar
+                          <i class="fas fa-trash-alt"> </i>eliminar
                         </button>
                       </form>
                     </td>

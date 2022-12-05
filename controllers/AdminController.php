@@ -3,12 +3,22 @@
 
     use Router\Router;
     use Model\Paciente;
+    use Model\Medico;
 
     class AdminController {
 
         public static function index( Router $router) {
 
+            $paciente=Paciente::all();
+            $medico=Medico::all();
+
+            $nrpaci=sizeof($paciente);
+            $nrmedi=sizeof($medico);
+
             $router->renderAdmin('admin/index', [
+
+                'nrpaci' => $nrpaci,
+                'nrmedi' => $nrmedi
 
             ]);
         }
