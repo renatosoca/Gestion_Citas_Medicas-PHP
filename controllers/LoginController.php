@@ -3,6 +3,7 @@
 
     use Router\Router;
     use Model\Admin;
+    use Model\Paciente;
 
     class LoginController {
 
@@ -40,9 +41,27 @@
         }
 
         public static function registro( Router $router ) {
+
+            $mensaje = [];
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $auth = new Paciente($_POST['paciente']);
+                $mensaje = $auth->validar();
+
+                if ( empty($mensaje) ) { 
+                    //REGISTRAR AL USUARIO
+                    $resultado= $auth->Registrar();
+
+                    if (!$resultado) {
+                        $mensaje = Admin::getErrores();
+                    } else {
+                        $mensaje = $resultado;
+                    }
+                }
+            }
             
             $router->render('auth/registro', [
-
+                'mensaje' => $mensaje
             ]);
         }
 

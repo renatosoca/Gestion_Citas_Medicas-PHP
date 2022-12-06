@@ -66,7 +66,7 @@
 
             <!-- Nav Item - Doctores -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/medicos">
+                <a class="nav-link" href="/medicos/index">
                     <i class="fas fa-user-md"></i>
                     <span>Médicos</span></a>
             </li>

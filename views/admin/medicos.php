@@ -88,101 +88,32 @@
                 </tr>
               </tfoot>
               <tbody>
-                <tr>
-                  <td>76675656</td>
-                  <td>Pedro Sanchez</td>
-                  <td>M</td>
-                  <td>Cardiología</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
-                      <i class="fas fa-calendar-alt"></i> horario
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
-                      <i class="fas fa-user-edit"> </i> editar
-                    </button>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                      <i class="fas fa-trash-alt"></i> eliminar
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>77565666</td>
-                  <td>Donna Snider</td>
-                  <td>F</td>
-                  <td>Pediatria</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
-                      <i class="fas fa-calendar-alt"></i> horario
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
-                      <i class="fas fa-user-edit"> </i> editar
-                    </button>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                      <i class="fas fa-trash-alt"></i> eliminar
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>99999999</td>
-                  <td>Shad Decker</td>
-                  <td>M</td>
-                  <td>Psicología</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
-                      <i class="fas fa-calendar-alt"></i> horario
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
-                      <i class="fas fa-user-edit"> </i> editar
-                    </button>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                      <i class="fas fa-trash-alt"></i> eliminar
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>88888888</td>
-                  <td>Paul Sanchez</td>
-                  <td>M</td>
-                  <td>Traumatología</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
-                      <i class="fas fa-calendar-alt"></i> horario
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
-                      <i class="fas fa-user-edit"> </i> editar
-                    </button>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                      <i class="fas fa-trash-alt"></i> eliminar
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>55555555</td>
-                  <td>Jonas Alexander</td>
-                  <td>M</td>
-                  <td>Cirugía</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
-                      <i class="fas fa-calendar-alt"></i> horario
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
-                      <i class="fas fa-user-edit"> </i> editar
-                    </button>
-                    <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#elimMed">
-                      <i class="fas fa-trash-alt"></i> eliminar
-                    </button>
-                  </td>
-                </tr>
+                <?php foreach ($medicos as $row) { ?>
+                  <tr>
+                    <td><?php echo $row->T_Doc ?></td>
+                    <td><?php echo $row->Nombre ." ".$row->Ape_Paterno ?></td>
+                    <td><?php echo $row->Genero ?></td>
+                    <td><?php echo $row->ID_Especialidad?></td>
+                    <td>
+                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                        <i class="fas fa-calendar-alt"></i> horario
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed">
+                        <i class="fas fa-user-edit"> </i> editar
+                      </button>
+                      <form method="POST" action="/medicos/eliminar">
+                        <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+                        <input type="hidden" name="tipo" value="medicos">
+
+                        <button type="submit">
+                          <i class="fas fa-trash-alt"> </i>eliminar
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <?php } ?>
               </tbody>
             </table>
           </div>

@@ -22,8 +22,11 @@
     //Paginas Admin
     $router->get('/admin/index', [AdminController::class, 'index']);
     $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
-    $router->get('/admin/medicos', [AdminController::class, 'medicos']);
     $router->get('/admin/citas', [AdminController::class, 'citas']);
+
+    //Paginas de ADMIN, parte medicos
+    $router->get('/medicos/index', [DoctorController::class, 'index']);
+    $router->post('/medicos/eliminar', [DoctorController::class, 'eliminar']);
 
     //Paginas de ADMIN, parte especialidades
     $router->get('/especialidades/index', [EspecialidadController::class, 'index']);
