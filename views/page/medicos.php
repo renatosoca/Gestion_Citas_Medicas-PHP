@@ -19,42 +19,42 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/1.jpg" alt="" />
+                            <img src="build/images/team/1.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Cirugía</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box active">
                         <div class="team-img">
-                            <img src="assets/images/team/2.jpg" alt="" />
+                            <img src="build/images/team/2.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Pediatría</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/3.jpg" alt="" />
+                            <img src="build/images/team/3.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Harry Poterson</h3>
-                            <p>Gynecology</p>
+                            <p>Ginecología</p>
                         </div>
                     </div>
                 </div>
@@ -63,42 +63,42 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/4.jpg" alt="" />
+                            <img src="build/images/team/4.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Neurología</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/5.jpg" alt="" />
+                            <img src="build/images/team/5.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Odontoestomatología</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/6.jpg" alt="" />
+                            <img src="build/images/team/6.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Harry Poterson</h3>
-                            <p>Gynecology</p>
+                            <p>Odontopediatría</p>
                         </div>
                     </div>
                 </div>
@@ -107,42 +107,42 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/7.jpg" alt="" />
+                            <img src="build/images/team/7.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Traumatología</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/8.jpg" alt="" />
+                            <img src="build/images/team/8.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Norman Colins</h3>
-                            <p>Gynecology</p>
+                            <p>Psicología</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-team-box">
                         <div class="team-img">
-                            <img src="assets/images/team/9.jpg" alt="" />
+                            <img src="build/images/team/9.jpg" alt="" />
                             <div class="absolute-team-btn">
-                                <a href="#" class="btn team-btn">appoint now</a>
+                                <a href="#" class="btn team-btn">Seleccionar</a>
                             </div>
                         </div>
                         <div class="team-content">
                             <h3>Harry Poterson</h3>
-                            <p>Gynecology</p>
+                            <p>Cardiología</p>
                         </div>
                     </div>
                 </div>
@@ -151,19 +151,23 @@
     </section>
     <!--======  VIDEO PART START ======-->
     <section class="video-area video-bg pt-120 pb-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="video-heading-one">Call For Emergency!</h1>
-                    <h1 class="video-heading-two">+8 (123) 456 789 12</h1>
-                    <h4>Or</h4>
-                    <a href="#" class="btn video-btn">make an appointment</a>
-                </div>
-                <div class="col-lg-6 text-right">
-                    <div class="video-popup-btn">
-                        <a href="https://www.youtube.com/watch?v=7wtfhZwyrcc" class="video-popup"><i class="fa fa-play"></i></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="video-heading-one">Llamadas de emergencia!</h1>
+            <h1 class="video-heading-two"> +(01) 319-7830</h1>
+            <h4 >Tambien puedes</h4>
+            <a href="#" class="btn video-btn">Reservar una cita</a>
+          </div>
+          <div class="col-lg-6 text-right">
+            <div class="video-popup-btn">
+              <a
+                href="https://www.youtube.com/watch?v=7wtfhZwyrcc"
+                class="video-popup"
+                ><i class="fa fa-play"></i
+              ></a>
             </div>
+          </div>
         </div>
+      </div>
     </section>

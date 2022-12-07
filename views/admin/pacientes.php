@@ -1,6 +1,7 @@
 <!-- Contenedor Principal-->
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
+
   <!-- Main Content -->
   <div id="content">
     <!-- BARRA DE ARRIBA -->
@@ -118,94 +119,3 @@
     <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
-
-      <!-- MODALES-->
-   <!-- AGREGAR PACIENTE (MODAL) -->
-   <div class="modal fade" id="agregarPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form action="/pacientes/registrar" class="formulario" method="POST">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel" >AGREGAR PACIENTE</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <div id="fondoregist">
-            <div class="contenedor">
-
-            <?php foreach ($mensaje as $error) { ?>
-              <p class="alerta error"><?php echo $error; ?></p>
-            <?php } ?>
-            
-              <div class=" m-1">
-                <input type="text" class="form-control" name="paciente[Nombre]" id="" placeholder="Nombre"  required/>
-              </div>
-
-              <div class=" m-1">
-                <input type="text" class="form-control" name="paciente[Ape_Paterno]" id="" placeholder="Apellido Paterno" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="text" class="form-control" name="paciente[Ape_Materno]" id="" placeholder="Apellido Materno" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="number"  class="form-control"name="paciente[Edad]" id="" placeholder="Ingrese su Edad" min="1" max="120" required />
-              </div>
-
-              <div class=" m-1">
-                <select  class="form-select"  name="paciente[Genero]" required >
-                  <option selected>Elija su genero</option>
-                  <option value="Hombre">Hombre</option>
-                  <option value="Mujer">Mujer</option>
-                </select>
-              </div>
-
-              <div class=" m-1">
-                <select  class="form-select"  name="paciente[T_Doc]" required >
-                  <option selected>Tipo de documento</option>
-                  <option value="DNI">DNI</option>
-                  <option value="PASAPORTE">PASAPORTE</option>
-                </select>
-              </div>
-
-              <div class=" m-1">
-                <input type="number"  class="form-control" name="paciente[Nr_Doc]" id="" placeholder="Ingrese el numero de documento" required />
-              </div>
-
-              <div class=" m-1">
-                  <label  class="form-label">Ingrese su fecha de nacimiento:</label>
-                  <input type="date" class="form-control" name="paciente[Fecha_Nacimiento]" id="" placeholder="Fecha de Nacimiento" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="number" class="form-control" name="paciente[Telefono]" id="" placeholder="Ingrese su numero de telefono" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="email" class="form-control" name="paciente[Correo]" id="" placeholder="Correo Electrónico" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="text"  class="form-control"name="paciente[Usuario]" id="" placeholder="Usuario" required />
-              </div>
-
-              <div class=" m-1">
-                <input type="password" class="form-control" name="paciente[Contraseña]" id="" placeholder="Contraseña" required />
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-            <div class="container">
-            <div class="row ">
-                <div class="col-6 text-center"><input type="submit" name="Agregar" class="btn btn-primary"  value="Agregar Paciente"></div>
-                <div class="col-6 text-center"><input type="button" class="btn btn-danger" data-bs-dismiss="modal" value="Cancelar" ></div>
-            </div>
-             </div>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- FIN--AGREGAR PACIENTE (MODAL) -->

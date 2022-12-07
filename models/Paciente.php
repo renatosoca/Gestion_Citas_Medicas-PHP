@@ -4,8 +4,7 @@
 
     class Paciente extends ActiveRecord{
         protected static $tabla = 'paciente';
-        protected static $columnasDB  = ['id', 'Nombre', 'Ape_Paterno', 'Ape_Materno','Edad', 'Genero', 'T_Doc', 'Nr_Doc', 'Fecha_Nacimiento', 
-                                        'Telefono', 'Correo', 'Contraseña', 'Usuario', 'Fecha_Creacion', 'Estado'];
+        protected static $columnasDB  = ['id', 'Nombre', 'Ape_Paterno', 'Ape_Materno','Edad', 'Genero', 'T_Doc', 'Nr_Doc', 'Fecha_Nacimiento', 'Telefono', 'Correo', 'Contraseña', 'Usuario', 'Fecha_Creacion', 'Estado'];
 
         public $id;
         public $Nombre;
@@ -64,10 +63,8 @@
 
             $this->Estado="Activo";
 
-            $query = "INSERT INTO " . self::$tabla . " (Nombre, Ape_Paterno, Ape_Materno, Edad, Genero, T_Doc, Nr_Doc, Fecha_Nacimiento, Telefono, 
-                                                        Correo, Contraseña, Usuario,Estado) VALUES
-                                                        ('$this->Nombre','$this->Ape_Paterno','$this->Ape_Materno','$this->Edad','$this->Genero','$this->T_Doc','$this->Nr_Doc','$this->Fecha_Nacimiento',
-                                                        '$this->Telefono','$this->Correo','$this->Contraseña','$this->Usuario','$this->Estado')";
+            $query = "INSERT INTO " . self::$tabla . " (Nombre, Ape_Paterno, Ape_Materno, Edad, Genero, T_Doc, Nr_Doc, Fecha_Nacimiento, Telefono, Correo, Contraseña, Usuario,Estado) VALUES ('$this->Nombre','$this->Ape_Paterno','$this->Ape_Materno','$this->Edad','$this->Genero','$this->T_Doc','$this->Nr_Doc','$this->Fecha_Nacimiento',
+            '$this->Telefono','$this->Correo','$this->Contraseña','$this->Usuario','$this->Estado')";
             $resultado = self::$db->query($query);
 
             if (!$resultado) {
@@ -78,7 +75,6 @@
             self::$errores[] ="Se ah registrado correctamente";
             
             return self::$errores;
-
         }
         
     }
