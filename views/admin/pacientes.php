@@ -95,6 +95,15 @@
   </div>
   <!-- End of Main Content -->
 
+  <!--CSS ADICIONAL-->
+  <style>
+        select,  input, .fichaa{
+            margin: 8px;
+            padding: 5px;
+        }
+        
+    </style>
+
             <!-- MODALES-->
    <!-- AGREGAR PACIENTE (MODAL) -->
    <div class="modal fade" id="agregarPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -153,3 +162,67 @@
     </div>
   </div>
   <!-- FIN--AGREGAR PACIENTE (MODAL) -->
+
+  <!-- EDITAR PACIENTE (MODAL) -->
+  <div class="modal fade" id="editarPaciente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="" class="" method="">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" >EDITAR PACIENTE</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container" id="">
+
+                <div class="row">
+                     <input type="text"  class="col"  placeholder="Nombre Completo" required >
+                     
+                </div>
+
+                <div class="row">
+                    <input type="text"  class="col"  placeholder="Apellido Mat." required >
+                     <input type="text"  class="col"  placeholder="Apellido Pat."  required>
+                </div>
+
+                <div class="row">
+                    <input type="date" class="col" name="" id="" placeholder="Fec. Nacimiento" required>
+                    <select name="" class="col" id="" >
+                        <option value="" disabled="">Seleccione su sexo</option>
+                        <option value="">Masculino</option>
+                        <option value="">Femenino</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <input type="number" class="col" name="" id="" placeholder="Documento" required>
+                    <input type="email" class="col" name="" id="" placeholder="Correo E." required>
+
+                </div>
+
+                <div class="row">
+                    <input type="numer" class="col" name="" id="" placeholder="Celular" required>
+                    <input type="password" class="col" name="" id="" placeholder="Contraseña" required>
+                </div>
+                
+                
+
+
+            </div>
+          
+
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <input type="submit" class="btn btn-primary col-5"  value="Editar Paciente">
+                <input type="button" class="btn btn-danger col-3" data-bs-dismiss="modal" value="Cancelar" >
+                <div class="col-1"></div>
+            </div>
+             </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- FIN--EDITAR PACIENTE (MODAL) -->
