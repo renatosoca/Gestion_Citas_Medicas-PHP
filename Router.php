@@ -69,4 +69,16 @@
             $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
             include_once __DIR__."/views/layout-admin.php";
         }
+
+        public function renderPaciente($view, $datos = []) {
+            foreach ($datos as $key => $value) {
+                //$$ => variable variable, ejm=$llave
+                $$key = $value;
+            }
+            
+            ob_start();                     //ALMACENANDO EN MEMORIA DURANTE UN MOMENTO...
+            include_once __DIR__. "/views/$view.php";
+            $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
+            include_once __DIR__."/views/layout-paciente.php";
+        }
     }
