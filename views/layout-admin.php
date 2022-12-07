@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/build/css/sb-admin-2.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -62,7 +63,7 @@
 
             <!-- Nav Item - Pacientes -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/pacientes">
+                <a class="nav-link" href="/pacientes/index">
                     <i class="fas fa-user-injured"></i>
                     <span>Pacientes</span></a>
             </li>

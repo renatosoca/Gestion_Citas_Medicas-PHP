@@ -80,38 +80,5 @@
             return self::$errores;
 
         }
-
-        public function MostrarPacientesAdmin() {
-
-            $mensaje="";
-
-            $query =  "SELECT * FROM " . self::$tabla ."";
-            $resultado = self::$db->query($query);
-
-            while ($pacientes= mysqli_fetch_assoc($resultado)){
-
-                $mensaje.="<tr>
-                <td>".$pacientes['Nr_Doc']."</td>
-                <td>".$pacientes['Nombre']." ".$pacientes['Ape_Paterno']."</td>
-                <td>".$pacientes['Genero']."</td>
-                <td>".$pacientes['Edad']."</td>
-                <td>
-                    <button type='button' class='' data-bs-toggle='modal' data-bs-target='#verHistorial'>
-                        <i class='fas fa-book-medical'></i> historial
-                    </button>
-                    </td>
-                    <td>
-                    <button type='button' class='' data-bs-toggle='modal' data-bs-target='#editarPaciente'>
-                        <i class='fas fa-user-edit'> </i>editar
-                    </button>
-                    </td>
-                </tr>";
-
-            }
-
-            return $mensaje;
-
-        }
         
-
     }

@@ -9,8 +9,8 @@
 
         public static function index( Router $router) {
 
-            $paciente=Paciente::all();
-            $medico=Medico::all();
+            $paciente=Paciente::allActivos();
+            $medico=Medico::allActivos();
 
             $nrpaci=sizeof($paciente);
             $nrmedi=sizeof($medico);
@@ -27,13 +27,52 @@
 
             //Mostramos a los pacientes registrados
 
-            $auth=new Paciente("");
+            $pacientes = Paciente::allActivos();
 
-            $pacientes=$auth->MostrarPacientesAdmin();
+            //registrar pacientes
+
+            $mensaje = [];
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                if (isset($_POST['Agregar'])) {
+
+                    $auth = new Paciente($_POST['paciente']);
+                    $mensaje = $auth->validar();
+
+                    if ( empty($mensaje) ) { 
+                        //REGISTRAR AL USUARIO
+                        $resultado= $auth->Registrar();
+
+                        if (!$resultado) {
+                            $mensaje = Paciente::getErrores();
+                        } else {
+                            $mensaje = $resultado;
+                        }
+                    }
+
+                }elseif (isset($_POST['Eliminar'])) {
+
+                    $id= $_POST['id'];
+                    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+                    if ($id) {
+                        $tipo = $_POST['tipo'];
+                        if (validarTipoContenido($tipo)) {
+                            //CAMBIAR EL ESTADO
+                            $paciente = Paciente::find($id);
+                            $paciente->CambiarEstado();
+                        }
+                    }
+
+                }
+                
+            }
 
             
             $router->renderAdmin('admin/pacientes', [
-                'pacientes' => $pacientes
+                'pacientes' => $pacientes,
+                'mensaje' => $mensaje
             ]);
         }
 

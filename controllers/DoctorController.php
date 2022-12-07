@@ -8,7 +8,7 @@
     class DoctorController {
         
         public static function index(Router $router) {
-            $medicos = Medico::all();
+            $medicos = Medico::allActivos();
 
             foreach ($medicos as $row) {
 
@@ -34,7 +34,7 @@
                     if (validarTipoContenido($tipo)) {
                         //ELIMINAR LOS DATOS Y ARCHIVOS
                         $medico = Medico::find($id);
-                        $medico->delete();
+                        $medico->CambiarEstado();
                     }
                 }
             }

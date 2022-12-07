@@ -53,7 +53,7 @@
                     $resultado= $auth->Registrar();
 
                     if (!$resultado) {
-                        $mensaje = Admin::getErrores();
+                        $mensaje = Paciente::getErrores();
                     } else {
                         $mensaje = $resultado;
                     }
