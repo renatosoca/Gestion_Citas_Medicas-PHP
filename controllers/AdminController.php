@@ -36,7 +36,7 @@
             ]);
         }
 
-        public static function pacientesRegistrar(Router $router ){
+        public static function pacientesRegistrar(){
 
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -73,7 +73,6 @@
                     header('Location: /pacientes/index');
                 }
             }
-
         }
 
         public static function pacientesEliminar(){
@@ -96,9 +95,7 @@
                     }
                 }
             }
-
         } 
-
 
         public static function medicos( Router $router ) {
             
@@ -114,5 +111,4 @@
             ]);
         }
 
-        
     }
