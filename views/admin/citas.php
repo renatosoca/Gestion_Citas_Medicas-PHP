@@ -300,6 +300,7 @@
   </div>
 </div>
 <!-- FIN AGREGAR CITA (MODAL) -->
+
 <!-- CONFIRMAR CITA (MODAL) -->
 <div class="modal fade" id="confirmCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
