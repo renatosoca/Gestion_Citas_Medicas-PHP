@@ -2,13 +2,19 @@
     namespace Controller;
 
     use Router\Router;
-    use Model\Paciente;
 
     class PacienteController {
         
-        public static function index(Router $router) {
+        public static function index( Router $router) {
 
             $router->renderPaciente('pacientes/index', [
+                
+            ]);
+        }
+
+        public static function agregarcita( Router $router) {
+
+            $router->renderPaciente('pacientes/agregarCita', [
                 
             ]);
         }

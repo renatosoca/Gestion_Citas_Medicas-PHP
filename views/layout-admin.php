@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -63,14 +61,14 @@
 
             <!-- Nav Item - Pacientes -->
             <li class="nav-item">
-                <a class="nav-link" href="/pacientes/index">
+                <a class="nav-link" href="/admin/pacientes">
                     <i class="fas fa-user-injured"></i>
                     <span>Pacientes</span></a>
             </li>
 
             <!-- Nav Item - Doctores -->
             <li class="nav-item">
-                <a class="nav-link" href="/medicos/index">
+                <a class="nav-link" href="/admin/medicos">
                     <i class="fas fa-user-md"></i>
                     <span>Médicos</span></a>
             </li>
@@ -84,7 +82,7 @@
 
             <!-- Nav Item - Especialidades -->
             <li class="nav-item">
-                <a class="nav-link" href="/especialidades/index">
+                <a class="nav-link" href="/admin/especialidades">
                     <i class="fas fa-calendar-check"></i>
                     <span>Especialidades</span></a>
             </li>
@@ -94,7 +92,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <a href="/logout" class="rounded-circle border-0" id="sidebarToggle">Salir</a>
+                <a href="/logout" class=" border-10" id="sidebarToggle">Salir</a>
             </div>
         </ul>
         <!-- End of Sidebar -->
