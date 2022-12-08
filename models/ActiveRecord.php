@@ -70,16 +70,18 @@ class ActiveRecord {
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            /* $this->deleteImage(); */
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
             header('Location: /especialidades/index');
-        }
+        } */
     }
 
     public function CambiarEstado() {
         $query = "UPDATE " . static::$tabla . " SET Estado= 'Suspendido' WHERE id=" . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
 
+        return $resultado;
         /* if ($resultado) {
             $this->deleteImage();
         } */
