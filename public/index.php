@@ -19,15 +19,23 @@
     $router->get('/contacto', [PageController::class, 'contacto']);
     $router->post('/contacto', [PageController::class, 'contacto']);
 
-    //Paginas Admin
+
+    //Paginas Admin, parte resumen
     $router->get('/admin/index', [AdminController::class, 'index']);
+    //Paginas de ADMIN, parte pacientes
     $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
-    $router->get('/admin/citas', [AdminController::class, 'citas']);
+    $router->post('/pacientes/registrar', [AdminController::class, 'pacientesRegistrar']);
+    $router->post('/pacientes/eliminar', [AdminController::class, 'pacientesEliminar']);
+    $router->post('/pacientes/actualizar', [AdminController::class, 'pacientesActualizar']);
     //Paginas de ADMIN, parte medicos
-    $router->get('/medicos/index', [DoctorController::class, 'index']);
+    $router->get('/admin/medicos', [DoctorController::class, 'index']);
     $router->post('/medicos/eliminar', [DoctorController::class, 'eliminar']);
+    $router->post('/medicos/agregar', [DoctorController::class, 'agregar']);
+    $router->post('/medicos/actualizar', [DoctorController::class, 'actualizar']);
+    //Paginas de ADMIN, parte citas
+    $router->get('/admin/citas', [AdminController::class, 'citas']);
     //Paginas de ADMIN, parte especialidades
-    $router->get('/especialidades/index', [EspecialidadController::class, 'index']);
+    $router->get('/admin/especialidades', [EspecialidadController::class, 'index']);
     $router->post('/especialidades/eliminar', [EspecialidadController::class, 'eliminar']);
 
 
@@ -39,6 +47,7 @@
 
     //Paginas Doctores
     $router->get('/doctor', [DoctorController::class, 'index']);
+
 
     //Login
     $router->get('/login', [LoginController::class, 'login']);

@@ -70,10 +70,21 @@ class ActiveRecord {
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            /* $this->deleteImage(); */
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
             header('Location: /especialidades/index');
-        }
+        } */
+    }
+
+    public function CambiarEstado() {
+        $query = "UPDATE " . static::$tabla . " SET Estado= 'Suspendido' WHERE id=" . self::$db->escape_string($this->id);
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
+        } */
     }
 
     //IDENTIFICAR Y UNIR LOS ATRIBUTOS DE LA DB
@@ -136,6 +147,13 @@ class ActiveRecord {
     //LISTAR TODOS LOS OBJETOS
     public static function all() {
         $query = "SELECT * FROM " . static::$tabla . " ";
+        $resultado = self::consultSQL($query);
+
+        return $resultado;
+    }
+
+    public static function allActivos() {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE Estado='Activo'";
         $resultado = self::consultSQL($query);
 
         return $resultado;
