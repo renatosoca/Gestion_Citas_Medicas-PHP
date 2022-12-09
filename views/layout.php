@@ -61,7 +61,7 @@
                         <span><i class="fas fa-phone"></i> +(01) 3197830</span><span><i class="fas fa-envelope-open-text"></i>email
                             <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cca5a2aaa38ca9b4ada1bca0a9e2afa3a1">[email&#160;protected]</a></span>
                     </div>
-                    <div class="col-lg-6 text-right">
+                    <div style="text-align: right;" class="col-lg-6 text-right">
                         <a href="/login" class="top-header-btn btn">Cita Médica</a>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="index.html" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; SAN JOSÉ</a>
+                            <a  style="text-decoration: none; font-size: 19px; " href="index.html" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; <b>SAN JOSÉ</b> </a>
 
                         </div>
                     </div>
