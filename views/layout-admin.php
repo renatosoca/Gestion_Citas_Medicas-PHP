@@ -77,7 +77,7 @@
 
             <!-- Nav Item - Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/citas">
+                <a class="nav-link" href="/citas/index">
                     <i class="fas fa-calendar-check"></i>
                     <span>Citas</span></a>
             </li>

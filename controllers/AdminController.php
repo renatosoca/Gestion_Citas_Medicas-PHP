@@ -1,9 +1,11 @@
 <?php
     namespace Controller;
 
+    use Model\Especialidades;
     use Router\Router;
     use Model\Paciente;
     use Model\Medico;
+    use Model\Horario;
 
     class AdminController {
 
@@ -108,8 +110,16 @@
         }
 
         public static function citas( Router $router ) {
+
+            $especialidades= Especialidades::allActivos();
+            $medicos= Medico::allActivos();
+            $horarios=Horario::allDisponibles();
             
-            $router->renderAdmin('admin/citas', [
+            $router->renderAdmin('/admin/citas', [
+
+                'especialidades' => $especialidades,
+                'medicos' => $medicos,
+                'horarios' => $horarios,
 
             ]);
         }

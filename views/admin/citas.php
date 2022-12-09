@@ -175,7 +175,7 @@
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Cita Médica</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      </div> 
 
       <div class="modal-body">
         <form action="" method="post">
@@ -183,24 +183,38 @@
             
             &nbsp; DNI:<input type="text" class="col-3" placeholder="Del Paciente" required>
 
-              Especialidad:<select name="" class="col-4" id="" required>
-                              <option value="" disabled="">Seleccione Especialidad </option>
-                              <option value="">Cardiología</option>
-                              <option value="">Neurología</option>
+            <?php 
+            $medico=[];
+
+            foreach ($medicos as $row) {   
+              $medico[]=$row->id;
+              $medico[]=$row->Nombre ." ".$row->Ape_Paterno;
+             } ?>
+
+              Especialidad:<select name="" class="col-4" id="Especialidad"<?php echo "onchange='Medico(value,\"".implode(",",(array)$medico)."\")'"?> required>
+                              <option value="0" disabled selected>Especialidad</option>
+                              <?php foreach ($especialidades as $row) { ?>                                    
+                                  <option <?php echo "value='".$row->id."'"?> > <?php echo $row->Descripcion?> </option>
+                                  <?php } ?>
                             </select>
           </div>
 
           <div class="row">
-           &nbsp; Médico: <select name="" class="col-4" id="" required >
-                <option value="" disabled="">Seleccione Médico </option>
-                <option value="">Carlos Mendoza</option>
-                <option value="">Maria Oracle</option>
+
+          <?php 
+            $horario=[];
+
+            foreach ($horarios as $row) {   
+              $horario[]=$row->id;
+              $horario[]=$row->Fecha;
+          } ?>
+            
+           &nbsp; Médico: <select name="" class="col-4" id="MedicoSelect" <?php echo "onchange='Horario(value,\"".implode(",",(array)$horario)."\")'"?>  required disabled>
+                <option value="0" disabled="" selected>Seleccione Médico </option>              
             </select>
 
-            &nbsp; Fechas: <select name="" class="col-4" id="" required>
-              <option value="" disabled="">Seleccione Fecha</option>
-              <option value="">11/12/22</option>
-              <option value="">10/12/22</option>
+            &nbsp; Fechas: <select name="" class="col-4" id="HorarioSelect" required disabled>
+              <option value="0" disabled="" selected>Seleccione Fecha</option>
           </select>
           </div>
 
@@ -498,9 +512,7 @@
 
             
           </div>
-      
-      
-      
+             
           </div>
       
          </div>
@@ -516,3 +528,84 @@
         }
         
     </style>
+
+  
+
+  <script>
+    function Medico(value,$medico){
+      document.querySelector('#MedicoSelect [value="0"]').selected = true;
+      document.querySelector('#HorarioSelect [value="0"]').selected = true;
+      $datos=$medico.split(",");
+      $MedicoSelect=document.getElementById("MedicoSelect");
+      $MedicoSelect.disabled=false;
+      for (let i = $MedicoSelect.options.length; i >= 1; i--) {
+        $MedicoSelect.remove(i);
+      }
+      $HorarioSelect=document.getElementById("HorarioSelect");
+      $HorarioSelect.disabled=true;
+      for (let i = $HorarioSelect.options.length; i >= 1; i--) {
+        $HorarioSelect.remove(i);
+      }
+
+      <?php foreach ($medicos as $row) {  ?>
+          if(value==<?php echo $row->ID_Especialidad ?>){
+
+            for(let j=0; j<$datos.length;j=j+2){
+
+              if ($datos[j]==<?php echo $row->id ?>) {
+
+                var option = document.createElement('option');
+                option.value=$datos[j];
+                option.text=$datos[j+1];
+
+                $MedicoSelect.appendChild(option);
+                
+              }
+
+            }
+  
+          }
+            
+      <?php } ?>
+
+    }
+
+    function Horario(value,$horario){
+      
+      $datos=$horario.split(",");
+
+      $HorarioSelect=document.getElementById("HorarioSelect");
+      $HorarioSelect.disabled=false;
+      for (let i = $HorarioSelect.options.length; i >= 1; i--) {
+        $HorarioSelect.remove(i);
+      }
+      dia="";
+      <?php foreach ($horarios as $row) {  ?>
+          if(value==<?php echo $row->ID_Medico ?>){
+
+            for(let j=0; j<$datos.length;j=j+2){  
+
+              if ( $datos[j]==<?php echo $row->id ?>) {
+
+                if(dia!=$datos[j+1]){
+                  var option = document.createElement('option');
+                  option.value=$datos[j];
+                  option.text=$datos[j+1];
+
+                  $HorarioSelect.appendChild(option);
+                  dia=$datos[j+1];
+
+                }
+
+              }
+
+            }
+  
+          }
+            
+      <?php } ?>
+
+    }
+  </script>
+
+  

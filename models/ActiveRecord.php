@@ -159,6 +159,13 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public static function allDisponibles() {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE Estado='Disponible'";
+        $resultado = self::consultSQL($query);
+
+        return $resultado;
+    }
+
     //LISTAR LOS OBJETOS POR LIMITE
     public static function get($cantidad) {
         $query = "SELECT * FROM " . static::$tabla . " LIMIT " . $cantidad;

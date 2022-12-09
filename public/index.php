@@ -21,7 +21,9 @@
 
     //Paginas Admin
     $router->get('/admin/index', [AdminController::class, 'index']);
-    $router->get('/admin/citas', [AdminController::class, 'citas']);
+
+    //Paginas de ADMIN, parte pacientes
+    $router->get('/citas/index', [AdminController::class, 'citas']);
 
     //Paginas de ADMIN, parte pacientes
     $router->get('/pacientes/index', [AdminController::class, 'pacientes']);
