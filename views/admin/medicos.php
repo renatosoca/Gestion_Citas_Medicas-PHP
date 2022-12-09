@@ -93,7 +93,7 @@
                     <td><?php echo $row->Nro_Doc?></td>
                     <td><?php echo $row->Nombre ." ".$row->Ape_Paterno ?></td>
                     <td><?php echo $row->Genero ?></td>
-                    <td><?php echo $row->ID_Especialidad?></td>
+                    <td><?php echo $row->ID_Especialidad ?></td>
                     <td>
                       <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
                         <i class="fas fa-calendar-alt"></i> horario
@@ -113,7 +113,7 @@
                       </form>
                     </td>
                   </tr>
-                  <?php } ?>
+                <?php } ?>
               </tbody>
             </table>
           </div>
@@ -123,18 +123,18 @@
     <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
-<!-- CCS ADICIONAL -->
-<style>
-        select,  input{
-            margin: 8px;
-            padding: 5px;
-        }
-        
-    </style>
+  <!-- CCS ADICIONAL -->
+  <style>
+    select,
+    input {
+      margin: 8px;
+      padding: 5px;
+    }
+  </style>
 
   <!-- MODALES USADOS -->
-   <!-- AGREGAR MEDICO (MODAL) -->
-   <div class="modal fade" id="agregarMedico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- AGREGAR MEDICO (MODAL) -->
+  <div class="modal fade" id="agregarMedico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form action="/medicos/agregar" class="" method="POST">
@@ -268,11 +268,77 @@
               <input type="button" class="btn btn-danger col-3" data-bs-dismiss="modal" value="Cancelar" >
               <div class="col-1"></div>
           </div>
-           </div>
+        </form>
       </div>
-      </form>
     </div>
   </div>
+  <!-- FIN--AGREGAR MEDICO (MODAL) -->
+
+
+  <!-- EDITAR MÉDICO (MODAL) -->
+  <div class="modal fade" id="editarMed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="" class="" method="">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">EDITAR MÉDICO</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container" id="">
+
+              <div class="row">
+                <input type="text" class="col" placeholder="Nombre Completo" required>
+
+              </div>
+
+              <div class="row">
+                <input type="text" class="col" placeholder="Apellido Mat." required>
+                <input type="text" class="col" placeholder="Apellido Pat." required>
+              </div>
+
+              <div class="row">
+                <input type="date" class="col" name="" id="" placeholder="Fec. Nacimiento" required>
+                <select name="" class="col" id="">
+                  <option value="" disabled="">Seleccione su sexo</option>
+                  <option value="">Masculino</option>
+                  <option value="">Femenino</option>
+                </select>
+              </div>
+              <div class="row">
+                <input type="number" class="col" name="" id="" placeholder="Documento" required>
+                <select name="" class="col" id="">
+                  <option value="" disabled="">Seleccione la especialidad</option>
+                  <option value="">Cardiología</option>
+                  <option value="">Pediatría</option>
+                  <option value="">Cirugía</option>
+                  <option value="">Traumatología</option>
+                </select>
+                <input type="numer" class="col" name="" id="" placeholder="Celular" required>
+              </div>
+
+              <div class="row">
+                <input type="email" class="col" name="" id="" placeholder="Correo E." required>
+
+                <input type="password" class="col" name="" id="" placeholder="Contraseña" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-1"></div>
+                <input type="submit" class="btn btn-primary col-5" value="Editar Médico">
+                <input type="button" class="btn btn-danger col-3" data-bs-dismiss="modal" value="Cancelar">
+                <div class="col-1"></div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<<<<<<< HEAD
 </div>
   <!-- FIN--EDITAR MEDICO (MODAL) -->
 
@@ -300,5 +366,5 @@
       optionToSelect.selected = true;
 
     }
-
   </script>
+  <!-- FIN--EDITAR MEDICO (MODAL) -->
