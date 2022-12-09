@@ -207,13 +207,14 @@
             foreach ($horarios as $row) {   
               $horario[]=$row->id;
               $horario[]=$row->Fecha;
+              $horario[]=$row->Hora_Inicio;
           } ?>
             
            &nbsp; Médico: <select name="" class="col-4" id="MedicoSelect" <?php echo "onchange='Horario(value,\"".implode(",",(array)$horario)."\")'"?>  required disabled>
                 <option value="0" disabled="" selected>Seleccione Médico </option>              
             </select>
 
-            &nbsp; Fechas: <select name="" class="col-4" id="HorarioSelect" required disabled>
+            &nbsp; Fechas: <select name="" class="col-4" id="HorarioSelect" <?php echo "onchange='Reservar(value,\"".implode(",",(array)$horario)."\")'"?> required disabled>
               <option value="0" disabled="" selected>Seleccione Fecha</option>
           </select>
           </div>
@@ -244,61 +245,23 @@
               <thead>
                 <tr>
                   <th scope="col">Horario</th>
-                  <th scope="col">Paciente</th>
                   <th scope="col">Medico</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Reservar</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="Reservar">
                 <tr>
                   <td>08:00</td>
-                  <td>      </td>
                   <td>Jon Armando</td>
                   <td>11/12/22</td>
                   <td>
-                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                        <i class="fas fa-clock"></i>
-                      </button>
+                  <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
+                    <i class="fas fa-clock"></i>
+                  </button>
                   </td>
                 </tr>
 
-                <tr>
-                  <td>08:30</td>
-                  <td>Pepe Solar</td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                </td>
-                </tr>
-
-                <tr>
-                  <td>09:00</td>
-                  <td>      </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                </td>
-                </tr>
-
-                <tr>
-                  <td>10:00</td>
-                  <td>      </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                </td>
-                </tr>
-                
               </tbody>
             </table>
           </div>
@@ -325,13 +288,8 @@
       </div>
 
       <div class="modal-body">
-                  <center>
-                    <h4> <b> Especialidad : </b>  Cardiología</h4>
-                    <h4> <b> Médico       : </b> Jon Armando</h4>
-                    <h4> <b> Paciente     : </b> Sancho Perezz</h4>
-                    <h4> <b> Fecha        : </b> 11/12/22</h4>
-                    <h4> <b> Horario      : </b> 08:00</h4>
-
+                  <center id="ConfirmReserva">
+                    
                   </center>
       </div>
 
@@ -418,43 +376,7 @@
                   <th scope="col">Reprogramar</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>08:00</td>
-                  <td>      </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmReprog">
-                        <i class="fas fa-clock"></i>
-                      </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>08:30</td>
-                  <td>Pepe Solar</td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmReprog">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                </td>
-                </tr>
-
-                <tr>
-                  <td>09:00</td>
-                  <td>      </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmReprog">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                </td>
-                </tr>
-
+              <tbody >
                 <tr>
                   <td>10:00</td>
                   <td>      </td>
@@ -572,6 +494,8 @@
     }
 
     function Horario(value,$horario){
+
+      document.querySelector('#HorarioSelect [value="0"]').selected = true;
       
       $datos=$horario.split(",");
 
@@ -584,7 +508,7 @@
       <?php foreach ($horarios as $row) {  ?>
           if(value==<?php echo $row->ID_Medico ?>){
 
-            for(let j=0; j<$datos.length;j=j+2){  
+            for(let j=0; j<$datos.length;j=j+3){  
 
               if ( $datos[j]==<?php echo $row->id ?>) {
 
@@ -605,6 +529,105 @@
           }
             
       <?php } ?>
+
+    }
+
+    function Reservar(value,$horario){
+
+      $Fecha=document.querySelector('#HorarioSelect [value="' + value + '"]').text;
+
+      $MedicoValor=document.getElementById("MedicoSelect").value;
+
+      $Medico=document.querySelector('#MedicoSelect [value="' + $MedicoValor + '"]').text;
+
+      $EspecialidadValor=document.getElementById("Especialidad").value;
+
+      $Especialidad=document.querySelector('#Especialidad [value="' + $MedicoValor + '"]').text;
+      
+      $datos=$horario.split(",");
+
+      for(let j=0; j<$datos.length;j=j+3){  
+
+        if ( $datos[j+1]==$Fecha) {
+
+          var tr=document.createElement("tr");
+
+          var td=document.createElement("td");
+          var txt = document.createTextNode($datos[j+2]);
+          td.appendChild(txt);
+          tr.appendChild(td);
+
+          var td=document.createElement("td");
+          var txt = document.createTextNode($Medico);
+          td.appendChild(txt);
+          tr.appendChild(td);
+
+          var td=document.createElement("td");
+          var txt = document.createTextNode($Fecha);
+          td.appendChild(txt);
+          tr.appendChild(td);
+
+          var td=document.createElement("td");
+          var btn = document.createElement("button");
+          btn.type="button";
+          btn.setAttribute("data-bs-toggle","modal");
+          btn.setAttribute("onclick","ConfirmarReserve('"+$Especialidad+"','"+$Medico +"','"+$Fecha +"','"+$datos[j+2] +"')");
+          btn.setAttribute("data-bs-target","#confirmCita");
+          var i=document.createElement("i");
+          i.className="fas fa-clock";
+          btn.appendChild(i);
+          td.appendChild(btn);
+          tr.appendChild(td);
+          
+          document.getElementById("Reservar").appendChild(tr);
+
+        }
+
+      }
+    }
+
+    function ConfirmarReserve($Especialidad,$Medico,$Fecha,$Hora){
+      
+      
+      var h4=document.createElement("h4");
+      var b=document.createElement("b");
+      var txt=document.createTextNode("Especialidad : ");
+      b.appendChild(txt);
+      h4.appendChild(b);
+      var txt = document.createTextNode($Especialidad);
+      h4.appendChild(txt);
+
+      document.getElementById("ConfirmReserva").appendChild(h4);
+      
+      var h4=document.createElement("h4");
+      var b=document.createElement("b");
+      var txt=document.createTextNode("Médico       : ");
+      b.appendChild(txt);
+      h4.appendChild(b);
+      var txt = document.createTextNode($Medico);
+      h4.appendChild(txt);
+
+      document.getElementById("ConfirmReserva").appendChild(h4);
+
+      var h4=document.createElement("h4");
+      var b=document.createElement("b");
+      var txt=document.createTextNode("Fecha        : ");
+      b.appendChild(txt);
+      h4.appendChild(b);
+      var txt = document.createTextNode($Fecha);
+      h4.appendChild(txt);
+
+      document.getElementById("ConfirmReserva").appendChild(h4);
+
+      var h4=document.createElement("h4");
+      var b=document.createElement("b");
+      var txt=document.createTextNode("Horario      : ");
+      b.appendChild(txt);
+      h4.appendChild(b);
+      var txt = document.createTextNode($Hora);
+      h4.appendChild(txt);
+
+      document.getElementById("ConfirmReserva").appendChild(h4);
 
     }
   </script>
