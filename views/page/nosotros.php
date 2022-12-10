@@ -20,10 +20,7 @@
             <div class="about-img">
               <img src="build/images/about-img-1.jpg" alt="" />
             </div>
-            <div class="experince-absolute-box">
-              <h1>28+</h1>
-              <p>Experiencia</p>
-            </div>
+            
           </div>
           <div class="col-lg-6">
             <div class="about-contents">
