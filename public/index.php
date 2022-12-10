@@ -38,6 +38,7 @@ use Controllers\CitaController;
 
     //Paginas de ADMIN, parte citas
     $router->get('/admin/citas', [AdminController::class, 'citas']);
+    $router->post('/citas/registrar', [AdminController::class, 'registrarcita']);
 
     //Paginas de ADMIN, parte especialidades
     $router->get('/admin/especialidades', [EspecialidadController::class, 'index']);

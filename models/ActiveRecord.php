@@ -87,6 +87,16 @@ class ActiveRecord {
         } */
     }
 
+    public function CambiarEstadoHorario() {
+        $query = "UPDATE " . static::$tabla . " SET Estado= 'Ocupado' WHERE id=" . self::$db->escape_string($this->id);
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
+        } */
+    }
+
     //IDENTIFICAR Y UNIR LOS ATRIBUTOS DE LA DB
     public function atributos() {
         $atributos = [];

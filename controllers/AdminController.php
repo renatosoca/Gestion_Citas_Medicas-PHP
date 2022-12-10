@@ -6,6 +6,7 @@
     use Model\Paciente;
     use Model\Medico;
     use Model\Horario;
+    use Model\Cita;
 
     class AdminController {
 
@@ -31,15 +32,16 @@
 
             $pacientes = Paciente::allActivos();
 
-            //registrar pacientes
+            
 
             $router->renderAdmin('admin/pacientes', [
                 'pacientes' => $pacientes,
             ]);
         }
 
-        public static function pacientesRegistrar(Router $router ){
+        public static function pacientesRegistrar(){
 
+            //registrar pacientes
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -114,14 +116,36 @@
             $especialidades= Especialidades::allActivos();
             $medicos= Medico::allActivos();
             $horarios=Horario::allDisponibles();
+            $pacientes=Paciente::allActivos();
             
             $router->renderAdmin('/admin/citas', [
 
                 'especialidades' => $especialidades,
                 'medicos' => $medicos,
                 'horarios' => $horarios,
+                'pacientes' => $pacientes,
 
             ]);
+        }
+
+        public static function registrarcita() {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                $auth = new Cita($_POST['cita']);
+                $resultado= $auth->Registrar();
+
+                if ($resultado) {
+
+                    $horario = Horario::find($_POST['idhorario']);
+                    $horario->CambiarEstadoHorario();
+
+                    header('Location: /admin/citas');
+                } 
+
+            }
+            
+            
         }
 
         
