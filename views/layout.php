@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a  style="text-decoration: none; font-size: 19px; " href="index.html" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; <b>SAN JOSÉ</b> </a>
+                            <a style="text-decoration: none; font-size: 19px; " href="index.html" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; <b>SAN JOSÉ</b> </a>
 
                         </div>
                     </div>

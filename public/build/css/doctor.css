@@ -1,0 +1,26 @@
+body{
+    background-color: #e4ebf0;
+  }
+  .contenedor-principal{
+    padding: 35px;
+  }
+    .cita-pendiente{
+        background-color: #4180ab;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 40px;
+        font-weight: 500;
+        color:blanchedalmond;
+        font-size: 18px;
+    }
+
+    .cita-pasada{
+        background-color:lightcoral;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+    }
+    select,  input, .fichaa{
+        margin: 8px;
+        padding: 5px;
+    }
