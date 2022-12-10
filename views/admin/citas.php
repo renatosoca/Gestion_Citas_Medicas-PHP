@@ -251,16 +251,6 @@
                 </tr>
               </thead>
               <tbody id="Reservar">
-                <tr>
-                  <td>08:00</td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                  <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                    <i class="fas fa-clock"></i>
-                  </button>
-                  </td>
-                </tr>
 
               </tbody>
             </table>
@@ -456,6 +446,10 @@
 
   <script>
     function Medico(value,$medico){
+
+      var trs = document.getElementById("Reservar").getElementsByTagName("tr");
+      while(trs.length>0) trs[0].parentNode.removeChild(trs[0])
+      
       document.querySelector('#MedicoSelect [value="0"]').selected = true;
       document.querySelector('#HorarioSelect [value="0"]').selected = true;
       $datos=$medico.split(",");
@@ -494,6 +488,9 @@
     }
 
     function Horario(value,$horario){
+
+      var trs = document.getElementById("Reservar").getElementsByTagName("tr");
+      while(trs.length>0) trs[0].parentNode.removeChild(trs[0])
 
       document.querySelector('#HorarioSelect [value="0"]').selected = true;
       
@@ -545,6 +542,9 @@
       $Especialidad=document.querySelector('#Especialidad [value="' + $MedicoValor + '"]').text;
       
       $datos=$horario.split(",");
+            
+      var trs = document.getElementById("Reservar").getElementsByTagName("tr");
+      while(trs.length>0) trs[0].parentNode.removeChild(trs[0])
 
       for(let j=0; j<$datos.length;j=j+3){  
 
@@ -587,8 +587,7 @@
     }
 
     function ConfirmarReserve($Especialidad,$Medico,$Fecha,$Hora){
-      
-      
+            
       var h4=document.createElement("h4");
       var b=document.createElement("b");
       var txt=document.createTextNode("Especialidad : ");
