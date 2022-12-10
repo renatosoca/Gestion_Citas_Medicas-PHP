@@ -8,6 +8,7 @@
     use Controller\DoctorController;
     use Controller\EspecialidadController;
     use Controller\AdminController;
+use Controllers\CitaController;
 
     $router = new Router();
 
@@ -59,5 +60,8 @@
     $router->get('/registro', [LoginController::class, 'registro']);
     $router->post('/registro', [LoginController::class, 'registro']);
     $router->get('/logout', [LoginController::class, 'logout']);
+
+    //AREA PRIVADA
+    $router->get('/cita',[CitaController::class, 'index']);
 
     $router->comprobarRutas();
