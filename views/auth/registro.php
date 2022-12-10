@@ -8,23 +8,23 @@
 
     <div class="contenedor">
       <div class="usuario">
-        <input type="text" name="paciente[Nombre]" id="" placeholder="Nombre"  required/>
+        <input type="text" name="paciente[Nombre]" id="" placeholder="Nombre"  />
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Ape_Paterno]" id="" placeholder="Apellido Paterno" required />
+        <input type="text" name="paciente[Ape_Paterno]" id="" placeholder="Apellido Paterno"  />
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Ape_Materno]" id="" placeholder="Apellido Materno" required />
+        <input type="text" name="paciente[Ape_Materno]" id="" placeholder="Apellido Materno"  />
       </div>
 
       <div class="usuario">
-        <input type="number" name="paciente[Edad]" id="" placeholder="Ingrese su Edad" min="1" max="120" required />
+        <input type="number" name="paciente[Edad]" id="" placeholder="Ingrese su Edad" min="1" max="120"  />
       </div>
 
       <div class="usuario">
-        <select  class="form-select"  name="paciente[Genero]" required >
+        <select  class="form-select"  name="paciente[Genero]"  >
           <option selected>Elija su genero</option>
           <option value="Hombre">Hombre</option>
           <option value="Mujer">Mujer</option>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="usuario">
-        <select  class="form-select"  name="paciente[T_Doc]" required >
+        <select  class="form-select"  name="paciente[T_Doc]"  >
           <option selected>Tipo de documento</option>
           <option value="DNI">DNI</option>
           <option value="PASAPORTE">PASAPORTE</option>
@@ -40,29 +40,31 @@
       </div>
 
       <div class="usuario">
-        <input type="number" name="paciente[Nr_Doc]" id="" placeholder="Ingrese el numero de documento" required />
+        <input type="number" name="paciente[Nr_Doc]" id="" placeholder="Ingrese el numero de documento"  />
       </div>
 
       <div class="usuario">
           <label  class="form-label">Ingrese su fecha de nacimiento:</label>
-          <input type="date" name="paciente[Fecha_Nacimiento]" id="" placeholder="Fecha de Nacimiento" required />
+          <input type="date" name="paciente[Fecha_Nacimiento]" id="" placeholder="Fecha de Nacimiento"  />
       </div>
 
       <div class="usuario">
-        <input type="number" name="paciente[Telefono]" id="" placeholder="Ingrese su numero de telefono" required />
+        <input type="number" name="paciente[Telefono]" id="" placeholder="Ingrese su numero de telefono"  />
       </div>
 
       <div class="correo">
-        <input type="email" name="paciente[Correo]" id="" placeholder="Correo Electrónico" required />
+        <input type="email" name="usuario[email]" id="" placeholder="Correo Electrónico"  />
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Usuario]" id="" placeholder="Usuario" required />
+        <input type="text" name="paciente[Usuario]" id="" placeholder="Usuario"  />
       </div>
 
       <div class="contraseña">
-        <input type="password" name="paciente[Contraseña]" id="" placeholder="Contraseña" required />
+        <input type="password" name="usuario[pass]" id="" placeholder="Contraseña"  />
       </div>
+
+      <input type="hidden" name="usuario[tipo_usuario]" id="" placeholder="Contraseña"  value="2"/>
 
       <div>
         <input type="submit" value="Registrate" class="button" />

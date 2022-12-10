@@ -1,4 +1,4 @@
-
+<?php echo "= id " . var_dump( $sesion ) ?>
 <!-- INICIO COLLAPSE DE CITAS PENDIENTES -->
 <div class="collapse" id="collapseExample3">
     <div class="card card-body">

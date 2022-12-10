@@ -55,10 +55,6 @@
           <i class="fas fa-user-plus"> </i> Agregar Médicos
         </button>
 
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#especialidad">
-          <i class="fas fa-clinic-medical"></i> Especialidades
-        </button>
-
       </div>
 
 
@@ -77,16 +73,6 @@
                   <th>ACCIONES</th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th>DNI</th>
-                  <th>MÉDICO</th>
-                  <th>SEXO</th>
-                  <th>ESPECIALIDAD</th>
-                  <th>HORARIO</th>
-                  <th>ACCIONES</th>
-                </tr>
-              </tfoot>
               <tbody>
                 <?php foreach ($medicos as $row) { ?>
                   <tr>
@@ -178,13 +164,14 @@
 
               <div class="row">
                 <input type="number" class="col" name="medico[Telefono]" id="" placeholder="Nro de telefono" required />
-                <input type="email" class="col" name="medico[Correo]" id="" placeholder="Correo Electrónico" required />
+                <input type="email" class="col" name="usuario[email]" id="" placeholder="Correo Electrónico" required />
               </div>
 
               <div class="row">
-                <input type="text" class="col" name="medico[Usuario]" id="" placeholder="Usuario" required />
-                <input type="password" class="col" name="medico[Contraseña]" id="" placeholder="Contraseña" required />
+                <input type="password" class="col" name="usuario[pass]" id="" placeholder="Contraseña" required />
               </div>
+
+              <input type="hidden" class="col" name="usuario[tipo_usuario]" value="3" />
           </div>
         </div>
         <div class="modal-footer">

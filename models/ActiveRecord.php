@@ -23,6 +23,7 @@ class ActiveRecord {
             $this->update();
         } else {
             $this->insert();
+            return true;
         }
     }
 
@@ -38,10 +39,7 @@ class ActiveRecord {
         $query .= "') ";
 
         $resultado = self::$db->query($query);
-
-        if ($resultado) {
-            header('Location: /admin?resultado=1');
-        }
+        return $resultado;
     }
 
     //UPDATE EN LA DATABASE
@@ -170,8 +168,15 @@ class ActiveRecord {
     //LISTA SOLO 1 OBJETO   
     public static function find($id) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE id = ${id}";
-
         $resultado = self::consultSQL($query);
+
+        return array_shift($resultado);
+    }
+
+    public static function login($email){
+        $query = "SELECT * FROM " . static::$tabla . " WHERE email = '${email}' ";
+        $resultado = self::consultSQL($query);
+        
         return array_shift($resultado);
     }
 
@@ -179,13 +184,12 @@ class ActiveRecord {
     public static function consultSQL($query) {
         //consultar la Database
         $resultado = self::$db->query($query);
-
         //Iterar los resultado
         $array = [];
         while ($registro = $resultado->fetch_assoc()) {
             $array[] = static::createObject($registro);
         }
-
+        
         //Liberar la memoria
         $resultado->free();
 
@@ -195,12 +199,13 @@ class ActiveRecord {
 
     public static function createObject($registro) {
         $objeto = new static;
-
+        
         foreach ($registro as $key => $value) {
             if (property_exists($objeto, $key)) {
                 $objeto->$key = $value;
             }
         }
+        
         return $objeto;
     }
 

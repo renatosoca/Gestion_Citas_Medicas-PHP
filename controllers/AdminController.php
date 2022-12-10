@@ -1,114 +1,245 @@
 <?php
-    namespace Controller;
 
-    use Router\Router;
-    use Model\Paciente;
-    use Model\Medico;
+namespace Controller;
 
-    class AdminController {
+use Model\Especialidades;
+use Router\Router;
+use Model\Paciente;
+use Model\Medico;
+use Model\Login;
 
-        public static function index( Router $router) {
+class AdminController
+{
 
-            $paciente=Paciente::allActivos();
-            $medico=Medico::allActivos();
+    public static function index(Router $router)
+    {
 
-            $nrpaci=sizeof($paciente);
-            $nrmedi=sizeof($medico);
+        $paciente = Paciente::allActivos();
+        $medico = Medico::allActivos();
 
-            $router->renderAdmin('admin/index', [
+        $nrpaci = sizeof($paciente);
+        $nrmedi = sizeof($medico);
 
-                'nrpaci' => $nrpaci,
-                'nrmedi' => $nrmedi
+        $router->renderAdmin('admin/index', [
 
-            ]);
-        }
+            'nrpaci' => $nrpaci,
+            'nrmedi' => $nrmedi
 
-        public static function pacientes( Router $router ) {
+        ]);
+    }
 
-            //Mostramos a los pacientes registrados
+    public static function pacientes(Router $router)
+    {
 
-            $pacientes = Paciente::allActivos();
+        //Mostramos a los pacientes registrados
 
-            //registrar pacientes
+        $pacientes = Paciente::allActivos();
 
-            $router->renderAdmin('admin/pacientes', [
-                'pacientes' => $pacientes,
-            ]);
-        }
+        //registrar pacientes
 
-        public static function pacientesRegistrar(){
+        $router->renderAdmin('admin/pacientes', [
+            'pacientes' => $pacientes,
+        ]);
+    }
 
+    public static function pacientesRegistrar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $paciente = new Paciente($_POST['paciente']);
+            $usuario = new Login( $_POST['usuario'] );
+            
+            $mensaje = $paciente->validar();
+            if (empty($mensaje)) {
+                //REGISTRAR PACIENTE
+                $resultado = $paciente->save();
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                    $auth = new Paciente($_POST['paciente']);
-                    $resultado= $auth->Registrar();
-
-                    if ($resultado) {
-                        header('Location: /pacientes/index');
-                    } 
-                    
-
-            }
-
-        }
-
-        public static function pacientesActualizar(){
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
-                $id = $_POST['id']; 
-                $paciente = Paciente::find($id);     //CONSULTAR UNA PROPIEDAD
-                print_r($paciente);
-                $mensaje = Paciente::getErrores();
-                $args = $_POST['paciente'];
-                $paciente->sincronizar($args);
-                
-                //VALIDAR QUE NO ESTEN VACIOS LOS INPUTS
-                $mensaje = $paciente->validar();
-                
-                //ACTUALIZAR
-                if (empty($mensaje)) {
-                    $paciente->save();
-                    header('Location: /pacientes/index');
+                if ($resultado) {
+                    //GUARDAR USUARIO
+                    $usuario->insert();
+                    header('Location: /admin/pacientes');
                 }
             }
         }
+    }
 
-        public static function pacientesEliminar(){
+    public static function pacientesActualizar()
+    {
 
-            if ($_SERVER['REQUEST_METHOD']==='POST') {
-                $id= $_POST['id'];
-                $id = filter_var($id, FILTER_VALIDATE_INT);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
+            $id = $_POST['id'];
+            $paciente = Paciente::find($id);     //CONSULTAR UNA PROPIEDAD
+            print_r($paciente);
+            $mensaje = Paciente::getErrores();
+            $args = $_POST['paciente'];
+            $paciente->sincronizar($args);
 
-                if ($id) {
-                    $tipo = $_POST['tipo'];
-                    if (validarTipoContenido($tipo)) {
-                        //ELIMINAR LOS DATOS Y ARCHIVOS
-                        $paciente = Paciente::find($id);
-                        $paciente->CambiarEstado();
-                        
-                        if ($paciente) {
-                            header('Location: /pacientes/index');
-                        }
+            //VALIDAR QUE NO ESTEN VACIOS LOS INPUTS
+            $mensaje = $paciente->validar();
 
+            //ACTUALIZAR
+            if (empty($mensaje)) {
+                $paciente->save();
+                header('Location: /admin/pacientes');
+            }
+        }
+    }
+
+    public static function pacientesEliminar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                $tipo = $_POST['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    //Cambiar el estado a SUSPENDIDO
+                    $paciente = Paciente::find($id);
+                    $paciente->CambiarEstado();
+
+                    if ($paciente) {
+                        header('Location: /admin/pacientes');
                     }
                 }
             }
-        } 
+        }
+    }
 
-        public static function medicos( Router $router ) {
-            
-            $router->renderAdmin('admin/medicos', [
-
-            ]);
+    //Listado de 
+    public static function medicos(Router $router)
+    {   
+        $medicos = Medico::allActivos();
+        $especialidades = Especialidades::allActivos();
+        foreach ($medicos as $row) {
+            $Especialidad = Especialidades::find($row->ID_Especialidad);
+            $row->ID_Especialidad = $Especialidad->Descripcion;
         }
 
-        public static function citas( Router $router ) {
-            
-            $router->renderAdmin('admin/citas', [
+        $router->renderAdmin('admin/medicos', [
+            'medicos' => $medicos,
+            'especialidades' => $especialidades
+        ]);
+    }
 
-            ]);
+    //AGREGAR MEDICOS   => Falta solucionar el TIPO_USUARIO
+    public static function medicoAgregar(){
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $medico = new Medico( $_POST['medico'] );
+            $usuario = new Login( $_POST['usuario'] );
+            $mensaje = $medico->validar();
+            if (empty($mensaje)) {
+                //REGISTRAR MEDICO
+                $resultado = $medico->save();
+
+                if ($resultado) {
+                    //GUARDAR USUARIO
+                    $usuario->insert();
+                    header('Location: /admin/medicos');
+                }
+            }
+        }
+    }
+
+    //ACTUALIZAR MEDICOS
+    public static function medicoActualizar(){
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
+            $id = $_POST['id']; 
+            $medico = Medico::find($id);     //CONSULTAR UNA PROPIEDAD
+            $mensaje = Medico::getErrores();
+            $args = $_POST['medico'];
+            $medico->sincronizar($args);
+            
+            //VALIDAR QUE NO ESTEN VACIOS LOS INPUTS
+            $mensaje = $medico->validar();
+            
+            //ACTUALIZAR
+            if (empty($mensaje)) {
+                $medico->save();
+                header('Location: /medicos/index');
+            }
         }
 
     }
+
+    //ELIMINAR MEDICO
+    public static function medicoEliminar() {
+        //ELIMINAR PROPIEDAD
+        if ($_SERVER['REQUEST_METHOD']==='POST') {
+            $id= $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                $tipo = $_POST['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    //ELIMINAR LOS DATOS Y ARCHIVOS
+                    $medico = Medico::find($id);
+                    $medico->CambiarEstado();
+                }
+            }
+        }
+    }
+
+    public static function citas(Router $router)
+    {
+
+        $router->renderAdmin('admin/citas', []);
+    }
+
+    public static function especialidades( Router $router ) {
+        $especialidades = Especialidades::all();
+        
+        $router->renderAdmin('admin/especialidades', [
+            'especialidades' => $especialidades
+        ]);
+    }
+    
+    //FALTA EL MODAL PARA EL ACTUALIZAR
+    public static function especialidadActualizar( Router $router ){
+        $id = Redireccionar('/especialidades/index'); //GET id (Obtenemos el id, si no, nos redirige a otra pagina)
+        $especialidad = Especialidades::find($id);      //CONSULTAR UNA PROPIEDAD
+        $mensaje = Especialidades::getErrores();     //Para almacenar y luego mostrar los errores de los inputs en el FORM
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
+            $args = $_POST['especialidad'];
+            $especialidad->sincronizar($args);
+            
+            //VALIDAR QUE NO ESTEN VACIOS LOS INPUTS
+            $mensaje = $especialidad->validar();
+            
+            //ACTUALIZAR
+            if (empty($mensaje)) {
+                $especialidad->guardar();
+            }
+        }
+
+        $router->render('especialidades/actualizar', [
+            //ENVIANDO DATOS
+            'especialidad' => $especialidad,
+            'mensaje' => $mensaje
+        ]);
+    }
+
+    public static function especialidadEliminar() {
+        //ELIMINAR ESPECIALIDAD
+        if ($_SERVER['REQUEST_METHOD']==='POST') {
+            $id= $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                $tipo = $_POST['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    //ELIMINAR LOS DATOS Y ARCHIVOS
+                    $especialidades = Especialidades::find($id);
+                    $especialidades->delete();
+                }
+            }
+        }
+    }
+
+}

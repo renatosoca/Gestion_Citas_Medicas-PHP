@@ -16,6 +16,6 @@
         {
             $this->id = $args['id'] ?? null;
             $this->Descripcion = $args['Descripcion'] ?? '';
-            $this->Estado = $args['Estado'] ?? '';
+            $this->Estado = $args['Estado'] ?? 'Activo';
         }
     }

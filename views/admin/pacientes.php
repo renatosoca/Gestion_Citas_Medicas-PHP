@@ -126,7 +126,6 @@
             margin: 8px;
             padding: 5px;
         }
-        
     </style>
 
             <!-- MODALES-->
@@ -176,14 +175,14 @@
 
                 <div class="row">
                   <input type="number" class="col" name="paciente[Telefono]" id="" placeholder="Nro de telefono" required />
-                  <input type="email" class="col" name="paciente[Correo]" id="" placeholder="Correo Electrónico" required />
+                  <input type="email" class="col" name="usuario[email]" id="" placeholder="Correo Electrónico" required />
                 </div>
 
                 <div class="row">
-                  <input type="text" class="col" name="paciente[Usuario]" id="" placeholder="Usuario" required />
-                  <input type="password" class="col" name="paciente[Contraseña]" id="" placeholder="Contraseña" required />
+                  <input type="password" class="col" name="usuario[pass]" id="" placeholder="Contraseña" required />
                 </div>
 
+                <input type="hidden" class="col" name="usuario[tipo_usuario]" value="2" />
             </div>
         </div>
         <div class="modal-footer">

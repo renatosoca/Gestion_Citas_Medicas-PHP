@@ -6,7 +6,6 @@
     use Controller\LoginController;
     use Controller\PacienteController;
     use Controller\DoctorController;
-    use Controller\EspecialidadController;
     use Controller\AdminController;
 
     $router = new Router();
@@ -28,26 +27,26 @@
     $router->post('/pacientes/eliminar', [AdminController::class, 'pacientesEliminar']);
     $router->post('/pacientes/actualizar', [AdminController::class, 'pacientesActualizar']);
     //Paginas de ADMIN, parte medicos
-    $router->get('/admin/medicos', [DoctorController::class, 'index']);
-    $router->post('/medicos/eliminar', [DoctorController::class, 'eliminar']);
-    $router->post('/medicos/agregar', [DoctorController::class, 'agregar']);
-    $router->post('/medicos/actualizar', [DoctorController::class, 'actualizar']);
+    $router->get('/admin/medicos', [AdminController::class, 'medicos']);
+    $router->post('/medicos/agregar', [AdminController::class, 'medicoAgregar']);
+    $router->post('/medicos/actualizar', [AdminController::class, 'medicoActualizar']);
+    $router->post('/medicos/eliminar', [AdminController::class, 'medicoEliminar']);
     //Paginas de ADMIN, parte citas
     $router->get('/admin/citas', [AdminController::class, 'citas']);
     //Paginas de ADMIN, parte especialidades
-    $router->get('/admin/especialidades', [EspecialidadController::class, 'index']);
-    $router->post('/especialidades/eliminar', [EspecialidadController::class, 'eliminar']);
+    $router->get('/admin/especialidades', [AdminController::class, 'especialidades']);
+    $router->post('/especialidades/eliminar', [AdminController::class, 'especialidadEliminar']);
 
 
     //Paginas Paciente
     $router->get('/paciente', [PacienteController::class, 'index']);
-    $router->get('/paciente/citaspendientes', [PacienteController::class, 'citaspendientes']);
+    $router->get('/paciente/citaspasadas', [PacienteController::class, 'citaspasadas']);
     $router->get('/paciente/agregarcita', [PacienteController::class, 'agregarcita']);
 
 
     //Paginas Doctores
     $router->get('/doctor', [DoctorController::class, 'index']);
-
+    
 
     //Login
     $router->get('/login', [LoginController::class, 'login']);

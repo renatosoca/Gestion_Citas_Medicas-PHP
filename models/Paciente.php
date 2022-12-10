@@ -4,7 +4,7 @@
 
     class Paciente extends ActiveRecord{
         protected static $tabla = 'paciente';
-        protected static $columnasDB  = ['id', 'Nombre', 'Ape_Paterno', 'Ape_Materno','Edad', 'Genero', 'T_Doc', 'Nr_Doc', 'Fecha_Nacimiento', 'Telefono', 'Correo', 'Contraseña', 'Usuario', 'Fecha_Creacion', 'Estado'];
+        protected static $columnasDB  = ['id', 'Nombre', 'Ape_Paterno', 'Ape_Materno','Edad', 'Genero', 'T_Doc', 'Nr_Doc', 'Fecha_Nacimiento', 'Telefono', 'Fecha_Creacion', 'Estado'];
 
         public $id;
         public $Nombre;
@@ -16,9 +16,6 @@
         public $Nr_Doc;
         public $Fecha_Nacimiento;
         public $Telefono;
-        public $Correo;
-        public $Contraseña;
-        public $Usuario;
         public $Fecha_Creacion;
         public $Estado;
 
@@ -33,11 +30,8 @@
             $this->Nr_Doc = $args['Nr_Doc'] ?? '';
             $this->Fecha_Nacimiento = $args['Fecha_Nacimiento'] ?? '';
             $this->Telefono = $args['Telefono'] ?? '';
-            $this->Correo = $args['Correo'] ?? '';
-            $this->Contraseña = $args['Contraseña'] ?? '';
-            $this->Usuario = $args['Usuario'] ?? '';
-            $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
-            $this->Estado = $args['Estado'] ?? '';
+            $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
+            $this->Estado = $args['Estado'] ?? 'Activo';
         }
 
         public function validar() {
@@ -47,34 +41,20 @@
             if (!$this->Ape_Paterno) {
                 self::$errores[] = 'Apellido es obligatorio';
             }
-            if (!$this->Correo) {
-                self::$errores[] = 'El email es obligatorio';
-            }
-            if (!$this->Contraseña) {
-                self::$errores[] = 'Debes ingresar una contraseña';
-            }
 
             return self::$errores;
         }
 
-        public function Registrar() {
+        /* public function Registrar() {
 
             //Registrar al nuevo paciente
 
             $this->Estado="Activo";
 
             $query = "INSERT INTO " . self::$tabla . " (Nombre, Ape_Paterno, Ape_Materno, Edad, Genero, T_Doc, Nr_Doc, Fecha_Nacimiento, Telefono, Correo, Contraseña, Usuario,Estado) VALUES ('$this->Nombre','$this->Ape_Paterno','$this->Ape_Materno','$this->Edad','$this->Genero','$this->T_Doc','$this->Nr_Doc','$this->Fecha_Nacimiento',
-            '$this->Telefono','$this->Correo','$this->Contraseña','$this->Usuario','$this->Estado')";
+            '$this->Telefono','$this->Correo','$this->Contraseña','$this->Usuario','$this->Estado')"; 
+
             $resultado = self::$db->query($query);
-
-            if (!$resultado) {
-                self::$errores[] = 'Error al insertar usuario';
-                return;
-            }
-
-            self::$errores[] ="Se ah registrado correctamente";
-            
-            return self::$errores;
-        }
+        } */
         
     }
