@@ -85,6 +85,16 @@ class ActiveRecord {
         } */
     }
 
+    public function CambiarEstadoHorario() {
+        $query = "UPDATE " . static::$tabla . " SET Estado= 'Ocupado' WHERE id=" . self::$db->escape_string($this->id);
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
+        } */
+    }
+
     //IDENTIFICAR Y UNIR LOS ATRIBUTOS DE LA DB
     public function atributos() {
         $atributos = [];
@@ -152,6 +162,13 @@ class ActiveRecord {
 
     public static function allActivos() {
         $query = "SELECT * FROM " . static::$tabla . " WHERE Estado='Activo'";
+        $resultado = self::consultSQL($query);
+
+        return $resultado;
+    }
+
+    public static function allDisponibles() {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE Estado='Disponible'";
         $resultado = self::consultSQL($query);
 
         return $resultado;

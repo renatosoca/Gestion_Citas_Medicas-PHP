@@ -62,7 +62,7 @@
 
             <!-- Nav Item - Pacientes -->
             <li class="nav-item">
-                <a class="nav-link" href="/admin/pacientes">
+                <a class="nav-link" href="/pacientes/index">
                     <i class="fas fa-user-injured"></i>
                     <span>Pacientes</span></a>
             </li>

@@ -7,6 +7,7 @@
     use Controller\PacienteController;
     use Controller\DoctorController;
     use Controller\AdminController;
+    use Controllers\CitaController;
 
     $router = new Router();
 
@@ -17,7 +18,6 @@
     $router->get('/medicos', [PageController::class, 'medicos']);
     $router->get('/contacto', [PageController::class, 'contacto']);
     $router->post('/contacto', [PageController::class, 'contacto']);
-
 
     //Paginas Admin, parte resumen
     $router->get('/admin/index', [AdminController::class, 'index']);
@@ -33,6 +33,7 @@
     $router->post('/medicos/eliminar', [AdminController::class, 'medicoEliminar']);
     //Paginas de ADMIN, parte citas
     $router->get('/admin/citas', [AdminController::class, 'citas']);
+    $router->post('/citas/registrar', [AdminController::class, 'registrarcita']);
     //Paginas de ADMIN, parte especialidades
     $router->get('/admin/especialidades', [AdminController::class, 'especialidades']);
     $router->post('/especialidades/eliminar', [AdminController::class, 'especialidadEliminar']);
@@ -54,5 +55,8 @@
     $router->get('/registro', [LoginController::class, 'registro']);
     $router->post('/registro', [LoginController::class, 'registro']);
     $router->get('/logout', [LoginController::class, 'logout']);
+
+    //AREA PRIVADA
+    $router->get('/cita',[CitaController::class, 'index']);
 
     $router->comprobarRutas();
