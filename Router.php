@@ -45,7 +45,7 @@
             }
         }
     
-        //MUESTRA UNA VISTA
+        //PARA LA VISTA GENERAL
         public function render($view, $datos = []) {
             foreach ($datos as $key => $value) {
                 //$$ => variable variable, ejm=$llave
@@ -57,7 +57,7 @@
             $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
             include_once __DIR__."/views/layout.php";
         }
-
+        //PARA LA VISTA DEL ADMINISTRADOR
         public function renderAdmin($view, $datos = []) {
             foreach ($datos as $key => $value) {
                 //$$ => variable variable, ejm=$llave
@@ -69,7 +69,7 @@
             $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
             include_once __DIR__."/views/layout-admin.php";
         }
-
+        //PARA LA VISTA DE LOS PACIENTES
         public function renderPaciente($view, $datos = []) {
             foreach ($datos as $key => $value) {
                 //$$ => variable variable, ejm=$llave
@@ -81,7 +81,7 @@
             $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
             include_once __DIR__."/views/layout-paciente.php";
         }
-
+        //PARA LA VISTA DE LOS DOCTORES
         public function renderDoctor($view, $datos = []) {
             foreach ($datos as $key => $value) {
                 //$$ => variable variable, ejm=$llave

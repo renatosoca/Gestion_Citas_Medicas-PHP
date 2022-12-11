@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ml-auto">
-                        <a class="nav-link active" aria-current="page" href="./index.html">CONTROL CITAS</a>
+                        <a class="nav-link active" aria-current="page" href="/doctor">CONTROL CITAS</a>
                     </li>
                 </ul>
 

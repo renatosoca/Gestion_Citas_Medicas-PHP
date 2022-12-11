@@ -180,6 +180,7 @@ class AdminController
                     //ELIMINAR LOS DATOS Y ARCHIVOS
                     $medico = Medico::find($id);
                     $medico->CambiarEstado();
+                    header('Location: /admin/medicos');
                 }
             }
         }
@@ -192,13 +193,21 @@ class AdminController
         $medicos = Medico::allActivos();
         $horarios = Horario::allDisponibles();
         $pacientes = Paciente::allActivos();
+        $citas = Cita::all();
+
+        foreach ($citas as $row) {
+            $medico = Medico::find($row->ID_Medico);
+            $paciente = Paciente::find($row->ID_Paciente);
+            $row->ID_Paciente = $paciente->Nombre . ' ' .$paciente->Ape_Paterno;
+            $row->ID_Medico = $medico->Nombre . ' ' .$medico->Ape_Paterno;
+        }
 
         $router->renderAdmin('/admin/citas', [
-
             'especialidades' => $especialidades,
             'medicos' => $medicos,
             'horarios' => $horarios,
             'pacientes' => $pacientes,
+            'citas' => $citas
         ]);
     }
 

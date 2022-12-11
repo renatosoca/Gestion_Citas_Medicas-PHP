@@ -14,7 +14,7 @@
             ]);
         }
 
-        public static function citaspendientes( Router $router) {
+        public static function citaspasadas( Router $router) {
             session_start();
             $sesion = $_SESSION['id'];
 

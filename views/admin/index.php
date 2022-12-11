@@ -112,11 +112,11 @@
             <div class="row">
 
                 <div class="col-sm-5 ">
-                    <img src="../../public/build/images/fotohospitalsj.png" class="img-fluid img-thumbnail" width="450px" alt="">
+                    <img src="/build/images/fotohospitalsj.png" class="img-fluid img-thumbnail" width="450px" alt="">
 
                 </div>
                 <div class="col-sm-7">
-                    <img src="../../public/build/images/hospital-san-jose-del-callao.jpg" class="img-fluid img-thumbnail" width="530px" alt="">
+                    <img src="/build/images/hospital-san-jose-del-callao.jpg" class="img-fluid img-thumbnail" width="530px" alt="">
 
                 </div>
 

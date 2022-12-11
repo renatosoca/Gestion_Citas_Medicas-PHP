@@ -5,7 +5,7 @@ namespace Model;
 class Login extends ActiveRecord
 {
     protected static $tabla = 'login';
-    protected static $columnasDB  = ['id', 'email', 'pass', 'tipo_usuario'];
+    protected static $columnasDB  = ['id', 'email', 'pass', 'tipo_usuario', 'estado'];
 
     public $id;
     public $email;
@@ -18,7 +18,7 @@ class Login extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->pass = $args['pass'] ?? '';
         $this->tipo_usuario = $args['tipo_usuario'] ?? '';
-        /* $this->estado = $args['estado'] ?? ''; */
+        $this->estado = $args['estado'] ?? '';
     }
 
     public function validar()
