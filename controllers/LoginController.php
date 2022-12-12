@@ -44,21 +44,24 @@ class LoginController
     public static function registro(Router $router)
     {
         $mensaje = [];
+        $paciente = new Paciente();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = new Login($_POST['usuario']);
+            $email = obtenerEmail();
+
             $paciente = new Paciente($_POST['paciente']);
-            $usuario = new Login( $_POST['usuario'] );
-            
             $mensaje = $paciente->validar();
             if (empty($mensaje)) {
-                //REGISTRAR PACIENTE
-                $resultado = $paciente->save();
+                //GUARDAR USUARIO
+                $resultado = $usuario->insert();
+
+                //BUSCAR USUARIO
+                $user = $usuario->searchUser($email);
                 if ($resultado) {
-                    //GUARDAR USUARIO
-                    $usuario->insert();
-                    $mensaje = $resultado;
-                } else {
-                    $mensaje = Paciente::getErrores();
+                    //REGISTRAR MEDICO
+                    $result = $paciente->Registrar($user->id);
+                    header('Location: /login');
                 }
             }
         }

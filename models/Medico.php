@@ -34,4 +34,15 @@ class Medico extends ActiveRecord
         $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
         $this->Estado = $args['Estado'] ?? 'Activo';
     }
+
+    //INSERT EN LA DATABASE
+    public function Registrar($user)
+    {
+        //Registrar al nuevo medico
+        $query = "INSERT INTO " . self::$tabla . " (ID_Especialidad, Nombre, Ape_Paterno, Ape_Materno, Genero, T_Doc, Nro_Doc, Telefono, Estado, id_login) VALUES ('$this->ID_Especialidad', '$this->Nombre', '$this->Ape_Paterno','$this->Ape_Materno', '$this->Genero','$this->T_Doc','$this->Nro_Doc', '$this->Telefono', '$this->Estado', '$user')";
+
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+    }
 }

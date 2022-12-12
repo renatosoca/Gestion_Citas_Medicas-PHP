@@ -41,9 +41,7 @@ class Login extends ActiveRecord
         
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /login');
-        }
+        return $resultado;
     }
 
     public function existeUsuario()

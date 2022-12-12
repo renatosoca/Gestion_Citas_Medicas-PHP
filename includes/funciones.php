@@ -48,3 +48,10 @@ function Redireccionar(string $url){
 
     return $id;
 }
+
+function obtenerEmail(){
+    $email = $_POST['usuario']['email'];
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+    return $email;
+}

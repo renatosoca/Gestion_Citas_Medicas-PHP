@@ -206,6 +206,13 @@ class ActiveRecord {
         return array_shift($resultado);
     }
 
+    public static function searchUser($name){
+        $query = "SELECT * FROM " . static::$tabla . " WHERE email = '${name}' ";
+
+        $resultado = self::consultSQL($query);
+        return array_shift($resultado);
+    }
+
     //
     public static function consultSQL($query) {
         //consultar la Database

@@ -20,10 +20,6 @@
       </div>
 
       <div class="usuario">
-        <input type="number" name="paciente[Edad]" id="" placeholder="Ingrese su Edad" min="1" max="120"  />
-      </div>
-
-      <div class="usuario">
         <select  class="form-select"  name="paciente[Genero]"  >
           <option selected>Elija su genero</option>
           <option value="Hombre">Hombre</option>

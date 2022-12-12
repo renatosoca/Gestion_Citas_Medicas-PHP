@@ -125,18 +125,23 @@ class AdminController
     //AGREGAR MEDICOS   => Falta solucionar el TIPO_USUARIO
     public static function medicoAgregar()
     {
+        $medico = new Medico();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $medico = new Medico($_POST['medico']);
             $usuario = new Login($_POST['usuario']);
+            $email = obtenerEmail();
+
+            $medico = new Medico($_POST['medico']);
             $mensaje = $medico->validar();
             if (empty($mensaje)) {
-                //REGISTRAR MEDICO
-                $resultado = $medico->save();
+                //GUARDAR USUARIO
+                $resultado = $usuario->insert();
 
+                //BUSCAR USUARIO
+                $user = $usuario->searchUser($email);
                 if ($resultado) {
-                    //GUARDAR USUARIO
-                    $usuario->insert();
+                    //REGISTRAR MEDICO
+                    $result = $medico->Registrar($user->id);
                     header('Location: /admin/medicos');
                 }
             }
@@ -186,29 +191,29 @@ class AdminController
         }
     }
 
-    public static function citas( Router $router ) {
+    public static function citas(Router $router)
+    {
 
-        $especialidades= Especialidades::allActivos();
-        $medicos= Medico::allActivos();
-        $horarios=Horario::allDisponibles();
-        $pacientes=Paciente::allActivos();
-        $citaMostrar=Cita::allEspera();
+        $especialidades = Especialidades::allActivos();
+        $medicos = Medico::allActivos();
+        $horarios = Horario::allDisponibles();
+        $pacientes = Paciente::allActivos();
+        $citaMostrar = Cita::allEspera();
 
         foreach ($citaMostrar as $row) {
 
-            $paciente=Paciente::find($row->ID_Paciente);
-            $row->NombrePaciente=$paciente->Nombre ." ". $paciente->Ape_Paterno;
-            $row->DNIPaciente=$paciente->Nr_Doc;
+            $paciente = Paciente::find($row->ID_Paciente);
+            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+            $row->DNIPaciente = $paciente->Nr_Doc;
 
-            $medico=Medico::find($row->ID_Medico);
-            $row->NombreMedico=$medico->Nombre ." ". $medico->Ape_Paterno ;
+            $medico = Medico::find($row->ID_Medico);
+            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
 
-            $horario=Horario::find($row->ID_Horario);
-            $row->Fecha_Cita=$horario->Fecha ;
-            $row->Hora_Cita=$horario->Hora;
-            
+            $horario = Horario::find($row->ID_Horario);
+            $row->Fecha_Cita = $horario->Fecha;
+            $row->Hora_Cita = $horario->Hora;
         }
-        
+
         $router->renderAdmin('/admin/citas', [
 
             'especialidades' => $especialidades,
@@ -219,31 +224,33 @@ class AdminController
         ]);
     }
 
-    public static function registrarcita() {
+    public static function registrarcita()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $auth = new Cita($_POST['cita']);
-            $resultado= $auth->Registrar();
+            $resultado = $auth->Registrar();
 
             if ($resultado) {
                 $horario = Horario::find($_POST['ID_Horario']);
                 $horario->CambiarEstadoHorario();
 
                 header('Location: /admin/citas');
-            } 
+            }
         }
     }
 
-    public static function reprogramarcita() {
+    public static function reprogramarcita()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $auth = new Cita($_POST['cita']);
-            $resultado= $auth->Registrar();
+            $resultado = $auth->Registrar();
 
             if ($resultado) {
 
                 $cita = Cita::find($_POST['idcita']);
-                $cita ->delete();
+                $cita->delete();
 
                 $horario = Horario::find($_POST['idhoraRepro']);
                 $horario->CambiarEstadoHorario();
@@ -252,15 +259,16 @@ class AdminController
                 $horarioActivar->ActivarEstadoHorario();
 
                 header('Location: /admin/citas');
-            } 
+            }
         }
     }
 
-    public static function eliminarcita() {
+    public static function eliminarcita()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $cita = Cita::find($_POST['idEliminar']);
-            $cita ->delete();
+            $cita->delete();
 
             $horarioActivar = Horario::find($_POST['idHorario']);
             $horarioActivar->ActivarEstadoHorario();
