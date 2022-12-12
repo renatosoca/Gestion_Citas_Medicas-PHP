@@ -20,11 +20,11 @@ class ActiveRecord {
     public function save() {
         //SI EXISTE EL OBJETO EN EL SERVIDOR
         if (!is_null($this->id)) {
-            $this->update();
+            $resul = $this->update();
         } else {
-            $this->insert();
-            return true;
+            $resul = $this->insert();
         }
+        return $resul;
     }
 
     //INSERT EN LA DATABASE
@@ -39,6 +39,7 @@ class ActiveRecord {
         $query .= "') ";
 
         $resultado = self::$db->query($query);
+        
         return $resultado;
     }
 
@@ -58,9 +59,7 @@ class ActiveRecord {
 
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /admin?resultado=2');
-        }
+        return $resultado;
     }
 
     //DELETE EN LA DATABASE
@@ -68,11 +67,11 @@ class ActiveRecord {
         $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
 
-        return $resultado;
         /* if ($resultado) {
             $this->deleteImage();
-            header('Location: /especialidades/index');
         } */
+
+        return $resultado;
     }
 
     public function CambiarEstado() {
@@ -87,6 +86,16 @@ class ActiveRecord {
 
     public function CambiarEstadoHorario() {
         $query = "UPDATE " . static::$tabla . " SET Estado= 'Ocupado' WHERE id=" . self::$db->escape_string($this->id);
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+        /* if ($resultado) {
+            $this->deleteImage();
+        } */
+    }
+
+    public function ActivarEstadoHorario() {
+        $query = "UPDATE " . static::$tabla . " SET Estado= 'Disponible' WHERE id=" . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
 
         return $resultado;
@@ -174,6 +183,13 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public static function allEspera() {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE Estado='Espera'";
+        $resultado = self::consultSQL($query);
+
+        return $resultado;
+    }
+
     //LISTAR LOS OBJETOS POR LIMITE
     public static function get($cantidad) {
         $query = "SELECT * FROM " . static::$tabla . " LIMIT " . $cantidad;
@@ -185,15 +201,8 @@ class ActiveRecord {
     //LISTA SOLO 1 OBJETO   
     public static function find($id) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE id = ${id}";
-        $resultado = self::consultSQL($query);
 
-        return array_shift($resultado);
-    }
-
-    public static function login($email){
-        $query = "SELECT * FROM " . static::$tabla . " WHERE email = '${email}' ";
         $resultado = self::consultSQL($query);
-        
         return array_shift($resultado);
     }
 
@@ -201,12 +210,13 @@ class ActiveRecord {
     public static function consultSQL($query) {
         //consultar la Database
         $resultado = self::$db->query($query);
+
         //Iterar los resultado
         $array = [];
         while ($registro = $resultado->fetch_assoc()) {
             $array[] = static::createObject($registro);
         }
-        
+
         //Liberar la memoria
         $resultado->free();
 
@@ -216,13 +226,12 @@ class ActiveRecord {
 
     public static function createObject($registro) {
         $objeto = new static;
-        
+
         foreach ($registro as $key => $value) {
             if (property_exists($objeto, $key)) {
                 $objeto->$key = $value;
             }
         }
-        
         return $objeto;
     }
 

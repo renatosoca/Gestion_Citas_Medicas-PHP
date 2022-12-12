@@ -11,6 +11,7 @@ class Login extends ActiveRecord
     public $email;
     public $pass;
     public $tipo_usuario;
+    public $estado;
 
     public function __construct($args = [])
     {
@@ -18,7 +19,7 @@ class Login extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->pass = $args['pass'] ?? '';
         $this->tipo_usuario = $args['tipo_usuario'] ?? '';
-        $this->estado = $args['estado'] ?? '';
+        $this->estado = $args['estado'] ?? 'Activo';
     }
 
     public function validar()
@@ -36,7 +37,8 @@ class Login extends ActiveRecord
     public function insert()
     {
         $passHast = password_hash($this->pass, PASSWORD_BCRYPT);
-        $query = " INSERT INTO " . static::$tabla . "( email, pass, tipo_usuario ) VALUES ('$this->email', '$passHast', '2' ) ";
+        $query = " INSERT INTO " . static::$tabla . "( email, pass, tipo_usuario ) VALUES ('$this->email', '$passHast', '$this->tipo_usuario' ) ";
+        
         $resultado = self::$db->query($query);
 
         if ($resultado) {

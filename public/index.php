@@ -34,6 +34,8 @@
     //Paginas de ADMIN, parte citas
     $router->get('/admin/citas', [AdminController::class, 'citas']);
     $router->post('/citas/registrar', [AdminController::class, 'registrarcita']);
+    $router->post('/citas/reprogramar', [AdminController::class, 'reprogramarcita']);
+    $router->post('/citas/eliminar', [AdminController::class, 'eliminarcita']);
     //Paginas de ADMIN, parte especialidades
     $router->get('/admin/especialidades', [AdminController::class, 'especialidades']);
     $router->post('/especialidades/eliminar', [AdminController::class, 'especialidadEliminar']);

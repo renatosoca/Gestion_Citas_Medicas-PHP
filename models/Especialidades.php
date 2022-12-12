@@ -1,8 +1,6 @@
 <?php
     namespace Model;
 
-    use Router\Router;
-
     class Especialidades extends ActiveRecord{
 
         protected static $tabla = 'especialidad';

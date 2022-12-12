@@ -30,7 +30,7 @@
             $this->Nr_Doc = $args['Nr_Doc'] ?? '';
             $this->Fecha_Nacimiento = $args['Fecha_Nacimiento'] ?? '';
             $this->Telefono = $args['Telefono'] ?? '';
-            $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
+            $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
             $this->Estado = $args['Estado'] ?? 'Activo';
         }
 
