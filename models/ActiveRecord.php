@@ -213,8 +213,29 @@ class ActiveRecord {
         return array_shift($resultado);
     }
 
+    public static function findcita($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ID_Cita = ${id} ";
+
+        $resultado = self::consultSQL($query);
+        return array_shift($resultado);
+    }
+
     public static function findCitaEspera($id) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ID_Paciente = ${id} AND Estado='Espera'";
+
+        $resultado = self::consultSQL($query);
+        return $resultado;
+    }
+
+    public static function findReceta($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ID_DetalleMedico = ${id} ";
+
+        $resultado = self::consultSQL($query);
+        return $resultado;
+    }
+
+    public static function findCitaTerminado($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ID_Paciente = ${id} AND Estado='Terminado'";
 
         $resultado = self::consultSQL($query);
         return $resultado;
