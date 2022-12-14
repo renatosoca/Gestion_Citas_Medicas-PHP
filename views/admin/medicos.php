@@ -119,6 +119,83 @@
   </style>
 
   <!-- MODALES USADOS -->
+  <!-- MOSTRAR HORARIOS MEDICO (MODAL) -->
+  <div class="modal fade" id="verHorario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" >HORARIO (Médico) -  Pepito Salazar</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container" id="">
+
+              <form action="" method="post">
+
+                <div class="row">
+                    Fecha:
+                    <input type="date" class="col" name="" id="" required>
+                    Inicio:
+                    <input type="time" class="col" name="" id="" required>
+                    
+                </div>
+                <div class="row">
+                  Fin: &nbsp;&nbsp;&nbsp;&nbsp;
+                 <input type="time" class="col" name="" id="" required>
+                 Intervalo:
+                 <input type="number" class="col" name="" id="" placeholder="en minutos" value="30" required>
+                 
+                </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <input type="submit" class="btn btn-danger col-4" value="Agregar" >
+                </div>
+              </form>
+              
+                <div class="row">
+
+                </div>
+                <div class="row">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Fin</th>
+                        <th scope="col">Interv</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>00001</td>
+                        <td>10/11/22</td>
+                        <td>09:00</td>
+                        <td>12:00</td>
+                        <td>30 m</td>
+                        <td><button type="button" class="">
+                          <i class="fas fa-trash-alt"></i> 
+                          </button>
+                        </td>
+                      </tr>
+                  
+                    </tbody>
+                  </table>
+                </div>
+                
+                
+
+
+            </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN--MOSTRAR HORARIOS MEDICO (MODAL) -->
+
   <!-- AGREGAR MEDICO (MODAL) -->
   <div class="modal fade" id="agregarMedico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
