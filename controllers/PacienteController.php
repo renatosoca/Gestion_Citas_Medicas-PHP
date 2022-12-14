@@ -6,6 +6,7 @@
     use Model\Paciente;
     use Model\Medico;
     use Model\Horario;
+    use Model\Especialidades;
 
     class PacienteController {
         
@@ -15,10 +16,14 @@
 
             $paciente=Paciente::findLogin($sesion);
             $horarios = Horario::allDisponibles();
+            $especialidades = Especialidades::allActivos();
 
             $citas=Cita::findCitaEspera($paciente->id);
 
             foreach ($citas as $row) {
+
+                $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+                $row->DNIPaciente = $paciente->Nr_Doc;
     
                 $medico = Medico::find($row->ID_Medico);
                 $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
@@ -32,6 +37,7 @@
                 'paciente' => $paciente,
                 'citas' => $citas,
                 'horarios' => $horarios,
+                'especialidades' => $especialidades,
             ]);
         }
 

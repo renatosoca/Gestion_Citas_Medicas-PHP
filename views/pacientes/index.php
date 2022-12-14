@@ -82,158 +82,15 @@
 
 <!-- FIN DEL CONTENIDO PRINCIPAL-->
 
+
 <!-- T0DOS LOS MODALES UTILIZADOS -->
 
-<!--AGREGAR CITA-->
-<div class="modal fade" id="agregarCita" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Cita Médica</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-        <form action="" method="post">
-          <div class="row">
-
-            &nbsp; DNI:<input type="text" class="col-3" placeholder="Del Paciente" required>
-
-            Especialidad:<select name="" class="col-4" id="" required>
-              <option value="" disabled="">Seleccione Especialidad </option>
-              <option value="">Cardiología</option>
-              <option value="">Neurología</option>
-            </select>
-          </div>
-
-          <div class="row">
-            &nbsp; Médico: <select name="" class="col-4" id="" required>
-              <option value="" disabled="">Seleccione Médico </option>
-              <option value="">Carlos Mendoza</option>
-              <option value="">Maria Oracle</option>
-            </select>
-
-            &nbsp; Fechas: <select name="" class="col-4" id="" required>
-              <option value="" disabled="">Seleccione Fecha</option>
-              <option value="">11/12/22</option>
-              <option value="">10/12/22</option>
-            </select>
-          </div>
-
-          <div class="row">
-
-            <span>&nbsp;&nbsp;&nbsp;Use el Siguiente Calendario como guía (Opcional):</span>
-
-            <div class="root">
-              <div class="calendar" id="calendar">
-
-              </div>
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-1"></div>
-            <input type="submit" class="col btn btn-primary" value="Mostrar Resultados">
-            <div class="col-1"></div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <div class="container">
-          <div class="row">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Horario</th>
-                  <th scope="col">Paciente</th>
-                  <th scope="col">Medico</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Reservar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>08:00</td>
-                  <td> </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                      <i class="fas fa-clock"></i>
-                    </button>
-
-                  </td>
-                </tr>
-
-
-                <tr>
-                  <td>10:00</td>
-                  <td> </td>
-                  <td>Jon Armando</td>
-                  <td>11/12/22</td>
-                  <td>
-                    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                      <i class="fas fa-clock"></i>
-                    </button>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN AGREGAR CITA-->
-
-
-<!-- CONFIRMAR CITA (MODAL) -->
-<div class="modal fade" id="confirmCita" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmar Cita Médica</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <center>
-          <h4> <b> Especialidad : </b> Cardiología</h4>
-          <h4> <b> Médico : </b> Jon Armando</h4>
-          <h4> <b> Paciente : </b> Sancho Perezz</h4>
-          <h4> <b> Fecha : </b> 11/12/22</h4>
-          <h4> <b> Horario : </b> 08:00</h4>
-        </center>
-      </div>
-      <div class="modal-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-1"></div>
-            <input type="submit" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#agregarCita" value="Retroceder">
-            <input type="submit" class="col btn btn-primary" value="Confirmar Cita">
-            <div class="col-1"></div>
-
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN CONFIRMAR CITA (MODAL) -->
-<!----------------------------------------->
 <!--REPROGRAMAR CITA-->
-<div class="modal fade" id="reprogramarCita" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+<div class="modal fade" id="reprogramarCita"   aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Reprogramar Cita Médica</h1>
+          <h1 class="modal-title fs-5" >Reprogramar Cita Médica</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -242,7 +99,7 @@
             <div class="row" >
               <div id="Reprogramar">
 
-              <p><span class="col-6">DNI: <?php echo $paciente->Nr_Doc ?></span><span class="col-6">Paciente: <?php echo $paciente->Nombre ?></span></p>
+              <p><b class="span">DNI: <?php echo $paciente->Nr_Doc ?></b><b class="span">Paciente: <?php echo $paciente->Nombre ?></b></p>
 
               </div>
             <div>
@@ -251,7 +108,7 @@
             <div class="row">
 
 
-            <span class="col-2" >Fechas:</span><select name="" class="col-4" id="FechaReprogramar" required>
+            <span class="col-2" ><b>Fechas:</b></span><select name="" class="col-4" id="FechaReprogramar" required>
                 <option value="0" disabled="" selected>Seleccione Fecha</option>
               </select>
             </div>
@@ -288,12 +145,96 @@
   </div>
 </div>
 <!-- FIN REPROGRAMAR CITA-->
-<!-- CONFIRMAR REPROGRAMACION (MODAL) -->
-<div class="modal fade" id="confirmRepro" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+
+<!--AGREGAR CITA-->
+<div class="modal fade" id="agregarCita"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" >Agregar Cita Médica</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> 
+
+      <div class="modal-body">
+        <form action="" method="post">
+          <div class="row">  
+            &nbsp; DOC:<input id="Documento" type="text" class="col-3" placeholder="Del Paciente" value="<?php echo $paciente->Nr_Doc?>" required disabled>
+           <input type="text" id="NombrePaciente" hidden>
+           <input type="text" id="paciente" hidden>
+
+              Especialidad:<select name="" class="col-4" id="Especialidad" required >
+                              <option value="0" disabled selected>Especialidad</option>
+                              <?php foreach ($especialidades as $row) { ?>                                    
+                                  <option <?php echo "value='".$row->id."'"?> > <?php echo $row->Descripcion?> </option>
+                                  <?php } ?>
+                            </select>
+          </div>
+
+          <div class="row">
+      
+           &nbsp; Médico: <select name="" class="col-4" id="MedicoSelect" <?php echo "onchange='Horario(value,\"".implode(",",(array)$horario)."\")'"?>  required disabled>
+                <option value="0" disabled="" selected>Seleccione Médico </option>              
+            </select>
+
+            &nbsp; Fechas: <select name="" class="col-4" id="HorarioSelect" <?php echo "onchange='Reservar(value,\"".implode(",",(array)$horario)."\")'"?> required disabled>
+              <option value="0" disabled="" selected>Seleccione Fecha</option>
+          </select>
+          </div>
+
+          <div class="row">
+            
+              <span>&nbsp;&nbsp;&nbsp;Use el Siguiente Calendario como guía (Opcional):</span>
+            
+            <div class="root">
+              <div class="calendar" id="calendar">
+      
+              </div>
+    
+          </div>
+
+          <div class="row">
+              <div class="col-1"></div>
+              <input type="submit" class="col btn btn-primary" value="Mostrar Resultados">
+              <div class="col-1"></div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <div class="container">
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Horario</th>
+                  <th scope="col">Medico</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Reservar</th>
+                </tr>
+              </thead>
+              <tbody id="Reservar">
+
+              </tbody>
+            </table>
+          </div>
+      
+      
+      
+          </div>
+      
+         </div>
+    </div>
+  </div>
+</div>
+<!-- FIN AGREGAR CITA-->
+
+
+<!-- CONFIRMAR CITA (MODAL) -->
+<div class="modal fade" id="confirmCita"  aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmar Reprogramación de Cita</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmar Cita Médica</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -309,8 +250,40 @@
         <div class="container">
           <div class="row">
             <div class="col-1"></div>
-            <input type="submit" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#reprogramarCita" value="Retroceder">
+            <input type="submit" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#agregarCita" value="Retroceder">
             <input type="submit" class="col btn btn-primary" value="Confirmar Cita">
+            <div class="col-1"></div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN CONFIRMAR CITA (MODAL) -->
+<!----------------------------------------->
+
+<!-- CONFIRMAR REPROGRAMACION (MODAL) -->
+<div class="modal fade" id="confirmRepro" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmar Reprogramación de Cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <center id="DetalleRepro">
+          
+        </center>
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-1"></div>
+            <input type="submit" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#reprogramarCita" value="Retroceder">
+            <input type="submit" class="col btn btn-primary" value="Confirmar Reprogramacion">
             <div class="col-1"></div>
 
 
@@ -355,7 +328,7 @@
     padding: 5px;
   }
 
-  span{
+  .span{
     margin:0 10px;
   }
 </style>
@@ -375,16 +348,16 @@
     $horario=$horarios.split(",");
 
     var p=document.createElement("p");
-    var span=document.createElement("span");
-    span.className="col-6";
+    var b=document.createElement("b");
+    b.className="span";
     var txt=document.createTextNode("Especialidad: " + $cita[4]);
-    span.appendChild(txt);
-    p.appendChild(span)
-    var span=document.createElement("span");
-    span.className="col-6";
+    b.appendChild(txt);
+    p.appendChild(b)
+    var b=document.createElement("b");
+    b.className="span";
     var txt=document.createTextNode("Doctor: " + $cita[11]);
-    span.appendChild(txt);
-    p.appendChild(span);
+    b.appendChild(txt);
+    p.appendChild(b);
     document.getElementById("Reprogramar").appendChild(p);
 
     $FechaReprogramar=document.getElementById("FechaReprogramar");
@@ -449,7 +422,7 @@
         btn.type="button";
         btn.setAttribute("data-bs-toggle","modal");
         btn.setAttribute("onclick","ConfirmarReprog('"+$cita[4]+"','"+$cita[11] +"','"+$cita[9] +"','"+$horario[j+1] +"','"+$horario[j+2]+"','"+$horario[j]+"')");
-        btn.setAttribute("data-bs-target","#confirmReprog");
+        btn.setAttribute("data-bs-target","#confirmRepro");
         var i=document.createElement("i");
         i.className="fas fa-clock";
         btn.appendChild(i);
@@ -461,7 +434,67 @@
       }
 
     }
+  }
+
+  function ConfirmarReprog($especialidad,$medico,$paciente,$fecha,$horario,$idhorario){
+
+    /* document.getElementById("idhorarioRepro").value=$idhorario;
+    document.getElementById("idhoraRepro").value=$idhorario; */
+
+    var h4 = document.getElementById("DetalleRepro").getElementsByTagName("h4");
+    while(h4.length>0) h4[0].parentNode.removeChild(h4[0])
+    
+    var h4=document.createElement("h4");
+    var b=document.createElement("b");
+    var txt=document.createTextNode("Especialidad : ");
+    b.appendChild(txt);
+    h4.appendChild(b);
+    var txt = document.createTextNode($especialidad);
+    h4.appendChild(txt);
+
+    document.getElementById("DetalleRepro").appendChild(h4);
+
+    var h4=document.createElement("h4");
+    var b=document.createElement("b");
+    var txt=document.createTextNode("Paciente     : ");
+    b.appendChild(txt);
+    h4.appendChild(b);
+    var txt = document.createTextNode($paciente);
+    h4.appendChild(txt);
+
+    document.getElementById("DetalleRepro").appendChild(h4);
+
+    var h4=document.createElement("h4");
+    var b=document.createElement("b");
+    var txt=document.createTextNode("Médico       : ");
+    b.appendChild(txt);
+    h4.appendChild(b);
+    var txt = document.createTextNode($medico);
+    h4.appendChild(txt);
+
+    document.getElementById("DetalleRepro").appendChild(h4);
+
+    var h4=document.createElement("h4");
+    var b=document.createElement("b");
+    var txt=document.createTextNode("Fecha        : ");
+    b.appendChild(txt);
+    h4.appendChild(b);
+    var txt = document.createTextNode($fecha);
+    h4.appendChild(txt);
+
+    document.getElementById("DetalleRepro").appendChild(h4);
+
+    var h4=document.createElement("h4");
+    var b=document.createElement("b");
+    var txt=document.createTextNode("Horario      : ");
+    b.appendChild(txt);
+    h4.appendChild(b);
+    var txt = document.createTextNode($horario);
+    h4.appendChild(txt);
+
+    document.getElementById("DetalleRepro").appendChild(h4);
+
+  }
 
 
-}
 </script>

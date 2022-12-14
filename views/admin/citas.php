@@ -764,6 +764,9 @@
       document.getElementById("idhorarioRepro").value=$idhorario;
       document.getElementById("idhoraRepro").value=$idhorario;
 
+      var h4 = document.getElementById("DetalleRepro").getElementsByTagName("h4");
+      while(h4.length>0) h4[0].parentNode.removeChild(h4[0])
+
       var h4=document.createElement("h4");
       var b=document.createElement("b");
       var txt=document.createTextNode("Especialidad : ");
