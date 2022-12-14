@@ -206,6 +206,20 @@ class ActiveRecord {
         return array_shift($resultado);
     }
 
+    public static function findLogin($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE id_login = ${id} ";
+
+        $resultado = self::consultSQL($query);
+        return array_shift($resultado);
+    }
+
+    public static function findCitaEspera($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ID_Paciente = ${id} AND Estado='Espera'";
+
+        $resultado = self::consultSQL($query);
+        return $resultado;
+    }
+
     public static function searchUser($name){
         $query = "SELECT * FROM " . static::$tabla . " WHERE email = '${name}' ";
 
