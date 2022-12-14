@@ -51,7 +51,7 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Especialidades</h1>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarCita">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEsp">
           <i class="fas fa-user-plus"> </i> Agregar Especialidad
         </button>
 
@@ -75,7 +75,7 @@
                     <td><?php echo $row->id; ?></td>
                     <td><?php echo $row->Descripcion; ?></td>
                     <td>
-                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#editarCita">
+                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#editarEsp">
                         <i class="fas fa-user-edit"> </i>editar
                       </button>
                       <form method="POST" action="/especialidades/eliminar">
@@ -99,3 +99,60 @@
     <!-- /.container-fluid -->
   </div>
   <!-- End of Main Content -->
+
+    <!-- MODALES USADOS -->
+ <!-- AGREGAR ESPECIALIDAD (MODAL) -->
+ <div class="modal fade" id="agregarEsp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">AGREGAR - ESPECIALIDAD MÉDICA</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> 
+
+      <div class="modal-body">
+            <div class="container" id="">
+
+                <form action="">
+                  <div class="row" style="padding: 10px;">
+                    <input type="text"  class="col"  placeholder="Especialidad Médica" required > <br>
+                    <input type="submit" class="btn btn-danger col-3" value="Agregar" >
+                </div>
+                </form>
+            </div>
+        </div>
+
+      
+      
+    </div>
+  </div>
+</div>
+<!-- FIN AGREGAR ESPECIALIDAD (MODAL) -->
+
+ <!-- EDITAR ESPECIALIDAD (MODAL) -->
+ <div class="modal fade" id="editarEsp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">EDITAR - ESPECIALIDAD MÉDICA</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> 
+
+      <div class="modal-body">
+            <div class="container" id="">
+
+                <form action="">
+                  <div class="row" style="padding: 10px;">
+                    <input type="text"  class="col"  placeholder="Especialidad Médica" required > <br>
+                    <input type="submit" class="btn btn-warning col-3" value="Editar" >
+                </div>
+                </form>
+            </div>
+        </div>
+
+      
+      
+    </div>
+  </div>
+</div>
+<!-- FIN EDITAR ESPECIALIDAD (MODAL) -->
