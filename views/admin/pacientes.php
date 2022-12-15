@@ -91,10 +91,14 @@
                 <td><?php echo$row->Genero?></td>
                 <td><?php echo$row->Edad?></td>
                 <td>
-                    <button type='button' class='' data-bs-toggle='modal' data-bs-target='#verHistorial'>
+                    <form method="POST" action="/pacientes/historial">
+                        <input type="hidden" name="id" value="<?php echo $row->id?>">
+
+                        <button type='submit' >
                         <i class='fas fa-book-medical'></i> historial
-                    </button>
-                    </td>
+                        </button>
+                    </form>  
+                </td>
                     <td>
                       <button type='submit' name="Editar" class='' data-bs-toggle='modal' data-bs-target='#editarPaciente' <?php echo "onclick='Editar(\"".implode(",",(array)$row)."\")'"?>>
                         <i class='fas fa-user-edit'> </i>editar

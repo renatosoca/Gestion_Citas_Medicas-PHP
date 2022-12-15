@@ -81,9 +81,14 @@
                     <td><?php echo $row->Genero ?></td>
                     <td><?php echo $row->ID_Especialidad ?></td>
                     <td>
-                      <button type="button" class="" data-bs-toggle="modal" data-bs-target="#verHorario">
+                    <form method="POST" action="/medicos/horario">
+
+                    <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+
+                        <button type="submit">
                         <i class="fas fa-calendar-alt"></i> horario
-                      </button>
+                        </button>
+                      </form>   
                     </td>
                     <td>
                       <button type="button" class=" " data-bs-toggle="modal" data-bs-target="#editarMed" <?php echo "onclick='Editar(\"".implode(",",(array)$row)."\")'"?> >

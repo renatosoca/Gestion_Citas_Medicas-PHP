@@ -8,6 +8,8 @@ use Model\Paciente;
 use Model\Medico;
 use Model\Login;
 use Model\Horario;
+use Model\DetalleMedico;
+use Model\RecetaMedica;
 use Model\Cita;
 
 class AdminController
@@ -18,13 +20,16 @@ class AdminController
 
         $paciente = Paciente::allActivos();
         $medico = Medico::allActivos();
+        $citas = Cita::allEspera();
 
         $nrpaci = sizeof($paciente);
         $nrmedi = sizeof($medico);
+        $nrcita = sizeof($citas);
 
         $router->renderAdmin('admin/index', [
 
             'nrpaci' => $nrpaci,
+            'nrcita' => $nrcita,
             'nrmedi' => $nrmedi
 
         ]);
@@ -191,6 +196,58 @@ class AdminController
         }
     }
 
+    public static function medicoHorario(Router $router)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $medico = Medico::find($_POST['id']);
+
+            if (isset($_POST['Fecha'])) {
+
+                $fecha = $_POST['Fecha'];
+                $Hora_Inicio=$_POST['Hora_Inicio'];
+                $TiempoAtencion=$_POST['TiempoAtencion'];
+                $Pacientes=$_POST['Pacientes'];
+
+                $Hora_Inicio = date($Hora_Inicio);
+
+                $Hora_Fin=$Hora_Inicio;
+
+                for ($i=0; $i < $Pacientes ; $i++) { 
+                    
+                    $Hora_Fin =strtotime ( '+'.$TiempoAtencion.' minute' , strtotime ($Hora_Fin)) ; 
+                    $Hora_Fin = date ( 'H:i:s' , $Hora_Fin);
+                }
+             
+                $Hora=$Hora_Inicio;
+                
+                for ($i=0; $i < $Pacientes ; $i++) { 
+                    
+                    $horario=new Horario();
+                    $horario->Registrar($medico->id,$fecha,$Hora_Inicio,$Hora_Fin,$TiempoAtencion,$Hora);
+
+                    $Hora =strtotime ( '+'.$TiempoAtencion.' minute' , strtotime ($Hora)) ; 
+                    $Hora = date ( 'H:i:s' , $Hora);              
+                }
+
+                $router->renderAdmin('admin/medicohorario', [
+
+                    'medico' => $medico,
+    
+                ]);
+            }
+
+            $router->renderAdmin('admin/medicohorario', [
+
+                'medico' => $medico,
+
+            ]);
+        
+        }
+
+    }
+
     public static function citas(Router $router)
     {
 
@@ -331,5 +388,52 @@ class AdminController
                 }
             }
         }
+    }
+
+    public static function historial( Router $router) {
+
+        $paciente=Paciente::find($_POST['id']);
+        $citas=Cita::findCitaTerminado($paciente->id);
+
+        foreach ($citas as $row) {
+
+            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+            $row->DNIPaciente = $paciente->Nr_Doc;
+
+            $medico = Medico::find($row->ID_Medico);
+            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+
+            $horario = Horario::find($row->ID_Horario);
+            $row->Fecha_Cita = $horario->Fecha;
+            $row->Hora_Cita = $horario->Hora;
+
+            $detalleMedico= DetalleMedico::findcita($row->id);
+            $row->Diagnostico= $detalleMedico->Diagnostico;
+        }
+
+        $router->renderAdmin('admin/historial', [
+            'citas' => $citas,
+        ]);
+    }
+
+    public static function detallemedico( Router $router) {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $cita = Cita::find($_POST['IDCita']);
+            $detalleMedico = DetalleMedico::findcita($_POST['IDCita']);
+            $medico = Medico::find($cita->ID_Medico);
+            $cita->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+            $receta= RecetaMedica::findReceta($detalleMedico->id);
+
+        }
+
+        $router->renderAdmin('admin/DetalleMedico', [
+
+            'cita' => $cita,
+            'detalleMedico' => $detalleMedico,
+            'receta' => $receta,
+
+        ]);
     }
 }
