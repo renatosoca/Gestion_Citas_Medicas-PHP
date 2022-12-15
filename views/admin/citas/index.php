@@ -161,15 +161,10 @@
               option.text = $datos[j + 1];
 
               $MedicoSelect.appendChild(option);
-
             }
-
           }
-
         }
-
       <?php } ?>
-
     }
 
     function Horario(value, $horario) {
@@ -202,17 +197,11 @@
 
                 $HorarioSelect.appendChild(option);
                 dia = $datos[j + 1];
-
               }
-
             }
-
           }
-
         }
-
       <?php } ?>
-
     }
 
     function VerificarDoc($paciente) {
@@ -235,12 +224,8 @@
           $Especialidad = document.getElementById("Especialidad");
           $Especialidad.disabled = true;
           document.getElementById("Documento").style.backgroundColor = "rgb(236,12,12)";
-
         }
-
       }
-
-
     }
 
     function Reservar(value, $horario) {
@@ -300,9 +285,7 @@
           tr.appendChild(td);
 
           document.getElementById("Reservar").appendChild(tr);
-
         }
-
       }
     }
 
@@ -361,12 +344,9 @@
       h4.appendChild(txt);
 
       document.getElementById("ConfirmReserva").appendChild(h4);
-
     }
 
     function ReprogramarCita($citas, $horarios) {
-
-
 
       var trs = document.getElementById("ElegirReprogramacion").getElementsByTagName("tr");
       while (trs.length > 0) trs[0].parentNode.removeChild(trs[0])
@@ -422,16 +402,11 @@
 
             $FechaReprogramar.appendChild(option);
             dia = $horario[j + 1];
-
           }
-
-
         }
-
       }
 
       document.getElementById("FechaReprogramar").setAttribute("onchange", "ReprogramarHorario('" + $citas + "','" + $horarios + "')")
-
     }
 
     function ReprogramarHorario($citas, $horarios) {
@@ -479,12 +454,8 @@
           tr.appendChild(td);
 
           document.getElementById("ElegirReprogramacion").appendChild(tr);
-
         }
-
       }
-
-
     }
 
     function ConfirmarReprog($especialidad, $medico, $paciente, $fecha, $horario, $idhorario) {
@@ -544,6 +515,5 @@
       h4.appendChild(txt);
 
       document.getElementById("DetalleRepro").appendChild(h4);
-
     }
   </script>

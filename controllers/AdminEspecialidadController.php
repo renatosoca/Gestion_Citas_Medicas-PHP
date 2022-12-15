@@ -38,8 +38,8 @@ class AdminEspecialidadController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
             $id = $_POST['id'];
-            $paciente = Especialidades::find($id);     //CONSULTAR UNA PROPIEDAD
-            print_r($paciente);
+            $paciente = Especialidades::find($id);
+            
             $mensaje = Especialidades::getErrores();
             $args = $_POST['especialidad'];
             $paciente->sincronizar($args);

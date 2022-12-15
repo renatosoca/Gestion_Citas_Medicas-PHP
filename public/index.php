@@ -51,10 +51,9 @@
     //Paginas Paciente
     $router->get('/paciente', [PacienteController::class, 'index']);
     $router->get('/paciente/citaspasadas', [PacienteController::class, 'citaspasadas']);
-    $router->get('/paciente/agregarcita', [PacienteController::class, 'agregarcita']);
+    $router->post('/paciente/registrarcita', [PacienteController::class, 'registrarcita']);
     $router->post('/paciente/reprogramar', [PacienteController::class, 'reprogramarcita']);
     $router->post('/paciente/eliminarcita', [PacienteController::class, 'eliminarcita']);
-    $router->post('/paciente/registrarcita', [PacienteController::class, 'registrarcita']);
     $router->post('/paciente/detallemedico', [PacienteController::class, 'detallemedico']);
 
 

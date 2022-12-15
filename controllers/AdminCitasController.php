@@ -20,7 +20,6 @@ class AdminCitasController
         $citaMostrar = Cita::allEspera();
 
         foreach ($citaMostrar as $row) {
-
             $paciente = Paciente::find($row->ID_Paciente);
             $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
             $row->DNIPaciente = $paciente->Nr_Doc;
@@ -34,7 +33,6 @@ class AdminCitasController
         }
 
         $router->render('admin/citas/index', 'layout-admin', [
-
             'especialidades' => $especialidades,
             'medicos' => $medicos,
             'horarios' => $horarios,
@@ -62,12 +60,10 @@ class AdminCitasController
     public static function reprogramarcita()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $auth = new Cita($_POST['cita']);
             $resultado = $auth->Registrar();
 
             if ($resultado) {
-
                 $cita = Cita::find($_POST['idcita']);
                 $cita->delete();
 
@@ -85,7 +81,6 @@ class AdminCitasController
     public static function eliminarcita()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $cita = Cita::find($_POST['idEliminar']);
             $cita->delete();
 

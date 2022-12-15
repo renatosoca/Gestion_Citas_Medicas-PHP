@@ -45,7 +45,7 @@ class AdminMedicosController
                 $user = $usuario->searchUser($email);
                 if ($resultado) {
                     //REGISTRAR MEDICO
-                    $result = $medico->Registrar($user->id);
+                    $medico->Registrar($user->id);
                     header('Location: /admin/medicos');
                 }
             }
@@ -55,11 +55,9 @@ class AdminMedicosController
     public static function HorarioMedico(Router $router)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $medico = Medico::find($_POST['id']);
 
             if (isset($_POST['Fecha'])) {
-
                 $fecha = $_POST['Fecha'];
                 $Hora_Inicio = $_POST['Hora_Inicio'];
                 $TiempoAtencion = $_POST['TiempoAtencion'];
@@ -70,7 +68,6 @@ class AdminMedicosController
                 $Hora_Fin = $Hora_Inicio;
 
                 for ($i = 0; $i < $Pacientes; $i++) {
-
                     $Hora_Fin = strtotime('+' . $TiempoAtencion . ' minute', strtotime($Hora_Fin));
                     $Hora_Fin = date('H:i:s', $Hora_Fin);
                 }
@@ -78,7 +75,6 @@ class AdminMedicosController
                 $Hora = $Hora_Inicio;
 
                 for ($i = 0; $i < $Pacientes; $i++) {
-
                     $horario = new Horario();
                     $horario->Registrar($medico->id, $fecha, $Hora_Inicio, $Hora_Fin, $TiempoAtencion, $Hora);
 
@@ -87,16 +83,12 @@ class AdminMedicosController
                 }
 
                 $router->render('admin/medicos/horarioMedico', 'layout-admin', [
-
-                    'medico' => $medico,
-
+                    'medico' => $medico
                 ]);
             }
 
             $router->render('admin/medicos/horarioMedico', 'layout-admin', [
-
-                'medico' => $medico,
-
+                'medico' => $medico
             ]);
         }
     }

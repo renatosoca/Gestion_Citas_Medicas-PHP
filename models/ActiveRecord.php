@@ -93,20 +93,36 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         return $resultado;
-        /* if ($resultado) {
-            $this->deleteImage();
-        } */
     }
 
     //IDENTIFICAR Y UNIR LOS ATRIBUTOS DE LA DB
     public function atributos() {
         $atributos = [];
+
         foreach (static::$columnasDB as $columna) {
             //IGNORAR EL ID Y NO LO AGREGA AL ARRAY DE "ATRIBUTOS"
             if ($columna === 'id') continue;
             $atributos[$columna] = $this->$columna;
         }
+
         return $atributos;
+    }
+
+    //SANITIZAR TODOS LOS DATOS A INGRESAR EN LA DB
+    public function sanitizar() {
+        $atributos = $this->atributos();
+        $sanitizado = [];
+
+        foreach ($atributos as $key => $value) {
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+
+        return $sanitizado;
+    }
+
+    //OBTENER EL ARRAY DE LOS ERRORES
+    public static function getErrores() {
+        return static::$errores;
     }
 
     //SUBIDA DE ARCHIVOS
@@ -130,22 +146,6 @@ class ActiveRecord {
         if ($existe) {
             unlink(CARPETA_IMAGEN . $this->img);
         }
-    }
-
-    //SANITIZAR TODOS LOS DATOS A INGRESAR EN LA DB
-    public function sanitizar() {
-        $atributos = $this->atributos();
-        $sanitizado = [];
-
-        foreach ($atributos as $key => $value) {
-            $sanitizado[$key] = self::$db->escape_string($value);
-        }
-        return $sanitizado;
-    }
-
-    //OBTENER EL ARRAY DE LOS ERRORES
-    public static function getErrores() {
-        return static::$errores;
     }
 
     //VALIDAR QUE LOS INPUTS NO ESTEN VACIOS
@@ -268,6 +268,7 @@ class ActiveRecord {
                 $objeto->$key = $value;
             }
         }
+        
         return $objeto;
     }
 

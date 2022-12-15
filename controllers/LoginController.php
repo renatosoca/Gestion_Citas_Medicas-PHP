@@ -75,7 +75,6 @@ class LoginController
     {
         session_start();
         $_SESSION = [];
-
         header('Location: /');
     }
 }

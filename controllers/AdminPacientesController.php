@@ -16,7 +16,6 @@ class AdminPacientesController
 
     public static function index(Router $router)
     {
-
         $paciente = Paciente::all();
         $medico = Medico::all();
         $citas = Cita::all();
@@ -90,7 +89,6 @@ class AdminPacientesController
 
     public static function detallemedico(Router $router)
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cita = Cita::find($_POST['IDCita']);
             $detalleMedico = DetalleMedico::findcita($_POST['IDCita']);
