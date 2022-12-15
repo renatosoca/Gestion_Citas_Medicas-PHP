@@ -74,7 +74,6 @@ class Login extends ActiveRecord
     {
         switch ($resultado->tipo_usuario) {
             case 1:
-                session_start();
 
                 $_SESSION['id'] = $resultado->id;
                 $_SESSION['login'] = true;
@@ -83,7 +82,6 @@ class Login extends ActiveRecord
 
                 break;
             case 2:
-                session_start();
 
                 $_SESSION['id'] = $resultado->id;
                 $_SESSION['login'] = true;
