@@ -6,8 +6,10 @@
     use Controller\LoginController;
     use Controller\PacienteController;
     use Controller\DoctorController;
-    use Controller\AdminController;
-    use Controllers\CitaController;
+    use Controller\AdminPacientesController;
+    use Controller\AdminMedicosController;
+    use Controller\AdminCitasController;
+    use Controller\AdminEspecialidadController;
 
     $router = new Router();
 
@@ -20,25 +22,30 @@
     $router->post('/contacto', [PageController::class, 'contacto']);
 
     //Paginas Admin, parte resumen
-    $router->get('/admin/index', [AdminController::class, 'index']);
+    $router->get('/admin/index', [AdminPacientesController::class, 'index']);
     //Paginas de ADMIN, parte pacientes
-    $router->get('/admin/pacientes', [AdminController::class, 'pacientes']);
-    $router->post('/pacientes/registrar', [AdminController::class, 'pacientesRegistrar']);
-    $router->post('/pacientes/eliminar', [AdminController::class, 'pacientesEliminar']);
-    $router->post('/pacientes/actualizar', [AdminController::class, 'pacientesActualizar']);
+    $router->get('/admin/pacientes', [AdminPacientesController::class, 'pacientes']);
+    $router->post('/pacientes/registrar', [AdminPacientesController::class, 'pacientesRegistrar']);
+    $router->post('/pacientes/eliminar', [AdminPacientesController::class, 'pacientesEliminar']);
+    $router->post('/pacientes/actualizar', [AdminPacientesController::class, 'pacientesActualizar']);
+    $router->post('/pacientes/historial', [AdminPacientesController::class, 'historial']);
+    $router->post('/pacientes/detallemedico', [AdminPacientesController::class, 'detallemedico']);
     //Paginas de ADMIN, parte medicos
-    $router->get('/admin/medicos', [AdminController::class, 'medicos']);
-    $router->post('/medicos/agregar', [AdminController::class, 'medicoAgregar']);
-    $router->post('/medicos/actualizar', [AdminController::class, 'medicoActualizar']);
-    $router->post('/medicos/eliminar', [AdminController::class, 'medicoEliminar']);
+    $router->get('/admin/medicos', [AdminMedicosController::class, 'medicos']);
+    $router->post('/medicos/agregar', [AdminMedicosController::class, 'medicoAgregar']);
+    $router->post('/medicos/actualizar', [AdminMedicosController::class, 'medicoActualizar']);
+    $router->post('/medicos/eliminar', [AdminMedicosController::class, 'medicoEliminar']);
+    $router->post('/medicos/horario', [AdminMedicosController::class, 'HorarioMedico']);
     //Paginas de ADMIN, parte citas
-    $router->get('/admin/citas', [AdminController::class, 'citas']);
-    $router->post('/citas/registrar', [AdminController::class, 'registrarcita']);
-    $router->post('/citas/reprogramar', [AdminController::class, 'reprogramarcita']);
-    $router->post('/citas/eliminar', [AdminController::class, 'eliminarcita']);
+    $router->get('/admin/citas', [AdminCitasController::class, 'citas']);
+    $router->post('/citas/registrar', [AdminCitasController::class, 'registrarcita']);
+    $router->post('/citas/reprogramar', [AdminCitasController::class, 'reprogramarcita']);
+    $router->post('/citas/eliminar', [AdminCitasController::class, 'eliminarcita']);
     //Paginas de ADMIN, parte especialidades
-    $router->get('/admin/especialidades', [AdminController::class, 'especialidades']);
-    $router->post('/especialidades/eliminar', [AdminController::class, 'especialidadEliminar']);
+    $router->get('/admin/especialidades', [AdminEspecialidadController::class, 'especialidades']);
+    $router->post('/especialidades/agregar', [AdminEspecialidadController::class, 'especialidadAgregar']);
+    $router->post('/especialidades/actualizar', [AdminEspecialidadController::class, 'especialidadActualizar']);
+    $router->post('/especialidades/eliminar', [AdminEspecialidadController::class, 'especialidadEliminar']);
 
 
     //Paginas Paciente
@@ -62,7 +69,5 @@
     $router->post('/registro', [LoginController::class, 'registro']);
     $router->get('/logout', [LoginController::class, 'logout']);
 
-    //AREA PRIVADA
-    $router->get('/cita',[CitaController::class, 'index']);
 
     $router->comprobarRutas();

@@ -36,7 +36,7 @@ class LoginController
             }
         }
 
-        $router->render('auth/login', [
+        $router->render('auth/login', 'layout',[
             'mensaje' => $mensaje
         ]);
     }
@@ -66,7 +66,7 @@ class LoginController
             }
         }
 
-        $router->render('auth/registro', [
+        $router->render('auth/registro', 'layout', [
             'mensaje' => $mensaje
         ]);
     }

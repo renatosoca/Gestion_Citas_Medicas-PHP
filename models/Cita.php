@@ -1,8 +1,6 @@
 <?php
     namespace Model;
 
-    use Router\Router;
-
     class Cita extends ActiveRecord{
 
         protected static $tabla = 'cita';

@@ -1,27 +1,31 @@
 <?php
 define('FUNCIONES_URL', __DIR__ . 'funciones.php');
-define('CARPETA_IMAGEN',$_SERVER['DOCUMENT_ROOT'] . '/image/');
+define('CARPETA_IMAGEN', $_SERVER['DOCUMENT_ROOT'] . '/image/');
 
-function debugear($variable) {
+function debugear($variable)
+{
     echo "<pre>";
     var_dump($variable);
     echo "</pre";
     exit;
 }
 
-function s($html) {
-    $s=htmlspecialchars($html);
+function s($html)
+{
+    $s = htmlspecialchars($html);
     return $s;
 }
 
-function validarTipoContenido($tipo) {
-    $tipos = ['especialidades', 'medicos', 'usuarios','pacientes'];
+function validarTipoContenido($tipo)
+{
+    $tipos = ['especialidades', 'medicos', 'usuarios', 'pacientes'];
     return in_array($tipo, $tipos);
 }
 
-function mostrarNotificaciones($codigo) {
+function mostrarNotificaciones($codigo)
+{
     $mensaje = '';
-    switch($codigo){
+    switch ($codigo) {
         case '1':
             $mensaje = 'Creado Correctamente';
             break;
@@ -38,7 +42,8 @@ function mostrarNotificaciones($codigo) {
     return $mensaje;
 }
 
-function Redireccionar(string $url){
+function Redireccionar(string $url)
+{
     //Validacion de URL
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -49,7 +54,8 @@ function Redireccionar(string $url){
     return $id;
 }
 
-function obtenerEmail(){
+function obtenerEmail()
+{
     $email = $_POST['usuario']['email'];
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 

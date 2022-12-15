@@ -9,7 +9,7 @@
         
         public static function index(Router $router) {
             
-            $router->renderDoctor('doctores/index', [
+            $router->render('doctores/index', 'layout-medico', [
 
             ]);
         }

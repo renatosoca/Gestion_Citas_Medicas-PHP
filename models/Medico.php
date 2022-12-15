@@ -5,7 +5,7 @@ namespace Model;
 class Medico extends ActiveRecord
 {
     protected static $tabla = 'medico';
-    protected static $columnasDB  = ['id', 'ID_Especialidad', 'Nombre', 'Ape_Paterno', 'Ape_Materno', 'Genero', 'T_Doc', 'Nro_Doc', 'Telefono', 'Fecha_Creacion', 'Estado'];
+    protected static $columnasDB  = ['id', 'ID_Especialidad', 'Nombre', 'Ape_Paterno', 'Ape_Materno', 'Genero', 'T_Doc', 'Nro_Doc', 'Telefono', 'Fecha_Creacion', 'Estado', 'id_login'];
 
     public $id;
     public $ID_Especialidad;
@@ -18,6 +18,7 @@ class Medico extends ActiveRecord
     public $Telefono;
     public $Fecha_Creacion;
     public $Estado;
+    public $id_login;
 
     public function __construct($args = [])
     {
@@ -33,6 +34,7 @@ class Medico extends ActiveRecord
         $this->Telefono = $args['Telefono'] ?? '';
         $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
         $this->Estado = $args['Estado'] ?? 'Activo';
+        $this->Estado = $args['id_login'] ?? '';
     }
 
     //INSERT EN LA DATABASE

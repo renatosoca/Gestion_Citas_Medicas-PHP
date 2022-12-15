@@ -79,9 +79,6 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         return $resultado;
-        /* if ($resultado) {
-            $this->deleteImage();
-        } */
     }
 
     public function CambiarEstadoHorario() {
@@ -89,9 +86,6 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
         return $resultado;
-        /* if ($resultado) {
-            $this->deleteImage();
-        } */
     }
 
     public function ActivarEstadoHorario() {

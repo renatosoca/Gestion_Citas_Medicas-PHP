@@ -13,7 +13,6 @@
     class PacienteController {
         
         public static function index( Router $router) {
-            session_start();
             $sesion = $_SESSION['id'];
 
             $paciente=Paciente::findLogin($sesion);
@@ -36,7 +35,7 @@
                 $row->Hora_Cita = $horario->Hora;
             }
 
-            $router->renderPaciente('pacientes/index', [
+            $router->render('pacientes/index', 'layout-paciente', [
                 'paciente' => $paciente,
                 'citas' => $citas,
                 'horarios' => $horarios,
@@ -46,7 +45,6 @@
         }
 
         public static function citaspasadas( Router $router) {
-            session_start();
             $sesion = $_SESSION['id'];
 
             $paciente=Paciente::findLogin($sesion);
@@ -68,16 +66,15 @@
                 $row->Diagnostico= $detalleMedico->Diagnostico;
             }
 
-            $router->renderPaciente('pacientes/citasPasadas', [
+            $router->render('pacientes/citasPasadas', 'layout-paciente', [
                 'sesion' => $sesion,
-                'citas' => $citas,
-                
+                'citas' => $citas
             ]);
         }
 
         public static function agregarcita( Router $router) {
 
-            $router->renderPaciente('pacientes/agregarCita', [
+            $router->render('pacientes/agregarCita', 'layout-paciente', [
                 
             ]);
         }
@@ -94,7 +91,7 @@
 
             }
 
-            $router->renderPaciente('pacientes/DetalleMedico', [
+            $router->render('pacientes/DetalleMedico', 'layout-paciente', [
 
                 'cita' => $cita,
                 'detalleMedico' => $detalleMedico,

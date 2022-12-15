@@ -28,4 +28,15 @@
             $this->Estado = $args['Estado'] ?? null;
 
         }
+
+        public function Registrar($ID_Medico,$Fecha,$Hora_Inicio,$Hora_Fin,$Intervalo,$Hora) {
+            //Registrar al nueva horario
+            $this->Estado="Disponible";
+
+            $query = "INSERT INTO " . self::$tabla . " (ID_Medico, Fecha, Hora_Inicio, Hora_Fin, Intervalo, Hora, Estado) VALUES 
+                                                        ('$ID_Medico','$Fecha','$Hora_Inicio','$Hora_Fin','$Intervalo','$Hora','$this->Estado')";
+            $resultado = self::$db->query($query);
+
+            return $resultado;
+        }
     }
