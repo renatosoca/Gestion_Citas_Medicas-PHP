@@ -1,0 +1,11 @@
+.flex-btns{
+    display: flex;
+    gap: 1rem;
+}
+
+.table td, .table th{
+    padding: .45rem;
+}
+.table-bordered>:not(caption)>*{
+    border-width: 0;
+}

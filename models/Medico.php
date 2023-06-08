@@ -5,7 +5,7 @@ namespace Model;
 class Medico extends ActiveRecord
 {
     protected static $tabla = 'medico';
-    protected static $columnasDB  = ['id', 'ID_Especialidad', 'Nombre', 'Ape_Paterno', 'Ape_Materno', 'Genero', 'T_Doc', 'Nro_Doc', 'Telefono', 'Fecha_Creacion', 'Estado'];
+    protected static $columnasDB  = ['id', 'ID_Especialidad', 'Nombre', 'Ape_Paterno', 'Ape_Materno', 'Genero', 'T_Doc', 'Nro_Doc', 'Telefono', 'Fecha_Creacion', 'Estado', 'id_login'];
 
     public $id;
     public $ID_Especialidad;
@@ -18,6 +18,7 @@ class Medico extends ActiveRecord
     public $Telefono;
     public $Fecha_Creacion;
     public $Estado;
+    public $id_login;
 
     public function __construct($args = [])
     {
@@ -26,13 +27,13 @@ class Medico extends ActiveRecord
         $this->Nombre = $args['Nombre'] ?? '';
         $this->Ape_Paterno = $args['Ape_Paterno'] ?? '';
         $this->Ape_Materno = $args['Ape_Materno'] ?? '';
-        $this->Edad = $args['Edad'] ?? '';
         $this->Genero = $args['Genero'] ?? '';
         $this->T_Doc = $args['T_Doc'] ?? '';
         $this->Nro_Doc = $args['Nro_Doc'] ?? '';
         $this->Telefono = $args['Telefono'] ?? '';
-        $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
+        $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
         $this->Estado = $args['Estado'] ?? 'Activo';
+        $this->id_login = $args['id_login'] ?? '';
     }
 
     //INSERT EN LA DATABASE

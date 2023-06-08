@@ -17,11 +17,9 @@
         <tbody>
         <?php 
         
-        if ($citas==null) {
-        ?>
+        if ($citas==null) { ?>
             <td colspan="5" class="text-center">No tiene ninguna citas pasada</td>
-        <?php
-        }else{
+        <?php }else{
 
           foreach ($citas as $row) {?>
             <tr>
@@ -36,9 +34,6 @@
                   FICHA 
                   </button>
                 </form>
-                
-              
-              
               </td>
             </tr>
             <?php }

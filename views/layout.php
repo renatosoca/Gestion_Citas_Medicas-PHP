@@ -45,21 +45,16 @@
             </div>
         </div>
     </div>
-    <!--======  OVERLAY PART START ======-->
-    <div class="overlay-search">
-        <form action="#">
-            <input type="text" placeholder="search here" /><i class="fas fa-search-location"></i>
-        </form>
-        <span class="cross-search"><i class="fas fa-times"></i></span>
-    </div>
     <!--======  HEADER PART START ======-->
     <header>
         <section class="top-header-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <span><i class="fas fa-phone"></i> +(01) 3197830</span><span><i class="fas fa-envelope-open-text"></i>email
-                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cca5a2aaa38ca9b4ada1bca0a9e2afa3a1">[email&#160;protected]</a></span>
+                        <span>
+                            <i class="fas fa-phone"></i>
+                            +(01) 3197830
+                        </span>
                     </div>
                     <div style="text-align: right;" class="col-lg-6 text-right">
                         <a href="/login" class="top-header-btn btn">Cita Médica</a>
@@ -72,8 +67,8 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a style="text-decoration: none; font-size: 19px; " href="index.html" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; <b>SAN JOSÉ</b> </a>
-
+                            <a style="text-decoration: none; font-size: 19px; " href="/" style="font-weight:bold; font-size: 18px;"><img src="build/images/Logo_hospital_San_José_del_Callao.svg.png" width="60px" alt="" />&nbsp; <b>SAN JOSÉ</b>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-10">
@@ -96,9 +91,9 @@
                                 <ul>
                                     <li>
                                         <a href="/login"><img src="build/images/uer.png" width="60px" alt="" />Cuenta
-                                            <i class="fa fa-angle-down"></i></a>
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -174,14 +169,6 @@
                             <p class="mb-20">
                                 <span class="footer-icon"><i class="fas fa-phone"></i></span><span>+(01) 3197830 <br />
                                     +51 987463522</span>
-                            </p>
-                            <p class="mb-20">
-                                <span class="footer-icon">
-                                    <i class="fas fa-envelope-open-text"></i>
-                                </span>
-                                <span>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="60090e060f20190f15120d01090c4e030f0d">[email&#160;protected]</a><br /><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96f5f9f8e2f7f5e2d6f1fbf7fffab8f5f9fb">[email&#160;protected]</a>
-                                </span>
                             </p>
                             <p>
                                 <span class="footer-icon"><i class="fas fa-map-marked-alt"></i></span><span> Magnolias 475, Carmen <br />

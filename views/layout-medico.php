@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Médico</title>
+    <title>Portal del Médico</title>
     <script src="https://kit.fontawesome.com/b355a0cb3a.js" crossorigin="anonymous"></script>
 
     <!-- ESTILOS CSS -->
@@ -19,7 +19,7 @@
     <!-- INICIO DEL HEADER-->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
         <div class="container-fluid">
-            <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="#"> HOSPITAL SAN JOSÉ</a>
+            <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="#"> Hospital San José</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item ml-auto">
-                        <a class="nav-link active" aria-current="page" href="/doctor">CONTROL CITAS</a>
+                        <a class="nav-link active" aria-current="page" href="/doctor">Control de Citas</a>
                     </li>
                 </ul>
 
@@ -36,13 +36,13 @@
                     <li class="nav-item dropdown d-flex ">
                         <a style="float: right;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"> </i>
-                            USUARIO
+                            Médico
                         </a>
 
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="/logout">
-                                    CERRAR SESIÓN
+                                    Salir
                                 </a>
                             </li>
                         </ul>

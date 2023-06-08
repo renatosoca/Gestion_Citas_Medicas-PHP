@@ -74,19 +74,16 @@ class Login extends ActiveRecord
     {
         switch ($resultado->tipo_usuario) {
             case 1:
-                session_start();
 
                 $_SESSION['id'] = $resultado->id;
-                $_SESSION['login'] = true;
-
+                $_SESSION['usuario'] = $resultado->tipo_usuario;
+                
                 header('Location: /admin/index');
 
                 break;
             case 2:
-                session_start();
 
                 $_SESSION['id'] = $resultado->id;
-                $_SESSION['login'] = true;
 
                 header('Location: /paciente');
 
@@ -95,7 +92,6 @@ class Login extends ActiveRecord
                 session_start();
 
                 $_SESSION['id'] = $resultado->id;
-                $_SESSION['login'] = true;
 
                 header('Location: /doctor');
 

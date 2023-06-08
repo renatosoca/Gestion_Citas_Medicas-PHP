@@ -1,8 +1,6 @@
 <?php
     namespace Model;
 
-    use Router\Router;
-
     class RecetaMedica extends ActiveRecord{
 
         protected static $tabla = 'recetamedica';
@@ -19,10 +17,10 @@
             $this->Descripcion = $args['Descripcion'] ?? '';
         }
 
-        public function Registrar() {
+        public function Registrar($ID_DetalleMedico,$Anotacion,$Descripcion) {
 
             $query = "INSERT INTO " . self::$tabla . " (ID_DetalleMedico, Anotacion,Descripcion) VALUES 
-                                                        ('$this->ID_DetalleMedico','$this->Anotacion','$this->Descripcion')";
+                                                        ('$ID_DetalleMedico','$Anotacion','$Descripcion')";
             $resultado = self::$db->query($query);
 
             

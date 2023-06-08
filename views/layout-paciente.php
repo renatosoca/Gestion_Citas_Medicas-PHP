@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PACIENTE</title>
+  <title>Portal del Paciente</title>
   <script src="https://kit.fontawesome.com/b355a0cb3a.js" crossorigin="anonymous"></script>
   <script src="/build/js/calendar.js"></script>
   <link rel="stylesheet" href="/build/css/calendar.css">
@@ -17,36 +17,36 @@
   <!-- INICIO DEL HEADER-->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
     <div class="container-fluid">
-      <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="#"> HOSPITAL SAN JOSÉ</a>
+      <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="#">
+        Hospital San José
+      </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
           <li class="nav-item ml-auto">
-            <a class="nav-link active" aria-current="page" href="/paciente">CONTROL CITAS</a>
+            <a class="nav-link active" aria-current="page" href="/paciente">Citas Pendientes</a>
           </li>
 
           <li class="nav-item ml-auto">
-            <a class="nav-link  " aria-current="page" href="/paciente/citaspasadas">CITAS PASADAS</a>
+            <a class="nav-link  " aria-current="page" href="/paciente/citaspasadas">Citas Pasadas</a>
           </li>
-
-
         </ul>
 
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-
           <li class="nav-item dropdown d-flex ">
             <a style="float: right;" class="nav-link dropdown-toggle" href="/paciente/agregarcita" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user"> </i> USUARIO
+              <i class="fas fa-user"></i>
+              Usuario
             </a>
-            <ul class="dropdown-menu">
 
-              <li><a class="dropdown-item" href="/logout">CERRAR SESIÓN</a></li>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/logout">Salir</a></li>
             </ul>
           </li>
-
         </ul>
       </div>
     </div>

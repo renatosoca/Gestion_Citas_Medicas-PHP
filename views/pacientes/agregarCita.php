@@ -1,54 +1,42 @@
-<!-- AGREGAR CITA (MODAL) -->
-<div class="modal fade" id="agregarCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!--AGREGAR CITA-->
+<div class="modal fade" id="agregarCita" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Cita Médica</h1>
+
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
                 <form action="" method="post">
                     <div class="row">
+                        &nbsp; DNI:
+                        <input id="Documento" type="text" class="col-3" placeholder="Del Paciente" 
+                        value="<?php echo $paciente->Nr_Doc ?>" disabled required>
 
-                        &nbsp; DNI:<input type="text" class="col-3" placeholder="Del Paciente" required>
+                        <input type="text" id="NombrePaciente" value="<?php echo $paciente->Nombre ?>" hidden>
 
-                        Especialidad:<select name="" class="col-4" id="" required>
-                            <option value="" disabled="">Seleccione Especialidad </option>
-                            <option value="">Cardiología</option>
-                            <option value="">Neurología</option>
+                        Especialidad:
+                        <select name="" class="col-4" id="Especialidad" <?php echo "onchange='Medico(value,\"" . implode(",", (array)$medico) . "\")'" ?> required>
+                            <option value="0" disabled selected>Especialidad</option>
+                            <?php foreach ($especialidades as $row) { ?>
+                                <option <?php echo "value='" . $row->id . "'" ?>> <?php echo $row->Descripcion ?> </option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="row">
-                        &nbsp; Médico: <select name="" class="col-4" id="" required>
-                            <option value="" disabled="">Seleccione Médico </option>
-                            <option value="">Carlos Mendoza</option>
-                            <option value="">Maria Oracle</option>
+                        &nbsp; Médico:
+                        <select name="" class="col-4" id="MedicoSelect" <?php echo "onchange='Horario(value,\"" . implode(",", (array)$horario) . "\")'" ?> required disabled>
+                            <option value="0" disabled="" selected>Seleccione Médico </option>
                         </select>
 
-                        &nbsp; Fechas: <select name="" class="col-4" id="" required>
-                            <option value="" disabled="">Seleccione Fecha</option>
-                            <option value="">11/12/22</option>
-                            <option value="">10/12/22</option>
+                        &nbsp; Fechas:
+                        <select name="" class="col-4" id="HorarioSelect" <?php echo "onchange='Reservar(value,\"" . implode(",", (array)$horario) . "\")'" ?> required disabled>
+                            <option value="0" disabled="" selected>Seleccione Fecha</option>
                         </select>
                     </div>
-
-                    <div class="row">
-
-                        <span>&nbsp;&nbsp;&nbsp;Use el Siguiente Calendario como guía (Opcional):</span>
-
-                        <div class="root">
-                            <div class="calendar" id="calendar">
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <input type="submit" class="col btn btn-primary" value="Mostrar Resultados">
-                            <div class="col-1"></div>
-                        </div>
                 </form>
             </div>
 
@@ -59,60 +47,14 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Horario</th>
-                                    <th scope="col">Paciente</th>
                                     <th scope="col">Medico</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Reservar</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>08:00</td>
-                                    <td> </td>
-                                    <td>Jon Armando</td>
-                                    <td>11/12/22</td>
-                                    <td>
-                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                                            <i class="fas fa-clock"></i>
-                                        </button>
-                                    </td>
-                                </tr>
 
-                                <tr>
-                                    <td>08:30</td>
-                                    <td>Pepe Solar</td>
-                                    <td>Jon Armando</td>
-                                    <td>11/12/22</td>
-                                    <td>
-                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                                            <i class="fas fa-clock"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody id="Reservar">
 
-                                <tr>
-                                    <td>09:00</td>
-                                    <td> </td>
-                                    <td>Jon Armando</td>
-                                    <td>11/12/22</td>
-                                    <td>
-                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                                            <i class="fas fa-clock"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>10:00</td>
-                                    <td> </td>
-                                    <td>Jon Armando</td>
-                                    <td>11/12/22</td>
-                                    <td>
-                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#confirmCita">
-                                            <i class="fas fa-clock"></i>
-                                        </button>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -121,4 +63,4 @@
         </div>
     </div>
 </div>
-<!-- FIN AGREGAR CITA (MODAL) -->
+<!-- FIN AGREGAR CITA-->

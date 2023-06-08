@@ -14,11 +14,11 @@
         }
     
         public function comprobarRutas() {
-            /* session_start();
-            $auth = $_SESSION['login'] ?? null;
-    
-            //ARREGLO DE RUTAS PROTEGIDAS
-            $rutas_protegidas = ['']; */
+            /* PROTECCIÓN DE URLS */
+            session_start();
+            $auth = $_SESSION['id'] ?? null;
+            
+            $rutas_protegidas = ['/paciente', '/doctor','/admin/index', '/pacientes/reporte', '/admin/medicos', '/medicos/reporte', '/admin/citas', '/admin/especialidades', '/paciente/citaspasadas'];       //ARREGLO DE RUTAS PROTEGIDAS
     
             $urlActual = $_SERVER['PATH_INFO'] ?? '/';
             $metodo = $_SERVER['REQUEST_METHOD'];
@@ -33,9 +33,9 @@
             }
     
             //PROTEGER RUTAS
-            /* if (in_array($urlActual, $rutas_protegidas) && !$auth) {
+            if (in_array($urlActual, $rutas_protegidas) && !$auth) {
                 header('Location: /');
-            } */
+            }
     
             if ($function) {
                 //LA URL EXISTE Y HAY UNA FUNCION ASOCIADA
@@ -45,52 +45,16 @@
             }
         }
     
-        //PARA LA VISTA GENERAL
-        public function render($view, $datos = []) {
+        //PARA LA LLAMADA DE LAS PAGINAS
+        public function render( $view, $layout, $datos = []) {
+            //OBTENEMOS LAS VARIABLES QUE SE ENVIAN DE LOS CONTROLLERS, 
             foreach ($datos as $key => $value) {
-                //$$ => variable variable, ejm=$llave
                 $$key = $value;
             }
             
             ob_start();                     //ALMACENANDO EN MEMORIA DURANTE UN MOMENTO...
             include_once __DIR__. "/views/$view.php";
             $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
-            include_once __DIR__."/views/layout.php";
-        }
-        //PARA LA VISTA DEL ADMINISTRADOR
-        public function renderAdmin($view, $datos = []) {
-            foreach ($datos as $key => $value) {
-                //$$ => variable variable, ejm=$llave
-                $$key = $value;
-            }
-            
-            ob_start();                     //ALMACENANDO EN MEMORIA DURANTE UN MOMENTO...
-            include_once __DIR__. "/views/$view.php";
-            $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
-            include_once __DIR__."/views/layout-admin.php";
-        }
-        //PARA LA VISTA DE LOS PACIENTES
-        public function renderPaciente($view, $datos = []) {
-            foreach ($datos as $key => $value) {
-                //$$ => variable variable, ejm=$llave
-                $$key = $value;
-            }
-            
-            ob_start();                     //ALMACENANDO EN MEMORIA DURANTE UN MOMENTO...
-            include_once __DIR__. "/views/$view.php";
-            $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
-            include_once __DIR__."/views/layout-paciente.php";
-        }
-        //PARA LA VISTA DE LOS DOCTORES
-        public function renderDoctor($view, $datos = []) {
-            foreach ($datos as $key => $value) {
-                //$$ => variable variable, ejm=$llave
-                $$key = $value;
-            }
-            
-            ob_start();                     //ALMACENANDO EN MEMORIA DURANTE UN MOMENTO...
-            include_once __DIR__. "/views/$view.php";
-            $contenido = ob_get_clean();    //LIMPIAMOS MEMORIA Y LO GUARDA EN LA VARIABLE
-            include_once __DIR__."/views/layout-medico.php";
+            include_once __DIR__."/views/$layout.php";
         }
     }

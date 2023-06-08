@@ -1,7 +1,6 @@
 <?php
     namespace Model;
 
-    use Router\Router;
 
     class DetalleMedico extends ActiveRecord{
 
