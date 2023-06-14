@@ -38,12 +38,7 @@ function isLinkActive(string $link): bool {
   return ($current === $link);
 }
 
-function debugear($variable) {
-  echo "<pre>";
-  var_dump($variable);
-  echo "</pre";
-  exit;
-}
+
 
 function s($html)
 {

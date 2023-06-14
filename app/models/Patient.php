@@ -3,48 +3,44 @@
 namespace App\Models;
 
 class Patient extends Model {
-  protected static $tabla = 'paciente';
-  protected static $columnasDB  = ['id', 'Nombre', 'Ape_Paterno', 'Ape_Materno', 'Edad', 'Genero', 'T_Doc', 'Nr_Doc', 'Fecha_Nacimiento', 'Telefono', 'Fecha_Creacion', 'Estado', 'id_login'];
+  protected static $tabla = 'patients';
+  protected static $columnasDB  = ['id', 'name', 'pat_lastname', 'mat_lastname', 'DOB', 'gender', 'doc_type', 'doc_number', 'phone', 'status', 'createdAt'];
 
   public $id;
-  public $Nombre;
-  public $Ape_Paterno;
-  public $Ape_Materno;
-  public $Edad;
-  public $Genero;
-  public $T_Doc;
-  public $Nr_Doc;
-  public $Fecha_Nacimiento;
-  public $Telefono;
-  public $Fecha_Creacion;
-  public $Estado;
-  public $id_login;
+  public $name;
+  public $pat_lastname;
+  public $mat_lastname;
+  public $DOB;
+  public $gender;
+  public $doc_type;
+  public $doc_number;
+  public $phone;
+  public $status;
+  public $createdAt;
 
   public function __construct($args = []) {
-      $this->id = $args['id'] ?? null;
-      $this->Nombre = $args['Nombre'] ?? '';
-      $this->Ape_Paterno = $args['Ape_Paterno'] ?? '';
-      $this->Ape_Materno = $args['Ape_Materno'] ?? '';
-      $this->Edad = $args['Edad'] ?? '';
-      $this->Genero = $args['Genero'] ?? '';
-      $this->T_Doc = $args['T_Doc'] ?? '';
-      $this->Nr_Doc = $args['Nr_Doc'] ?? '';
-      $this->Fecha_Nacimiento = $args['Fecha_Nacimiento'] ?? '';
-      $this->Telefono = $args['Telefono'] ?? '';
-      $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
-      $this->Estado = $args['Estado'] ?? 'Activo';
-      $this->id_login = $args['id_login'] ?? '';
+    $this->id = $args['id'] ?? '';
+    $this->name = $args['name'] ?? '';
+    $this->pat_lastname = $args['pat_lastname'] ?? '';
+    $this->mat_lastname = $args['mat_lastname'] ?? '';
+    $this->DOB = $args['DOB'] ?? '';
+    $this->gender = $args['gender'] ?? '';
+    $this->doc_type = $args['doc_type'] ?? '';
+    $this->doc_number = $args['doc_number'] ?? '';
+    $this->phone = $args['phone'] ?? '';
+    $this->status = $args['status'] ?? 'patient';
+    $this->createdAt = $args['createdAt'] ?? 'CURRENT_TIMESTAMP';
   }
 
   public function validar() {
-    if (!$this->Nombre) {
-      self::$errores[] = 'El nombre es obligatorio';
+    if (!$this->name) {
+      self::$alerts['error'][] = 'El nombre es obligatorio';
     }
-    if (!$this->Ape_Paterno) {
-      self::$errores[] = 'Apellido es obligatorio';
+    if (!$this->pat_lastname) {
+      self::$alerts['error'][] = 'Apellido es obligatorio';
     }
 
-    return self::$errores;
+    return self::$alerts;
   }
 
   //INSERT EN LA DATABASE
@@ -52,7 +48,7 @@ class Patient extends Model {
     //Registrar al nuevo paciente
     $date = date('Y-m-d');
     
-    $query = "INSERT INTO " . self::$tabla . " (Nombre, Ape_Paterno, Ape_Materno, Edad, Genero, T_Doc, Nr_Doc, Fecha_nacimiento, Telefono, Estado, id_login) VALUES ( '$this->Nombre', '$this->Ape_Paterno','$this->Ape_Materno', '$this->Edad', '$this->Genero','$this->T_Doc','$this->Nr_Doc', '$this->Fecha_Nacimiento', '$this->Telefono', '$this->Estado', '$user')";
+    $query = "INSERT INTO " . self::$tabla . " (name, pat_lastname, mat_lastname, DOB, gender, doc_type, doc_number, phone, status, Estado, id_login) VALUES ( '$this->name', '$this->pat_lastname','$this->mat_lastname', '$this->DOB', '$this->gender','$this->doc_type','$this->doc_number', '$this->phone', '$this->status', '$user')";
     
     $resultado = self::$db->query($query);
 
