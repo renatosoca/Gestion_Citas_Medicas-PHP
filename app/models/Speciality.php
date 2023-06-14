@@ -1,18 +1,18 @@
 <?php
 namespace App\Models;
 
-class Speciality extends Model{
+class Speciality extends Model {
 
-  protected static $tabla = 'specialities';
-  protected static $columnasDB  = ['id', 'Descripcion', 'Estado'];
+  protected static string $table = 'specialities';
+  protected static array $columnsDB  = ['id', 'description', 'status'];
 
-  public $id;
-  public $Descripcion;
-  public $Estado;
+  public string $id;
+  public string $description;
+  public string $status;
 
   public function __construct( $args = []) {
-    $this->id = $args['id'] ?? null;
-    $this->Descripcion = $args['Descripcion'] ?? '';
-    $this->Estado = $args['Estado'] ?? 'Activo';
+    $this->id = $args['id'] ?? '';
+    $this->description = $args['description'] ?? '';
+    $this->status = $args['status'] ?? 'active';
   }
 }

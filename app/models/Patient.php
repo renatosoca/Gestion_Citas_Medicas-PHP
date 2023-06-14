@@ -3,20 +3,21 @@
 namespace App\Models;
 
 class Patient extends Model {
-  protected static $tabla = 'patients';
-  protected static $columnasDB  = ['id', 'name', 'pat_lastname', 'mat_lastname', 'DOB', 'gender', 'doc_type', 'doc_number', 'phone', 'status', 'createdAt'];
+  
+  protected static string $table = 'patients';
+  protected static array $columnsDB  = ['id', 'name', 'pat_lastname', 'mat_lastname', 'DOB', 'gender', 'doc_type', 'doc_number', 'phone', 'status', 'createdAt'];
 
-  public $id;
-  public $name;
-  public $pat_lastname;
-  public $mat_lastname;
-  public $DOB;
-  public $gender;
-  public $doc_type;
-  public $doc_number;
-  public $phone;
-  public $status;
-  public $createdAt;
+  public string $id;
+  public string $name;
+  public string $pat_lastname;
+  public string $mat_lastname;
+  public string $DOB;
+  public string $gender;
+  public string $doc_type;
+  public string $doc_number;
+  public string $phone;
+  public string $status;
+  public string $createdAt;
 
   public function __construct($args = []) {
     $this->id = $args['id'] ?? '';
@@ -25,10 +26,10 @@ class Patient extends Model {
     $this->mat_lastname = $args['mat_lastname'] ?? '';
     $this->DOB = $args['DOB'] ?? '';
     $this->gender = $args['gender'] ?? '';
-    $this->doc_type = $args['doc_type'] ?? '';
+    $this->doc_type = $args['doc_type'] ?? 'DNI';
     $this->doc_number = $args['doc_number'] ?? '';
     $this->phone = $args['phone'] ?? '';
-    $this->status = $args['status'] ?? 'patient';
+    $this->status = $args['status'] ?? 'active';
     $this->createdAt = $args['createdAt'] ?? 'CURRENT_TIMESTAMP';
   }
 
@@ -43,8 +44,7 @@ class Patient extends Model {
     return self::$alerts;
   }
 
-  //INSERT EN LA DATABASE
-  public function Registrar($user) {
+  /* public function Registrar($user) {
     //Registrar al nuevo paciente
     $date = date('Y-m-d');
     
@@ -53,5 +53,5 @@ class Patient extends Model {
     $resultado = self::$db->query($query);
 
     return $resultado;
-  }
+  } */
 }
