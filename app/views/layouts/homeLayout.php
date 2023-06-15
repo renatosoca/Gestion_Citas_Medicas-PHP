@@ -103,7 +103,7 @@
         </section>
     </header>
 
-    <?php echo $contenido; ?>
+    <?php echo $content; ?>
 
     <!--======  FOOTER PART START ======-->
     <footer class="footer-bg">

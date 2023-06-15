@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cores;
+namespace App\Core;
 
 class Router {
   
@@ -60,12 +60,12 @@ class Router {
   public static function render(string $view, string $layout, array $data = []): string {
     extract($data);
 
-    if(file_exists(__DIR__ ."/views/$view.php")) {
+    if(file_exists(__DIR__ ."/../views/$view.php")) {
       ob_start();
-      include_once __DIR__ . "/views/$view.php";
+      include_once __DIR__ . "/../views/$view.php";
       $content = ob_get_clean();
 
-      if( file_exists(__DIR__ . "/views/layouts/$layout.php") ) include_once __DIR__ . "/views/layouts/$layout.php";
+      if( file_exists(__DIR__ . "/../views/layouts/$layout.php") ) include_once __DIR__ . "/../views/layouts/$layout.php";
   
       return $content;
     }

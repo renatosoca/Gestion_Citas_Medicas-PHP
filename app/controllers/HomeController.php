@@ -1,37 +1,37 @@
 <?php
-namespace Controller;
+namespace App\Controllers;
 
-use Router\Router;
+use App\Core\Router;
 
 class HomeController {
 
-  public static function index( Router $router ) {
+  public static function index() {
 
-    $router->render('page/index', 'layout', [
+    Router::render('home/index', 'homeLayout', [
     ]);
   }
 
-  public static function nosotros( Router $router ) {
+  public static function about() {
       
-    $router->render('page/nosotros', 'layout', [
+    Router::render('home/about', 'homeLayout', [
     ]);
   }
 
-  public static function servicios( Router $router ) {
+  public static function services() {
       
-    $router->render('page/servicios', 'layout', [
+    Router::render('home/services', 'homeLayout', [
     ]);
   }
 
-  public static function medicos( Router $router ) {
+  public static function doctors() {
       
-    $router->render('page/medicos', 'layout', [
+    Router::render('home/doctors', 'homeLayout', [
     ]);
   }
 
-  public static function contacto( Router $router ) {
+  public static function contact() {
       
-    $router->render('page/contacto', 'layout', [
+    Router::render('home/contact', 'homeLayout', [
     ]);
   }
 }
