@@ -5,7 +5,7 @@ namespace App\Models;
 class Patient extends Model {
   
   protected static string $table = 'patients';
-  protected static array $columnsDB  = ['id', 'name', 'pat_lastname', 'mat_lastname', 'DOB', 'gender', 'doc_type', 'doc_number', 'phone', 'status', 'createdAt'];
+  protected static array $columnsDB  = ['id', 'name', 'pat_lastname', 'mat_lastname', 'DOB', 'gender', 'doc_type', 'doc_number', 'phone', 'status'];
 
   public string $id;
   public string $name;
@@ -17,7 +17,6 @@ class Patient extends Model {
   public string $doc_number;
   public string $phone;
   public string $status;
-  public string $createdAt;
 
   public function __construct($args = []) {
     $this->id = $args['id'] ?? '';
@@ -30,7 +29,6 @@ class Patient extends Model {
     $this->doc_number = $args['doc_number'] ?? '';
     $this->phone = $args['phone'] ?? '';
     $this->status = $args['status'] ?? 'active';
-    $this->createdAt = $args['createdAt'] ?? 'CURRENT_TIMESTAMP';
   }
 
   public function validar() {

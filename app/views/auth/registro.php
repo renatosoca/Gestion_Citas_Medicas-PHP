@@ -1,34 +1,34 @@
 <div id="fondoregist">
-  <form action="/registro" class="formulario" method="POST">
+  <form action="/register" class="formulario" method="POST">
     <h1>Registrate</h1>
 
-    <?php foreach ($mensaje as $error) { ?>
+    <?php foreach ($alerts as $error) { ?>
       <p class="alerta error"><?php echo $error; ?></p>
     <?php } ?>
 
     <div class="contenedor">
       <div class="usuario">
-        <input type="text" name="paciente[Nombre]" id="" placeholder="Nombre"  />
+        <input type="text" name="patient[name]" id="" placeholder="Nombre"  />
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Ape_Paterno]" id="" placeholder="Apellido Paterno"  />
+        <input type="text" name="patient[pat_lastname]" id="" placeholder="Apellido Paterno"  />
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Ape_Materno]" id="" placeholder="Apellido Materno"  />
+        <input type="text" name="patient[mat_lastname]" id="" placeholder="Apellido Materno"  />
       </div>
 
       <div class="usuario">
-        <select  class="form-select"  name="paciente[Genero]"  >
+        <select  class="form-select"  name="patient[gender]"  >
           <option selected>Elija su genero</option>
-          <option value="Hombre">Hombre</option>
-          <option value="Mujer">Mujer</option>
+          <option value="M">Hombre</option>
+          <option value="F">Mujer</option>
         </select>
       </div>
 
       <div class="usuario">
-        <select  class="form-select"  name="paciente[T_Doc]"  >
+        <select  class="form-select"  name="patient[doc_type]"  >
           <option selected>Tipo de documento</option>
           <option value="DNI">DNI</option>
           <option value="PASAPORTE">PASAPORTE</option>
@@ -36,31 +36,25 @@
       </div>
 
       <div class="usuario">
-        <input type="number" name="paciente[Nr_Doc]" id="" placeholder="Ingrese el numero de documento"  />
+        <input type="number" name="patient[doc_number]" id="" placeholder="Ingrese el numero de documento"  />
       </div>
 
       <div class="usuario">
           <label  class="form-label">Ingrese su fecha de nacimiento:</label>
-          <input type="date" name="paciente[Fecha_Nacimiento]" id="FN" placeholder="Fecha de Nacimiento"  />
+          <input type="date" name="patient[DOB]" id="FN" placeholder="Fecha de Nacimiento"  />
       </div>
 
       <div class="usuario">
-          <input type="number" class="col" name="paciente[Edad]" id="Edad" placeholder="Edad" disabled required />
-      </div>
-
-      <div class="usuario">
-        <input type="number" name="paciente[Telefono]" id="" placeholder="Ingrese su numero de telefono"  />
+        <input type="number" name="patient[phone]" id="" placeholder="Ingrese su numero de telefono"  />
       </div>
 
       <div class="correo">
-        <input type="email" name="usuario[email]" id="" placeholder="Correo Electrónico"  />
+        <input type="email" name="user[email]" id="" placeholder="Correo Electrónico"  />
       </div>
 
       <div class="usuario">
-        <input type="pass" name="usuario[pass]" id="" placeholder="contraseña"  />
+        <input type="pass" name="user[password]" id="" placeholder="contraseña"  />
       </div>
-
-      <input type="hidden" name="usuario[tipo_usuario]" id="" placeholder="Contraseña"  value="2"/>
 
       <div>
         <input type="submit" value="Registrate" class="button" />

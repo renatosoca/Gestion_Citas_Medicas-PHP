@@ -7,20 +7,31 @@ class User extends Model {
   protected static array $columnsDB  = ['id', 'patient_id', 'doctor_id', 'email', 'password', 'role'];
 
   public string $id;
-  public string $patient_id;
-  public string $doctor_id;
+  public ?string $patient_id;
+  public ?string $doctor_id;
   public string $email;
   public string $password;
   public string $role;
 
   public function __construct( array $args = []) {
     $this->id = $args['id'] ?? '';
-    $this->patient_id = $args['patient_id'] ?? '';
-    $this->doctor_id = $args['doctor_id'] ?? '';
+    $this->patient_id = $args['patient_id'] ?? NULL;
+    $this->doctor_id = $args['doctor_id'] ?? NULL;
     $this->email = $args['email'] ?? '';
     $this->password = $args['password'] ?? '';
     $this->role = $args['role'] ?? 'patient';
   }
+
+  public function hashPassword(): void {
+    $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+  }
+
+  public function verifyPassword(string $password): bool {
+    $response = password_verify($password, $this->password);
+
+    return $response;
+  }
+  
 
   /* public function validar() {
       if (!$this->patient_id) {

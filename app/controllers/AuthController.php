@@ -1,64 +1,69 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Core\Router;
+use App\Models\Patient;
+use App\Models\User;
+
 class AuthController {
   public static function login() {
-    $mensaje = [];
+    $alerts = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $auth = new Login($_POST['usuario']);
-      $mensaje = $auth->validar();
+      $auth = new User($_POST[]);
+      $alerts = $auth->validate();
 
-      if (empty($mensaje)) {
-        //VERIFICAR SI EL USUARIO EXISTE EN LA DATABASE
-        $resultado = $auth->existeUsuario();
-        if (!$resultado) {
-          $mensaje = Login::getErrores();
-        } else {
-          //VERIFICAR EL PASS
-          $pass = $auth->ComprobarPass($resultado);
-          //AUTENTICAR
-          if ($pass) {
-            //AUTENTICAR AL USUARIO
-              $auth->autenticar($resultado);
-          } else {
-            $mensaje = Login::getErrores();
-          }
-        }
+      if (empty($alerts)) {
+        $user = User::findOne('email', $auth->email);
+
+        if (!$user) return User::setAlert( 'error', 'El usuario no existe');
+        if (!$user->verifyPassword($auth->password)) return User::setAlert('error', 'Email o contraseña incorrectos');
+        
+        debugging($user);
+
+        Router::redirect('/');
       }
     }
 
-    $router->render('auth/login', 'layout',[
-      'mensaje' => $mensaje
+    Router::render('auth/login', 'authLayout',[
+      'alerts' => $alerts
     ]);
+
+    exit;
   }
 
-  public static function registro() {
-    $mensaje = [];
-    $paciente = new Paciente();
+  public static function register() {
+    $alerts = [];
+    $patient = new Patient();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $usuario = new Login($_POST['usuario']);
-      $email = obtenerEmail();
+      $patient = new Patient($_POST['patient']);
+      $user = new User($_POST['user']);
 
-      $paciente = new Paciente($_POST['paciente']);
-      $mensaje = $paciente->validar();
-      if (empty($mensaje)) {
-        //GUARDAR USUARIO
-        $resultado = $usuario->insert();
+      if (empty($alerts)) {
+        $response = $patient->save();
+        if (!$response['id']) return Patient::setAlert('error', 'No se pudo registrar el paciente');
 
-        //BUSCAR USUARIO
-        $user = $usuario->searchUser($email);
-        if ($resultado) {
-          //REGISTRAR MEDICO
-          $result = $paciente->Registrar($user->id);
-          header('Location: /login');
-        }
+        $emailExist = User::findOne('email', $user->email);
+        if ($emailExist) return User::setAlert('error', 'El email ya esta en uso');
+
+        $user->patient_id = $response['id'];
+        $user->hashPassword();
+
+        $resp = $user->save();
+
+        if (!$resp['id']) return User::setAlert('error', 'No se pudo registrar el usuario');
+
+        Router::redirect('/login');
       }
     }
 
-    $router->render('auth/registro', 'layout', [
-      'mensaje' => $mensaje
+    Router::render('auth/registro', 'authLayout', [
+      'alerts' => $alerts
     ]);
+
+    exit;
   }
 
   public static function logout() {

@@ -19,7 +19,7 @@ class Model {
   public static function getAlerts(): array {
     return static::$alerts;
   }
-  public static function valitade(): array {
+  public static function validate(): array {
     static::$alerts = [];
     return static::$alerts;
   }
@@ -160,7 +160,7 @@ class Model {
       $values = [];
       foreach ($attributes as $key => $value) {
         $keys[] = "?";
-        $values[] = !is_bool($value) ? "{$value}" : ($value ? '1' : '0');
+        $values[] = !is_bool($value) ? ( is_null($value) ? NULL : "{$value}") : ($value ? '1' : '0');
       }
       
       $query = "INSERT INTO ". static::$table . "( ";
@@ -174,6 +174,7 @@ class Model {
   
       return [ 'result'=> $result, 'id' => self::$database->lastInsertId() ];
     } catch (\Throwable $th) {
+      debugging($th);
       return ['result' => false, 'id' => null];
     }
   }

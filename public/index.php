@@ -3,14 +3,21 @@ require_once __DIR__ . '/../app/main.php';
 
 use App\Core\Router;
 use App\Controllers\HomeController;
+use App\Controllers\AuthController;
 
 //static pages
 Router::get('/', [HomeController::class, 'index']);
-Router::get('/about', [PageController::class, 'nosotros']);
-Router::get('/services', [PageController::class, 'servicios']);
-Router::get('/doctors', [PageController::class, 'medicos']);
-Router::get('/contact', [PageController::class, 'contacto']);
-Router::post('/contact', [PageController::class, 'contacto']);
+Router::get('/about', [HomeController::class, 'about']);
+Router::get('/services', [HomeController::class, 'services']);
+Router::get('/doctors', [HomeController::class, 'doctors']);
+Router::get('/contact', [HomeController::class, 'contact']);
+Router::post('/contact', [HomeController::class, 'contact']);
+
+Router::get('/login', [AuthController::class, 'login']);
+Router::post('/login', [AuthController::class, 'login']);
+Router::get('/register', [AuthController::class, 'register']);
+Router::post('/register', [AuthController::class, 'register']);
+Router::get('/logout', [AuthController::class, 'logout']);
 
 //Paginas Admin, parte resumen
 Router::get('/admin/index', [AdminPacientesController::class, 'index']);
@@ -60,11 +67,6 @@ Router::post('/doctor/guardarficha', [DoctorController::class, 'guardarficha']);
 
 
 //Login
-Router::get('/login', [LoginController::class, 'login']);
-Router::post('/login', [LoginController::class, 'login']);
-Router::get('/registro', [LoginController::class, 'registro']);
-Router::post('/registro', [LoginController::class, 'registro']);
-Router::get('/logout', [LoginController::class, 'logout']);
 
 
 Router::dispatch();
