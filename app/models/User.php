@@ -77,35 +77,39 @@ class User extends Model {
       return $auth;
   }
 
-  public function autenticar($resultado) {
-      switch ($resultado->tipo_usuario) {
-          case 1:
+   */
 
-              $_SESSION['id'] = $resultado->id;
-              $_SESSION['usuario'] = $resultado->tipo_usuario;
-              
-              header('Location: /admin/index');
+  public function redirectUser($user) {
+    switch ($user->role) {
+      case 'admin':
 
-              break;
-          case 2:
+        $_SESSION['id'] = $user->id;
+        $_SESSION['email'] = $user->email;
+        
+        header('Location: /admin');
 
-              $_SESSION['id'] = $resultado->id;
+        return;
+      case 'patient':
 
-              header('Location: /paciente');
+        $_SESSION['patient_id'] = $user->patient_id;
+        $_SESSION['email'] = $user->email;
 
-              break;
-          case 3:
-              session_start();
+        header('Location: /patient');
 
-              $_SESSION['id'] = $resultado->id;
+        return;
+      case 'doctor':
+        session_start();
 
-              header('Location: /doctor');
+        $_SESSION['doctor_id'] = $user->doctor_id;
+        $_SESSION['email'] = $user->email;
 
-              break;
-          default:
-              echo "Error de direccionamiento";
-      }
-  } */
+        header('Location: /doctor');
+
+        return;
+      default:
+        return "Error de direccionamiento";
+    }
+  }
 }
 
 ?>

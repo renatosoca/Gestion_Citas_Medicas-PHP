@@ -11,7 +11,7 @@ class AuthController {
     $alerts = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $auth = new User($_POST[]);
+      $auth = new User($_POST);
       $alerts = $auth->validate();
 
       if (empty($alerts)) {
@@ -20,9 +20,7 @@ class AuthController {
         if (!$user) return User::setAlert( 'error', 'El usuario no existe');
         if (!$user->verifyPassword($auth->password)) return User::setAlert('error', 'Email o contraseña incorrectos');
         
-        debugging($user);
-
-        Router::redirect('/');
+        $user->redirectUser($user);
       }
     }
 
