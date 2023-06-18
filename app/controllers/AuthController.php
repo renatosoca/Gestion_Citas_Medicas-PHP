@@ -8,20 +8,22 @@ use App\Models\User;
 
 class AuthController {
   public static function login() {
+    $isAuth = isAuth();
+    if ($isAuth) return Router::redirect('/');
     $alerts = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $auth = new User($_POST);
       $alerts = $auth->validate();
 
-      if (empty($alerts)) {
-        $user = User::findOne('email', $auth->email);
+      if (!empty($alerts)) return;
 
-        if (!$user) return User::setAlert( 'error', 'El usuario no existe');
-        if (!$user->verifyPassword($auth->password)) return User::setAlert('error', 'Email o contraseña incorrectos');
-        
-        $user->redirectUser($user);
-      }
+      $user = User::findOne('email', $auth->email);
+
+      if (!$user) return User::setAlert( 'error', 'El usuario no existe');
+      if (!$user->verifyPassword($auth->password)) return User::setAlert('error', 'Email o contraseña incorrectos');
+      
+      $user->redirectUser($user);
     }
 
     Router::render('auth/login', 'authLayout',[

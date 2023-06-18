@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal del Paciente</title>
+  <title><?php echo $title ?></title>
   <script src="https://kit.fontawesome.com/b355a0cb3a.js" crossorigin="anonymous"></script>
   <script src="/build/js/calendar.js"></script>
   <link rel="stylesheet" href="/build/css/calendar.css">
@@ -15,9 +15,9 @@
 
 <body>
   <!-- INICIO DEL HEADER-->
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
-    <div class="container-fluid">
-      <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="#">
+  <header class="navbar navbar-expand-lg bg-dark navbar-dark ">
+    <nav class="container-fluid">
+      <a style="color: aqua; font-weight: 600;" class="navbar-brand" href="/patient">
         Hospital San José
       </a>
 
@@ -28,17 +28,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item ml-auto">
-            <a class="nav-link active" aria-current="page" href="/paciente">Citas Pendientes</a>
+            <a class="nav-link active" aria-current="page" href="/patient">Citas Pendientes</a>
           </li>
 
           <li class="nav-item ml-auto">
-            <a class="nav-link  " aria-current="page" href="/paciente/citaspasadas">Citas Pasadas</a>
+            <a class="nav-link " aria-current="page" href="/patient/last-appointment">Citas Pasadas</a>
           </li>
         </ul>
 
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown d-flex ">
-            <a style="float: right;" class="nav-link dropdown-toggle" href="/paciente/agregarcita" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a style="float: right;" class="nav-link dropdown-toggle" href="/patient/create-appointment" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-user"></i>
               Usuario
             </a>
@@ -49,17 +49,11 @@
           </li>
         </ul>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
   <!-- FIN DEL HEADER-->
 
-
-
-  <?php echo $contenido ?>
-
-
-
-
+  <?php echo $content ?>
 
   <!-- CALENDARIO-->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

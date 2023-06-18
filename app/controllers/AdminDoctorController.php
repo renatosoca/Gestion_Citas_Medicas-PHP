@@ -1,19 +1,21 @@
 <?php
 
+use App\Core\Router;
+use App\Models\Doctor;
+use App\Models\Schedule;
+use App\Models\Speciality;
+use App\Models\User;
+
 class AdminDoctorController {//Listado de 
   public static function medicos() {
-    if ($_SESSION['usuario'] == 1) {
-      $medicos = Medico::allActivos();
-      $especialidades = Especialidades::allActivos();
-      foreach ($medicos as $row) {
-        $Especialidad = Especialidades::find($row->ID_Especialidad);
-        $row->ID_Especialidad = $Especialidad->Descripcion;
-      }
-    } else {
-      header('Location: /');
+    $medicos = Doctor::findAll('status', 'active');
+    $especialidades = Speciality::findAll('status', 'active');
+    foreach ($medicos as $row) {
+      $Especialidad = Speciality::findById($row->speciality_id);
+      $row->ID_Especialidad = $Especialidad->description;
     }
 
-    $router->render('admin/medicos/index', 'layout-admin', [
+    Router::render('admin/medicos/index', 'layout-admin', [
       'medicos' => $medicos,
       'especialidades' => $especialidades
     ]);
@@ -22,14 +24,14 @@ class AdminDoctorController {//Listado de
   //AGREGAR MEDICOS   => Falta solucionar el TIPO_USUARIO
   public static function medicoAgregar() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $usuario = new Login($_POST['usuario']);
+      $usuario = new User($_POST['usuario']);
       $email = obtenerEmail();
 
-      $medico = new Medico($_POST['medico']);
-      $mensaje = $medico->validar();
+      $medico = new Doctor($_POST['medico']);
+      $mensaje = $medico->validate();
       if (empty($mensaje)) {
         //GUARDAR USUARIO
-        $resultado = $usuario->insert();
+        $resultado = $usuario->save();
 
         //BUSCAR USUARIO
         $user = $usuario->searchUser($email);
@@ -44,7 +46,7 @@ class AdminDoctorController {//Listado de
 
   public static function HorarioMedico() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $medico = Medico::find($_POST['id']);
+      $medico = Doctor::findById($_POST['id']);
 
       if (isset($_POST['Fecha'])) {
         $fecha = $_POST['Fecha'];
@@ -64,19 +66,19 @@ class AdminDoctorController {//Listado de
         $Hora = $Hora_Inicio;
 
         for ($i = 0; $i < $Pacientes; $i++) {
-          $horario = new Horario();
+          $horario = new Schedule();
           $horario->Registrar($medico->id, $fecha, $Hora_Inicio, $Hora_Fin, $TiempoAtencion, $Hora);
 
           $Hora = strtotime('+' . $TiempoAtencion . ' minute', strtotime($Hora));
           $Hora = date('H:i:s', $Hora);
         }
 
-        $router->render('admin/medicos/horarioMedico', 'layout-admin', [
+        Router::render('admin/medicos/horarioMedico', 'layout-admin', [
           'medico' => $medico
         ]);
       }
 
-      $router->render('admin/medicos/horarioMedico', 'layout-admin', [
+      Router::render('admin/medicos/horarioMedico', 'layout-admin', [
         'medico' => $medico
       ]);
     }

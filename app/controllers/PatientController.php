@@ -1,88 +1,100 @@
 <?php
 
-namespace Controller;
+namespace App\Controllers;
 
+use App\Core\Router;
+use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\MedicalHistory;
 use App\Models\Patient;
+use App\Models\Prescription;
 use App\Models\Schedule;
 use App\Models\Speciality;
+use App\Models\User;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class PatientController {
 
   public static function index() {
+    $isPatient = isAuth();
+    if (!$isPatient) return Router::redirect('/login');
+    
     $session = $_SESSION['patient_id'];
     $patient = Patient::findById( $session );
     
-    if (!empty($patient)) {
-      $schedules = Schedule::findAll();
-      $specialities = Speciality::findAll('status', 'active');
-      $doctors = Doctor::findAll('status', 'active');
+    if (empty($patient)) return Router::redirect('/login');
+    $schedules = Schedule::findAll();
+    $specialities = Speciality::findAll('status', 'active');
+    $doctors = Doctor::findAll('status', 'active');
 
-      $citas = Cita::findCitaEspera($paciente->id);
+    $appointments = Appointment::findJoins(['patient_id' => $patient->id, 'status' => 'programmed']);
 
-      foreach ($citas as $row) {
-        $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
-        $row->DNIPaciente = $paciente->Nr_Doc;
+    foreach ($appointments as $row) {
+      $row->patientName = $patient->name . " " . $patient->pat_lastname;
+      $row->patientDocNumber = $patient->doc_number;
 
-        $medico = Medico::find($row->ID_Medico);
-        $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+      $medico = Doctor::findById($row->doctor_id);
+      $row->doctorName = $medico->name . " " . $medico->pat_lastname;
 
-        $horario = Horario::find($row->ID_Horario);
-        $row->Fecha_Cita = $horario->Fecha;
-        $row->Hora_Cita = $horario->Hora;
-      }
-    } else {
-      header('Location: /');
+      $schedule = Schedule::findById($row->schedule_id);
+      $row->appointment_date = $schedule->date;
+      $row->appointment_time = $schedule->time;
     }
 
-    $router->render('pacientes/index', 'layout-paciente', [
-      'paciente' => $paciente,
-      'citas' => $citas,
+    Router::render('patients/index', 'patientLayout', [
+      'title' => 'Portal del Paciente',
+      'patient' => $patient,
+      'appointments' => $appointments,
       'schedules' => $schedules,
       'specialities' => $specialities,
       'doctors' => $doctors
     ]);
+
+    exit;
   }
 
   public static function citaspasadas() {
-    $sesion = $_SESSION['id'];
+    $isPatient = isAuth();
+    if (!$isPatient) return Router::redirect('/login');
+    $session = $_SESSION['id'];
 
-    $paciente = Paciente::findLogin($sesion);
-    $citas = Cita::findCitaTerminado($paciente->id);
+    $patient = Patient::findById($session);
+    $citas = Appointment::findById($patient->id);
 
     foreach ($citas as $row) {
-      $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
-      $row->DNIPaciente = $paciente->Nr_Doc;
+      $row->NombrePaciente = $patient->Nombre . " " . $patient->Ape_Paterno;
+      $row->DNIPaciente = $patient->Nr_Doc;
 
-      $medico = Medico::find($row->ID_Medico);
+      $medico = Doctor::findById($row->doctor_id);
       $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
 
-      $horario = Horario::find($row->ID_Horario);
+      $horario = Schedule::findById($row->schedule_id);
       $row->Fecha_Cita = $horario->Fecha;
       $row->Hora_Cita = $horario->Hora;
 
-      $detalleMedico = DetalleMedico::findcita($row->id);
+      $detalleMedico = MedicalHistory::findOne('appointment_id',$row->id);
       $row->Diagnostico = $detalleMedico->Diagnostico;
     }
 
-    $router->render('pacientes/citasPasadas', 'layout-paciente', [
-      'sesion' => $sesion,
+    Router::render('pacientes/citasPasadas', 'layout-paciente', [
+      'sesion' => $session,
       'citas' => $citas
     ]);
+
+    exit;
   }
 
   public static function registrarcita() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $auth = new Cita($_POST['cita']);
-      $paciente = Paciente::find($auth->ID_Paciente);
-      $medico = Medico::find($auth->ID_Medico);
-      $horario = Horario::find($auth->ID_Horario);
-      $login = Login::find($paciente->id_login);
-      $resultado = $auth->Registrar();
+      $appointment = new Appointment($_POST['cita']);
+      $paciente = Patient::findById($appointment->patient_id);
+      $medico = Doctor::findById($appointment->doctor_id);
+      $horario = Schedule::findById($appointment->schedule_id);
+      $login = User::findById($paciente->id_login);
+      $resultado = $appointment->save();
 
       if ($resultado) {
-        $horario = Horario::find($_POST['ID_Horario']);
+        $horario = Schedule::findById($_POST['ID_Horario']);
         $horario->CambiarEstadoHorario();
 
         $mail = new PHPMailer();
@@ -98,7 +110,7 @@ class PatientController {
         $contenido = '<html>';
         $contenido .= '<p>Hola ' . $paciente->Nombre . ' ' . $paciente->Ape_Paterno . ' !' . '</p>';
         $contenido .= '<p>Detalles de la programación de tu cita</p>';
-        $contenido .= '<p>La especialidad que escogiste: ' . $auth->Area . '</p>';
+        $contenido .= '<p>La especialidad que escogiste: ' . $appointment->area . '</p>';
         $contenido .= '<p>Tu médico de cabezera es: ' . $medico->Nombre . ' ' . $medico->Ape_Paterno . '</p>';
         $contenido .= '<p>Fecha de tu cita: ' . $horario->Fecha . '</p>';
         $contenido .= '<p>Hora de tu cita: ' . $horario->Hora . '</p>';
@@ -120,40 +132,42 @@ class PatientController {
   public static function detallemedico() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      $cita = Cita::find($_POST['IDCita']);
-      $detalleMedico = DetalleMedico::findcita($_POST['IDCita']);
-      $medico = Medico::find($cita->ID_Medico);
-      $cita->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
-      $receta = RecetaMedica::findReceta($detalleMedico->id);
+      $cita = Appointment::findById($_POST['IDCita']);
+      $detalleMedico = MedicalHistory::findOne('appointment_id',$_POST['IDCita']);
+      $medico = Doctor::findById($cita->doctor_id);
+      $cita->NombreMedico = $medico->name . " " . $medico->pat_lastname;
+      $receta = Prescription::findOne('medicalHistory_id', $detalleMedico->id);
     }
 
-    $router->render('pacientes/DetalleMedico', 'layout-paciente', [
-
+    Router::render('pacientes/DetalleMedico', 'layout-paciente', [
+      'title' => 'Detalle de Médico',
       'cita' => $cita,
       'detalleMedico' => $detalleMedico,
       'receta' => $receta,
 
     ]);
+
+    exit;
   }
 
   public static function reprogramarcita() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      $auth = new Cita($_POST['cita']);
-      $resultado = $auth->Registrar();
-      $paciente = Paciente::find($auth->ID_Paciente);
-      $horario = Horario::find($auth->ID_Horario);
-      $login = Login::find($paciente->id_login);
+      $appointment = new Appointment($_POST['cita']);
+      $resultado = $appointment->save();
+      $paciente = Patient::findById($appointment->patient_id);
+      $horario = Schedule::findById($appointment->schedule_id);
+      $login = User::findById($paciente->id_login);
 
       if ($resultado) {
 
-        $cita = Cita::find($_POST['idcita']);
+        $cita = Appointment::findById($_POST['idcita']);
         $cita->delete();
 
-        $horario = Horario::find($_POST['idhoraRepro']);
+        $horario = Schedule::findById($_POST['idhoraRepro']);
         $horario->CambiarEstadoHorario();
 
-        $horarioActivar = Horario::find($_POST['idhoraActiva']);
+        $horarioActivar = Schedule::findById($_POST['idhoraActiva']);
         $horarioActivar->ActivarEstadoHorario();
 
         if ($horarioActivar) {
@@ -192,13 +206,13 @@ class PatientController {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      $cita = Cita::find($_POST['idEliminar']);
+      $cita = Appointment::findById($_POST['idEliminar']);
       $cita->delete();
 
-      $horarioActivar = Horario::find($_POST['idHorario']);
+      $horarioActivar = Schedule::findById($_POST['idHorario']);
       $horarioActivar->ActivarEstadoHorario();
 
-      header('Location:  /paciente');
+      header('Location:  /patient');
     }
   }
 }

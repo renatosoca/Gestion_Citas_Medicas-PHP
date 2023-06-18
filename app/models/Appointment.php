@@ -5,7 +5,7 @@ namespace App\Models;
 class Appointment extends Model {
 
   protected static string $table = 'appointments';
-  protected static array $columnasDB  = ['id', 'patient_id', 'doctor_id', 'schedule_id', 'area', 'status', 'createdAt'];
+  protected static array $columnasDB  = ['id', 'patient_id', 'doctor_id', 'schedule_id', 'area', 'status'];
 
   public string $id;
   public string $patient_id;
@@ -13,16 +13,14 @@ class Appointment extends Model {
   public string $schedule_id;
   public string $area;
   public string $status;
-  public string $createdAt;
 
-
-  public $Fecha_Cita;
-  public $Hora_Cita;
-  public $NombrePaciente;
-  public $DNIPaciente;
-  public $NombreMedico;
-  public $Diagnostico;
-  public $Edad;
+  public string $appoitnement_date;
+  public string $appointment_time;
+  public string $patientName;
+  public string $patientDocnumber;
+  public string $doctorName;
+  public string $diagnosis;
+  public string $age;
 
   public function __construct( array $args = []) {
     $this->id = $args['id'] ?? '';
@@ -31,15 +29,14 @@ class Appointment extends Model {
     $this->schedule_id = $args['schedule_id'] ?? '';
     $this->area = $args['area'] ?? '';
     $this->status = $args['status'] ?? 'programmed';
-    $this->createdAt = $args['createdAt'] ?? '';
 
-    $this->Fecha_Cita = $args['Fecha_Cita'] ?? '';
-    $this->Hora_Cita = $args['Hora_Cita'] ?? '';
-    $this->NombrePaciente = $args['NombrePaciente'] ?? '';
-    $this->NombreMedico = $args['NombreMedico'] ?? '';
-    $this->DNIPaciente = $args['DNIPaciente'] ?? '';
-    $this->Diagnostico = $args['Diagnostico'] ?? '';
-    $this->Edad = $args['Edad'] ?? '';
+    $this->appoitnement_date = $args['appoitnement_date'] ?? '';
+    $this->appointment_time = $args['appointment_time'] ?? '';
+    $this->patientName = $args['patientName'] ?? '';
+    $this->doctorName = $args['doctorName'] ?? '';
+    $this->patientDocnumber = $args['patientDocnumber'] ?? '';
+    $this->diagnosis = $args['diagnosis'] ?? '';
+    $this->age = $args['age'] ?? '';
   }
 
   /* public function Registrar() {

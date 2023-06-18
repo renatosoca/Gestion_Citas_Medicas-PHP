@@ -1,31 +1,34 @@
 <?php
 
+use App\Core\Router;
+use App\Models\Appointment;
+use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\Schedule;
+use App\Models\Speciality;
+
 class AdminAppointmentController {
   public static function appointment() {
-    if ($_SESSION['usuario'] == 1) {
-      $especialidades = Especialidades::allActivos();
-      $medicos = Medico::allActivos();
-      $horarios = Horario::allDisponibles();
-      $pacientes = Paciente::allActivos();
-      $citaMostrar = Cita::allEspera();
+    $especialidades = Speciality::findAll('status', 'active');
+    $medicos = Doctor::findAll('status', 'active');
+    $horarios = Schedule::findAll('status', 'active');
+    $pacientes = Patient::findAll('status', 'active');
+    $citaMostrar = Appointment::findAll('status', 'programmed');
 
-      foreach ($citaMostrar as $row) {
-        $paciente = Paciente::find($row->ID_Paciente);
-        $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
-        $row->DNIPaciente = $paciente->Nr_Doc;
+    foreach ($citaMostrar as $row) {
+      $paciente = Patient::findById($row->patient_id);
+      $row->NombrePaciente = $paciente->name . " " . $paciente->pat_lastname;
+      $row->DNIPaciente = $paciente->Nr_Doc;
 
-        $medico = Medico::find($row->ID_Medico);
-        $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+      $medico = Doctor::findById($row->ID_Medico);
+      $row->NombreMedico = $medico->Nombre . " " . $medico->pat_lastname;
 
-        $horario = Horario::find($row->ID_Horario);
-        $row->Fecha_Cita = $horario->Fecha;
-        $row->Hora_Cita = $horario->Hora;
-      }
-    } else {
-      header('Location: /');
+      $horario = Schedule::findById($row->ID_Horario);
+      $row->Fecha_Cita = $horario->Fecha;
+      $row->Hora_Cita = $horario->Hora;
     }
 
-    $router->render('admin/citas/index', 'layout-admin', [
+    Router::render('admin/citas/index', 'layout-admin', [
       'especialidades' => $especialidades,
       'medicos' => $medicos,
       'horarios' => $horarios,
@@ -37,11 +40,11 @@ class AdminAppointmentController {
   public static function registrarcita() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-      $auth = new Cita($_POST['cita']);
-      $resultado = $auth->Registrar();
+      $auth = new Appointment($_POST['cita']);
+      $resultado = $auth->save();
 
       if ($resultado) {
-        $horario = Horario::find($_POST['ID_Horario']);
+        $horario = Schedule::findById($_POST['ID_Horario']);
         $horario->CambiarEstadoHorario();
 
         header('Location: /admin/citas');
@@ -51,17 +54,17 @@ class AdminAppointmentController {
   
   public static function reprogramarcita() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $auth = new Cita($_POST['cita']);
-      $resultado = $auth->Registrar();
+      $auth = new appointment($_POST['cita']);
+      $resultado = $auth->save();
 
       if ($resultado) {
-        $cita = Cita::find($_POST['idcita']);
+        $cita = Appointment::findById($_POST['idcita']);
         $cita->delete();
 
-        $horario = Horario::find($_POST['idhoraRepro']);
+        $horario = Schedule::findById($_POST['idhoraRepro']);
         $horario->CambiarEstadoHorario();
 
-        $horarioActivar = Horario::find($_POST['idhoraActiva']);
+        $horarioActivar = Schedule::findById($_POST['idhoraActiva']);
         $horarioActivar->ActivarEstadoHorario();
 
         header('Location: /admin/citas');
@@ -71,10 +74,10 @@ class AdminAppointmentController {
   
   public static function eliminarcita() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $cita = Cita::find($_POST['idEliminar']);
+      $cita = appointment::findById($_POST['idEliminar']);
       $cita->delete();
 
-      $horarioActivar = Horario::find($_POST['idHorario']);
+      $horarioActivar = Schedule::findById($_POST['idHorario']);
       $horarioActivar->ActivarEstadoHorario();
 
       header('Location: /admin/citas');

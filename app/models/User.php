@@ -84,6 +84,7 @@ class User extends Model {
       case 'admin':
 
         $_SESSION['id'] = $user->id;
+        $_SESSION['login'] = true;
         $_SESSION['email'] = $user->email;
         
         header('Location: /admin');
@@ -92,15 +93,16 @@ class User extends Model {
       case 'patient':
 
         $_SESSION['patient_id'] = $user->patient_id;
+        $_SESSION['login'] = true;
         $_SESSION['email'] = $user->email;
 
         header('Location: /patient');
 
         return;
       case 'doctor':
-        session_start();
 
         $_SESSION['doctor_id'] = $user->doctor_id;
+        $_SESSION['login'] = true;
         $_SESSION['email'] = $user->email;
 
         header('Location: /doctor');

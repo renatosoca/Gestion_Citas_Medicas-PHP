@@ -4,6 +4,7 @@ require_once __DIR__ . '/../app/main.php';
 use App\Core\Router;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
+use App\Controllers\PatientController;
 
 //static pages
 Router::get('/', [HomeController::class, 'index']);
@@ -49,7 +50,7 @@ Router::post('/especialidades/eliminar', [AdminEspecialidadController::class, 'e
 
 
 //Paginas Paciente
-Router::get('/paciente', [PacienteController::class, 'index']);
+Router::get('/patient', [PatientController::class, 'index']);
 Router::get('/paciente/citaspasadas', [PacienteController::class, 'citaspasadas']);
 Router::post('/paciente/registrarcita', [PacienteController::class, 'registrarcita']);
 Router::post('/paciente/reprogramar', [PacienteController::class, 'reprogramarcita']);

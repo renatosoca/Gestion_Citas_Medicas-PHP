@@ -14,17 +14,17 @@
 
 <!-- TODAS LAS CITAS PENDIENTES-->
 <?php
-$horario = [];
+$schedule = [];
 
-foreach ($horarios as $row) {
+foreach ($schedules as $row) {
   $horario[] = $row->id;
   $horario[] = $row->Fecha;
   $horario[] = $row->Hora;
   $horario[] = $row->ID_Medico;
 }
-$medico = [];
+$doctor = [];
 
-foreach ($medicos as $row) {
+foreach ($doctors as $row) {
   $medico[] = $row->id;
   $medico[] = $row->Nombre . " " . $row->Ape_Paterno;
 }
@@ -32,7 +32,7 @@ foreach ($medicos as $row) {
 <!-- CONTENEDOR DE UNA CITA PENDIENTE-->
 <div class="container">
   <?php
-  foreach ($citas as $row) { ?>
+  foreach ($appointments as $row) { ?>
     <div class="container cita-pendiente">
       <div class="row">
         <div class="col-sm-12">
