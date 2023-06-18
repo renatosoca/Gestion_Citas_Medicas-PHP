@@ -1,19 +1,11 @@
 services:
-  php:
-    image: znerox/php8.1-apache_mysqli:latest
-    container_name: vitalia-php
-    ports:
-      - 4000:80
-    volumes:
-      - ./docker/www:/var/www/html
-
   mysql:
     image: mysql:8.0.33
-    container_name: vitalia-db
+    container_name: sanjose-db
     ports:
       - 3306:3306
     volumes:
       - ./docker/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=development
-      - MYSQL_DATABASE=vitalia
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=san-jose

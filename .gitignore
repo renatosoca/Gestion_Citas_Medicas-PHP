@@ -1,4 +1,3 @@
-/docker
 /vendor
-/composer.lock
-.env
+/docker
+/node_modules
